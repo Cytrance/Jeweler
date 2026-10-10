@@ -10,9 +10,9 @@
 
 Project entry point, role definitions, and roadmap established. Continue using task branches and independent review for each milestone.
 
-## Current milestone: first running scene
+## Completed milestone: first running scene
 
-Create one simple 2D scene, designate it as the main scene, and run it. Use a visible placeholder with no external assets or gameplay systems. The Windows visual playtest is pending; do not mark this milestone complete until the project manager checks it.
+Created one simple 2D scene, designated it as the main scene, and ran it. The project manager confirmed the rectangle on Windows, approved the branch, and the milestone was merged into `main`.
 
 Acceptance checks:
 
@@ -21,12 +21,25 @@ Acceptance checks:
 - Project manager: repeat the steps in [the first-scene walkthrough](first-scene.md).
 - Documentation: explain scenes, nodes, the main scene, and editor versus running game.
 
+## Current milestone: four-direction movement
+
+Move the existing placeholder using WASD and arrow keys. Learn GDScript, input actions, vectors, and physics updates. The Windows movement playtest is pending; do not mark this milestone complete or merge without project manager approval.
+
+Acceptance checks:
+
+- Both control sets move the placeholder in all four directions.
+- Releasing the keys stops movement immediately.
+- Diagonal movement has the same speed as straight movement.
+- Cloud verification reports actual import, runtime, and movement checks performed; headless checks do not replace the Windows playtest.
+- Independent review checks the actual diff and updates the [movement walkthrough](player-movement.md).
+
+Collision, boundaries, animation, and finished sprites are deferred. The placeholder can move offscreen; restarting the game restores its starting position.
+
 ## Later milestones, one at a time
 
-1. Four-direction movement: learn GDScript, input actions, and frame updates.
-2. Obstacles and collision: learn physics bodies and collision shapes.
-3. One interactive object and short dialogue: learn signals and basic UI.
-4. Agree on a small art guide and replace a placeholder: learn the sprite agent workflow and asset imports.
+1. Obstacles and collision: learn physics bodies and collision shapes.
+2. One interactive object and short dialogue: learn signals and basic UI.
+3. Agree on a small art guide and replace a placeholder: learn the sprite agent workflow and asset imports.
 
 Inventory, crafting, farming, NPC schedules, and save/load are deferred. Define their requirements only when the earlier milestones are understood and verified.
 
