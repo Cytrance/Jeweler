@@ -4,7 +4,13 @@ extends CharacterBody2D
 @export var speed: float = 200.0
 
 
+var movement_locked := false
+
+
 func _physics_process(_delta: float) -> void:
+	if movement_locked:
+		velocity = Vector2.ZERO
+		return
 	# get_vector limits diagonal input to the same speed as straight input.
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction * speed
