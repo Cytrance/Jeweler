@@ -6,27 +6,20 @@
 - Empty Godot project created in `jewel-rpg/` and opened locally.
 - Initial project committed and pushed; cloud access verified.
 
-## Current milestone: working agreements
+## Working agreements checkpoint
 
-Deliver a project entry point, role definitions, and a small roadmap. Review the documentation on a task branch before merging. No gameplay changes are included.
+Project entry point, role definitions, and roadmap established. Continue using task branches and independent review for each milestone.
 
-Acceptance checks:
+## Current milestone: first running scene
 
-- Project paths match the actual checkout.
-- Instructions distinguish saving, committing, pushing, and fetching/pulling.
-- Roles specify who implements, reviews, creates art, and approves.
-- Documentation accurately states that no playable scene exists yet.
-
-## Next milestone: first running scene
-
-Create one simple 2D scene, designate it as the main scene, and run it. Use a visible placeholder with no external assets or gameplay systems.
+Create one simple 2D scene, designate it as the main scene, and run it. Use a visible placeholder with no external assets or gameplay systems. The Windows visual playtest is pending; do not mark this milestone complete until the project manager checks it.
 
 Acceptance checks:
 
-- The project starts into the intended scene without script errors.
-- A visible placeholder appears.
-- The project manager can repeat the steps on Windows.
-- Explain scenes, nodes, the main scene, and the difference between editor and running game.
+- Cloud agent: verify that the intended main scene loads with Godot 4.7.2 without errors; report the actual checks performed.
+- Project manager: run the project on Windows and confirm a visible placeholder appears with no errors.
+- Project manager: repeat the steps in [the first-scene walkthrough](first-scene.md).
+- Documentation: explain scenes, nodes, the main scene, and editor versus running game.
 
 ## Later milestones, one at a time
 
