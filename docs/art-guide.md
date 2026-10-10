@@ -1,6 +1,23 @@
-# Provisional player art guide
+# Modern market art guide
 
-This first asset demonstrates the sprite-agent handoff. Its appearance is pending project-manager approval; it does not establish a finished game art style.
+## Current direction
+
+Present-day, friendly 2D jewellery-business RPG. The starting location is a modest market pop-up, not a medieval workshop. The [game-design brief](game-design.md) governs the setting and player progression. New artwork is pending generation and project-manager review.
+
+- Founder: casual contemporary clothing, sneakers, optional utility apron or crossbody pouch. Keep the person approachable; no fantasy tunic, leather bracers, or adventurer accessories.
+- Stall: folding table, jewellery trays, modest price cards, stock boxes, simple fabric cover, and a small card-payment device. No luxury-brand logos. The initial supplier offers imitation goods.
+- Surroundings: recognisable market pavement and neighbouring stall silhouettes, with a restrained readable palette. Keep routes and interaction targets clear.
+- Readability target: founder roughly 96 game pixels tall at the initial view. Check stall height against the person; a tabletop should feel waist-height in the chosen perspective. Do not mechanically reuse the workshop obstacle's proportions as a modern folding table.
+- Separate visual height from foot collision geometry. Define the stall's visual and solid footprints explicitly before integration.
+- Begin with one static founder frame facing down. Animation is a later assignment. Preserve transparent padding, full framing, clear outlines, and aspect ratio.
+- Generate source images to a documented brief; inspect real resolution, alpha, and framing. Prefer artwork designed for the final display size. A large illustration scaled down is not automatically pixel-grid-consistent art.
+- Record palette, source dimensions, display dimensions, crop, filenames, and provenance at each handoff. Review the combined scene at normal gameplay size rather than approving isolated asset previews alone.
+
+The following sections document the existing prototype asset for maintenance. Its fantasy clothing is superseded as the intended game direction; the file is still used by the current code until the separate visual-reset milestone.
+
+## Historical prototype
+
+This first asset demonstrated the sprite-agent handoff and was merged after the project manager's scale feedback. It does not establish the modern game's final art style.
 
 ## Brief
 

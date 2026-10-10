@@ -66,25 +66,35 @@ Acceptance checks:
 
 No inventory, dialogue choices, animation, sprites, or screen boundaries are included.
 
-## Current milestone: one static player sprite
+## Completed milestone: one static player sprite
 
-Replace the cyan rectangle with a transparent, generated jeweler-apprentice image. Learn the sprite-agent handoff, source assets, texture imports, filtering, and visual versus collision geometry. Windows appearance and project manager art approval are pending; do not merge yet.
+The project manager reviewed the sprite, requested a larger readable character, and merged the correction at `6d2f0bd`. This established the asset handoff and focused-verification workflow. The fantasy-styled clothing is superseded by the modern business setting.
+
+## Superseded experiment: wooden workshop
+
+`feat/workshop-room` was tested locally but remains unmerged. It explored scene composition, boundaries, and collision layers. Do not merge its historical workshop visuals into the modern-market direction. Reuse useful techniques in a separately reviewed change when needed.
+
+## Current milestone: modern business design brief
+
+Document the approved setting, tone, ethical choices, first business loop, placeholder economy, and revised art direction. No application or asset changes are included.
 
 Acceptance checks:
 
-- A visible apprentice image replaces only the player's drawing.
-- The source asset, import settings, art specification, and origin record are committed; generated cache files remain ignored.
-- Existing controls, collision shape, and sign dialogue still work.
-- Independent review checks the final asset integration and reruns existing movement and interaction regressions.
-- The project manager follows [the sprite walkthrough](player-sprite.md) and approves readability, transparency, and alignment on Windows.
+- [Game design](game-design.md) reflects a modern jewellery-business RPG with meaningful simulation and playful humour.
+- Initial imitation goods can be sold honestly or misrepresented; composition and sales claims are distinct.
+- Prototype values and worked examples are internally consistent and explicitly unbalanced.
+- [Art guide](art-guide.md) supersedes the fantasy visual direction and preserves historical import information.
+- Planned features are distinguished from the currently running prototype.
+- Independent review checks documents; no gameplay suites are rerun for this documentation-only milestone.
 
-This is one static pose, not an animated or directional sprite sheet. Exact pixel-grid consistency and a final production art style are not established.
+## Next milestones, each reviewed separately
 
-## Later milestones, one at a time
+1. Modern visual reset: casual founder and readable market pop-up, retaining movement and interaction.
+2. Purchase loop: supplier, cash, stock, insufficient-funds feedback.
+3. Sales loop: prices, sales claims, customer acceptance/rejection, transaction feedback.
+4. Consequences: end-day complaints, reserved refunds, reputation feedback.
 
-Agree on the next small learning goal after this milestone is reviewed and merged.
-
-Inventory, crafting, farming, NPC schedules, and save/load are deferred. Define their requirements only when the earlier milestones are understood and verified.
+The [design brief](game-design.md) defines acceptance checks across the first complete loop. Research, precious-material suppliers, staff, boutiques, supply chains, and luxury competition remain later goals. Save/load and a final balanced economy are not yet implemented.
 
 ## Task handoff template
 

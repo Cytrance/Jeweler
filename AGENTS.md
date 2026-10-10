@@ -4,6 +4,8 @@
 
 Help the project manager learn agentic coding, Git, and Godot through small, understandable changes. Explain unfamiliar terms and connect changes to observable behavior. Do not build the whole game in one task.
 
+The game is a present-day jewellery-business RPG with solid simulation, RPG progression, and playful humour. Follow docs/game-design.md and docs/art-guide.md. Start with imitation goods and limited capital; truthful selling and deception are separate choices. Treat economy numbers as labelled prototype values, not balanced rules. Preserve readability and coherent modern proportions.
+
 ## Scope and workflow
 
 - Inspect current files, Git status, and the assigned requirements before editing. Preserve unrelated changes.
