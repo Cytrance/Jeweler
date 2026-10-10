@@ -1,5 +1,12 @@
 # Asset origins
 
+## Modern market style concept v1
+
+- File: `docs/concepts/modern-market-style-v1.png`.
+- Created: 2026-10-10 using the OpenAI image-generation tool.
+- The project manager's supplied reference guided warmth, pixel-style rendering, foliage, and cute proportions. The generated concept depicts an original contemporary jewellery pop-up rather than the reference's historical architecture.
+- Purpose: combined art-direction preview for approval. Not imported by Godot and not a production tileset or native pixel-grid guarantee. The generated output is preserved unchanged.
+
 ## Player idle front
 
 - File: `jewel-rpg/assets/player/jeweler_idle_front.png`

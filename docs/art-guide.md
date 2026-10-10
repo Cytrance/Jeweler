@@ -2,6 +2,21 @@
 
 ## Current direction
 
+### Style refinement: cute, cosy pixel-art direction
+
+The project manager accepted the modern setting but requested a cutesier, more cohesive pixel-art style. The supplied environmental reference guides mood and rendering, not historical architecture: warm peach/gold light, muted pastels, textured paving and foliage, soft dark outlines, and charming rounded forms.
+
+- Keep the contemporary market, folding table, payment device, and casual clothing. Do not transplant the reference's pagoda or historical setting.
+- Prefer a broader chibi founder around 2.5 heads tall over the current tall, narrow figure. Maintain readability around the established 96-game-pixel display height; review actual head, body, and stall proportions together.
+- Use dusty teal, warm cream, peach, sage, and muted plum/brown shadows as a provisional shared palette. Avoid a richly shaded character against unrelated flat vector scenery.
+- Use consistent pixel clusters and perspective across characters, stalls, pavement, and foliage. Soft lighting must not erase readable edges or walkable space.
+- Review one combined style concept first. It is visual direction, not a playable level, collision map, animation sheet, or evidence of a native pixel grid.
+- After concept approval, define a common source grid, display scale, transparent padding, and sprite origins before producing individual assets. Match shadows and lighting direction across assets; do not independently downscale mismatched generated illustrations and call them a consistent tileset.
+
+The current in-game founder and geometric market remain provisional until the separate asset-refinement work is reviewed. The style concept does not change game code or gameplay.
+
+The proposed [combined market concept](concepts/modern-market-style-v1.png) shows the warmer palette, chibi founder, cloth stall, plants, and textured plaza together. Project-manager style approval is pending. It establishes a visual target, not the starting stock quantity or the cost of decorative surroundings; the actual starter stall should remain modest and use imitation goods. Produce separate grounded assets after approval rather than using this entire illustration as an interactive map.
+
 Present-day, friendly 2D jewellery-business RPG. The starting location is a modest market pop-up, not a medieval workshop. The [game-design brief](game-design.md) governs the setting and player progression. The modern founder is generated and awaiting project-manager review in the combined market scene.
 
 - Founder: casual contemporary clothing, sneakers, optional utility apron or crossbody pouch. Keep the person approachable; no fantasy tunic, leather bracers, or adventurer accessories.
