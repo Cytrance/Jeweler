@@ -53,8 +53,8 @@ func _run() -> void:
 				if shape != null:
 					var bounds := visual.transform * visual.get_rect()
 					var collision_bounds := Rect2(collider.position - shape.size / 2.0, shape.size)
-					check(collision_bounds.encloses(bounds), "sprite display bounds fit existing collider")
-					check(bounds.get_center().is_equal_approx(collider.position), "sprite stays centered on collider")
+					check(absf(bounds.size.y - 96.0) < 0.01 and bounds.size.x > 36.0, "character is large enough for the revised readability target")
+					check(absf(bounds.get_center().x - collider.position.x) < 0.01 and absf(bounds.end.y - collision_bounds.end.y) < 0.01, "character feet align with collider bottom and remain horizontally centered")
 	scene.queue_free()
 	await process_frame
 	print("Sprite checks: ", checks, "; failures: ", failures)

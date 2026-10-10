@@ -19,7 +19,7 @@ There are still no screen boundaries. Restart if you move offscreen. Windows vis
 
 The source PNG contains image pixels and an alpha channel for transparency. `Sprite2D` is the Godot node that draws the imported texture in the scene. The player remains a `CharacterBody2D`, with the same script and `CollisionShape2D`; changing its visual child does not change movement logic.
 
-Source image size and rendered size are different. A generated image can have a large canvas and transparent margins. A texture region selects the part to display, while the sprite's scale determines how large that region appears in the game. Centering aligns the selected rectangle with the player origin; it does not automatically align every opaque pixel or the character's feet with collision geometry.
+Source image size and rendered size are different. A generated image can have a large canvas and transparent margins. A texture region selects the part to display, while the sprite's scale determines how large that region appears in the game. A centered sprite initially places the selected rectangle around its own origin. We then offset that visual upward to align its lower edge with the collision shape; centering alone does not align feet.
 
 Nearest filtering selects nearby source pixels without smoothing between them. It avoids blur from linear filtering, but does not turn generated artwork into exact low-resolution pixel art. A static generated image can have inconsistent pixel sizes, soft edges, or details that disappear when reduced. This asset is an initial art-workflow experiment; the project manager still approves the style and readability.
 
@@ -27,11 +27,14 @@ Nearest filtering selects nearby source pixels without smoothing between them. I
 
 - Source: `assets/player/jeweler_idle_front.png`, 1024 × 1536 RGBA.
 - Displayed region: `Rect2(251, 121, 508, 1302)`.
-- Uniform scale: about `0.03686636`, calculated as `48 / 1302`.
-- Rendered rectangle: about 18.73 × 48 game pixels, centered on the existing 32 × 48 collider.
+- Uniform scale: about `0.07373272`, calculated as `96 / 1302`.
+- Rendered rectangle: about 37.46 × 96 game pixels.
+- Visual offset: `(0, -24)`, horizontally centered with its lower edge aligned to the bottom of the existing 32 × 48 collider.
 - Filtering: nearest; import: lossless texture compression with mipmaps disabled.
 
-The region includes the source pixels whose alpha is at least 16/255 and excludes most low-alpha exterior residue. It is not a guarantee of flawless transparency. Because the illustration is narrower than the collider, blocking can happen before its visible side touches the orange obstacle. That is expected for this unchanged collision geometry; a later art/collision design decision can refine it.
+The region includes the source pixels whose alpha is at least 16/255 and excludes most low-alpha exterior residue. It is not a guarantee of flawless transparency. The first integration displayed the character at 48 pixels tall. The project manager found that too small beside the sign, so this revision doubles its height to improve readability.
+
+The unchanged collider now covers the lower part of the taller visual. The visible head and sides can overlap the obstacle even while the collision body stops correctly: the image outline is not the physics boundary. Check whether that relationship feels acceptable in the game; a later art/collision design decision can refine it.
 
 See [the provisional art guide](art-guide.md) and [asset origins](asset-origins.md) for the brief, generation method, and limitations.
 
@@ -45,7 +48,9 @@ Commit the source PNG and its `.import` settings. Godot generates the runtime te
 
 Independent review inspected the scene diff, PNG alpha bounds and framing, import settings, and test harness. The only scene behavior-related edit is replacing the visual node; the player script, input settings, collider, and sign logic are unchanged. Source PNG and import settings are included for commit, and the generated `.godot/` cache remains ignored.
 
-The reviewer independently ran a Godot 4.7.2 headless editor import (exit code 0), then all three suites: 19 movement/collision checks, 17 interaction checks, and 12 sprite integration checks passed with exit code 0. Sprite checks cover texture availability and transparency, source-region containment, inclusion of pixels above the alpha threshold, and alignment within the unchanged collider. They do not establish visual quality or a native pixel grid.
+For the original 48-pixel integration, the reviewer independently ran a Godot 4.7.2 headless editor import (exit code 0), then all three suites: 19 movement/collision checks, 17 interaction checks, and 12 sprite integration checks passed with exit code 0. Those results are historical evidence for the unchanged movement and interaction logic.
+
+For the current 96-pixel revision, independent review checked the scene scale/offset and updated sprite assertions. The focused sprite suite checks texture availability and transparency, region containment, inclusion of pixels above the alpha threshold, target display height, horizontal alignment, and lower-edge alignment with the unchanged collider. It does not establish visual quality or a native pixel grid. The coordinating agent ran Godot 4.7.2 editor import and the focused sprite suite: import completed without errors, and all 12 sprite checks passed, both with exit code 0. Independent review inspected those reported results rather than duplicating the same run. Unchanged movement and interaction suites were not rerun for this visual-only adjustment.
 
 Run the sprite suite from the repository root:
 

@@ -8,7 +8,7 @@ This first asset demonstrates the sprite-agent handoff. Its appearance is pendin
 - Warm brown hair, teal tunic, ochre apron, brown boots, turquoise gem accessory.
 - Restrained colors and dark outlines; readable in a top-down 2D game.
 - One frame only. No walking animation or directional changes.
-- Intended display envelope: 32 × 48 game pixels, preserving proportions.
+- Revised readability target: 96 game pixels tall, preserving proportions (about 37.46 pixels wide). The first 48-pixel-tall integration was too small in the project manager's playtest.
 
 ## Delivered asset
 
@@ -18,7 +18,7 @@ Inspection found alpha values from 0 to 254. Transparent exterior samples and al
 
 ## Godot handoff
 
-Use a `Sprite2D` with nearest-neighbor texture filtering and one frame. Keep the PNG unchanged. A region of `Rect2(251, 121, 508, 1302)` excludes most faint exterior residue; it does not guarantee a completely clean alpha mask. A uniform scale of `48.0 / 1302.0` displays this region at about 18.73 × 48 game pixels, fitting inside the 32 × 48 envelope without stretching.
+Use a `Sprite2D` with nearest-neighbor texture filtering and one frame. Keep the PNG unchanged. A region of `Rect2(251, 121, 508, 1302)` excludes most faint exterior residue; it does not guarantee a completely clean alpha mask. A uniform scale of `96.0 / 1302.0` (about `0.07373272`) displays this region at about 37.46 × 96 game pixels without stretching. Offset the visual by `(0, -24)` relative to the player so its lower edge remains at the bottom of the existing 32 × 48 collider. The visual extends above and slightly to either side of that collider; collision geometry and visual size have separate responsibilities.
 
 The coding agent owns the actual scene positioning and import settings. Visual playtesting must check readability, centering, fringe visibility, and hair/boot framing on the game's background. Automated import checks cannot approve the artwork's appearance.
 
