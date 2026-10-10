@@ -12,3 +12,13 @@
 The tool returned no asset-specific license notice.
 
 Known visual limitations and import guidance are recorded in [the art guide](art-guide.md).
+
+## Modern founder idle front
+
+- File: `jewel-rpg/assets/player/founder_idle_front.png`.
+- Created: 2026-10-10.
+- Method: OpenAI image-generation tool, original modern-founder brief: short brown hair, teal casual T-shirt, navy jeans, white sneakers, plain tan crossbody pouch; one front-facing frame, transparent exterior, no logos or copied characters.
+- Source canvas: 1144 × 1375 RGBA PNG; copied unchanged from the generated output. Inspection used read-only image metadata; no pixel-processing edits were performed.
+- Intended use: provisional static modern founder replacing the historical apprentice visual. It is not an animation sheet or a native low-resolution sprite.
+- The tool returned no asset-specific license notice. Applicable service terms govern usage; generation does not establish exclusive ownership or clearance.
+- Full hair and both shoes are framed. All corners are fully transparent, but faint low-alpha residue exists beyond the visible silhouette. Cropping guidance and remaining visual checks are recorded in [the art guide](art-guide.md).

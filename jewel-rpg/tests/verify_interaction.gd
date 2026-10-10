@@ -45,7 +45,7 @@ func _run() -> void:
 	check(sign.prompt.text == "E: Read sign", "prompt names interaction key")
 	press("interact")
 	check(sign.dialogue.visible and not sign.prompt.visible, "interact opens panel and hides prompt")
-	check(sign.get_node("DialogueLayer/Dialogue/Margin/Text").text.contains("Welcome to Jewel RPG!"), "dialogue contains welcome text")
+	check(sign.get_node("DialogueLayer/Dialogue/Margin/Text").text.contains("First day. Small stock, big plans."), "dialogue introduces modern business setting")
 	var origin: Vector2 = player.position
 	Input.action_press("move_right")
 	await frames(12)

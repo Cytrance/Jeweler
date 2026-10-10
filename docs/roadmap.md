@@ -74,9 +74,9 @@ The project manager reviewed the sprite, requested a larger readable character, 
 
 `feat/workshop-room` was tested locally but remains unmerged. It explored scene composition, boundaries, and collision layers. Do not merge its historical workshop visuals into the modern-market direction. Reuse useful techniques in a separately reviewed change when needed.
 
-## Current milestone: modern business design brief
+## Completed milestone: modern business design brief
 
-Document the approved setting, tone, ethical choices, first business loop, placeholder economy, and revised art direction. No application or asset changes are included.
+The project manager reviewed and merged the brief into `main`. It documents the approved setting, tone, ethical choices, first business loop, placeholder economy, and revised art direction. That documentation milestone included no application or asset changes.
 
 Acceptance checks:
 
@@ -87,12 +87,26 @@ Acceptance checks:
 - Planned features are distinguished from the currently running prototype.
 - Independent review checks documents; no gameplay suites are rerun for this documentation-only milestone.
 
+## Current milestone: modern market visual reset
+
+Replace the fantasy founder and isolated obstacle with a modern founder, pavement, neighbouring market stalls, and a modest jewellery pop-up. Retain movement, collision, and nearby E/Escape interaction. This branch does not implement the economy.
+
+Acceptance checks:
+
+- The founder reads as a contemporary person in casual clothes and is readable at normal game size.
+- The folding table, jewellery trays, price information, stock boxes, and card-payment device communicate a modest modern business.
+- Founder, table, and board have coherent proportions; the character is not reduced to the earlier unreadable 48-pixel size.
+- The table blocks movement from all four sides, supports sliding, and permits moving away.
+- The nearby board opens the modern fixed message; movement locks while reading and resumes on closing.
+- The combined scene has acceptable layering, framing, colour contrast, and UI text fit on Windows.
+- Independent review inspects the actual scene and assets; focused checks cover changed scene dependencies rather than automatically repeating every historical suite.
+- Follow [the modern-market walkthrough](modern-market.md) and report the visual playtest before approving the merge.
+
 ## Next milestones, each reviewed separately
 
-1. Modern visual reset: casual founder and readable market pop-up, retaining movement and interaction.
-2. Purchase loop: supplier, cash, stock, insufficient-funds feedback.
-3. Sales loop: prices, sales claims, customer acceptance/rejection, transaction feedback.
-4. Consequences: end-day complaints, reserved refunds, reputation feedback.
+1. Purchase loop: supplier, cash, stock, insufficient-funds feedback.
+2. Sales loop: prices, sales claims, customer acceptance/rejection, transaction feedback.
+3. Consequences: end-day complaints, reserved refunds, reputation feedback.
 
 The [design brief](game-design.md) defines acceptance checks across the first complete loop. Research, precious-material suppliers, staff, boutiques, supply chains, and luxury competition remain later goals. Save/load and a final balanced economy are not yet implemented.
 

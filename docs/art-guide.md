@@ -2,7 +2,7 @@
 
 ## Current direction
 
-Present-day, friendly 2D jewellery-business RPG. The starting location is a modest market pop-up, not a medieval workshop. The [game-design brief](game-design.md) governs the setting and player progression. New artwork is pending generation and project-manager review.
+Present-day, friendly 2D jewellery-business RPG. The starting location is a modest market pop-up, not a medieval workshop. The [game-design brief](game-design.md) governs the setting and player progression. The modern founder is generated and awaiting project-manager review in the combined market scene.
 
 - Founder: casual contemporary clothing, sneakers, optional utility apron or crossbody pouch. Keep the person approachable; no fantasy tunic, leather bracers, or adventurer accessories.
 - Stall: folding table, jewellery trays, modest price cards, stock boxes, simple fabric cover, and a small card-payment device. No luxury-brand logos. The initial supplier offers imitation goods.
@@ -13,7 +13,17 @@ Present-day, friendly 2D jewellery-business RPG. The starting location is a mode
 - Generate source images to a documented brief; inspect real resolution, alpha, and framing. Prefer artwork designed for the final display size. A large illustration scaled down is not automatically pixel-grid-consistent art.
 - Record palette, source dimensions, display dimensions, crop, filenames, and provenance at each handoff. Review the combined scene at normal gameplay size rather than approving isolated asset previews alone.
 
-The following sections document the existing prototype asset for maintenance. Its fantasy clothing is superseded as the intended game direction; the file is still used by the current code until the separate visual-reset milestone.
+## Modern founder asset handoff
+
+`jewel-rpg/assets/player/founder_idle_front.png` is a generated **1144 × 1375 RGBA PNG** with short brown hair, a teal T-shirt, navy jeans, white sneakers, and a plain tan crossbody pouch. Teal, navy, warm brown, tan, white, and dark outlines form the provisional palette. It is one static front-facing frame. The chunky pixel-like illustration is not a native low-resolution pixel sprite; future animation requires a separate agreed grid and frame specification.
+
+Read-only inspection found alpha from 0 to 255 and alpha 0 at all four corners. Strict nonzero-alpha bounds are `(47, 54, 1062, 1336)`; faint residue extends beyond the visible figure. At alpha ≥16, bounds are `(325, 57, 803, 1332)`, measuring 478 × 1275 source pixels. Hair and both shoes are fully framed.
+
+For `Sprite2D`, use nearest-neighbor filtering, region `Rect2(325, 57, 478, 1275)`, and uniform scale `96.0 / 1275.0` (about `0.07529412`). The displayed figure is approximately 35.99 × 96 game pixels. With centered sprite offset `(0, -24)`, its bottom reaches the existing player collider's lower edge at local y=24. The coding agent owns final scene placement and import settings. No image pixels were edited; the region is an engine display setting.
+
+The region excludes distant alpha residue but cannot guarantee a perfectly clean fringe. Review readability, hair/shoe framing, relative stall scale, and transparency against the actual market background at gameplay size. Automated import checks do not approve visual quality. Provenance is recorded in [asset origins](asset-origins.md).
+
+The following sections document the historical prototype asset for maintenance. Its fantasy clothing is superseded by the modern founder in the visual-reset branch; the old source may remain as historical reference.
 
 ## Historical prototype
 
