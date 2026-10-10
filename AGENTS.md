@@ -13,6 +13,8 @@ Help the project manager learn agentic coding, Git, and Godot through small, und
 - Prefer simple Godot scenes and GDScript with clear responsibilities. Avoid speculative systems and dependencies.
 - Document how to run and verify changes. Distinguish tests actually run from suggested checks, skipped checks, and checks requiring the project manager's PC.
 - Do not claim that gameplay works solely because code parses or the editor opens.
+- Run checks relevant to changed code and its dependencies. Reuse available evidence and rerun only when independent verification adds value. Broaden testing for shared-system changes, unexplained failures, or justified milestone checks, rather than automatically rerunning every suite. Keep routine output concise.
+- Learning and small milestones must still produce a readable, coherent, enjoyable game. Treat visual readability, relative scale, and player feedback as acceptance criteria; technical checks alone do not establish quality.
 - Keep documentation consistent with the final implementation. Track unresolved issues explicitly.
 - Give the project manager a short explanation of what changed, why, how it was checked, and how to try it.
 

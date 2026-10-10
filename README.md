@@ -8,7 +8,9 @@ A small 2D RPG project used to learn agentic coding, Git, and Godot. Learning an
 2. Use the standard Godot edition with GDScript. Use Godot 4.7.2, the verified cloud editor version. The project declares the 4.7 feature series; confirm your Windows editor version and record version changes explicitly.
 3. In Godot's Project Manager, import `jewel-rpg/project.godot`.
 
-The renderer is Compatibility. The main scene is `jewel-rpg/scenes/main.tscn`: a cyan placeholder moved with WASD or arrow keys. See [the first-scene walkthrough](docs/first-scene.md) for scene basics and [the movement walkthrough](docs/player-movement.md) for the earlier movement milestone. See [the collision walkthrough](docs/player-collision.md) for the physics-body implementation and checks. A single orange obstacle blocks movement. The current branch adds a nearby sign prompt and E/Escape dialogue; see [the sign-dialogue walkthrough](docs/sign-dialogue.md) for instructions and explanations. Screen boundaries remain deferred.
+The renderer is Compatibility. The main scene is `jewel-rpg/scenes/main.tscn`: a player moved with WASD or arrow keys, one orange solid obstacle, and a nearby sign with E/Escape dialogue. The current branch replaces the cyan rectangle with a static jeweler-apprentice image; movement, collision, and dialogue behavior remain unchanged. See [the sprite walkthrough](docs/player-sprite.md) for asset imports and playtest steps.
+
+Earlier learning checkpoints are explained in [first scene](docs/first-scene.md), [movement](docs/player-movement.md), [collision](docs/player-collision.md), and [sign dialogue](docs/sign-dialogue.md). Their placeholder descriptions refer to those checkpoints. Screen boundaries and animation remain deferred.
 
 The cloud setup has restored Godot 4.7.2 at `/workspace/tools/godot/bin/godot`; its version command was verified. The older system-default `godot` remains installed, so cloud checks must use the explicit executable path. A successful headless check does not verify appearance on Windows.
 
