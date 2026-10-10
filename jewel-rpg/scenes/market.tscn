@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/market/market_plaza.png" id="1_plaza"]
+
+[node name="Market" type="Node2D"]
+
+[node name="Plaza" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(480, 270)
+scale = Vector2(0.57416267943, 0.57416267943)
+texture = ExtResource("1_plaza")
+
+[node name="MarketName" type="Label" parent="."]
+offset_left = 300.0
+offset_top = 32.0
+offset_right = 660.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0.98, 0.94, 0.83, 1)
+theme_override_colors/font_outline_color = Color(0.28, 0.20, 0.25, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "THE WEEKEND MARKET"
+horizontal_alignment = 1

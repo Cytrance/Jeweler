@@ -1,10 +1,16 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_player"]
 
 [ext_resource type="Script" path="res://scripts/sign.gd" id="2_sign"]
 
-[ext_resource type="Texture2D" path="res://assets/player/jeweler_idle_front.png" id="3_player_texture"]
+[ext_resource type="Texture2D" path="res://assets/player/founder_chibi_idle.png" id="3_player_texture"]
+
+[ext_resource type="PackedScene" path="res://scenes/market.tscn" id="4_market"]
+
+[ext_resource type="Texture2D" path="res://assets/market/jewellery_stall.png" id="5_stall"]
+
+[ext_resource type="Texture2D" path="res://assets/market/price_board.png" id="6_board"]
 
 [sub_resource type="CircleShape2D" id="Circle_sign"]
 radius = 72.0
@@ -13,9 +19,13 @@ radius = 72.0
 size = Vector2(32, 48)
 
 [sub_resource type="RectangleShape2D" id="Rectangle_obstacle"]
-size = Vector2(64, 160)
+size = Vector2(180, 64)
 
 [node name="Main" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Market" parent="." instance=ExtResource("4_market")]
+z_index = -10
 
 [node name="PlayerPlaceholder" type="CharacterBody2D" parent="."]
 position = Vector2(480, 270)
@@ -25,10 +35,10 @@ script = ExtResource("1_player")
 [node name="Visual" type="Sprite2D" parent="PlayerPlaceholder"]
 texture_filter = 1
 position = Vector2(0, -24)
-scale = Vector2(0.07373272, 0.07373272)
+scale = Vector2(0.09039548023, 0.09039548023)
 texture = ExtResource("3_player_texture")
 region_enabled = true
-region_rect = Rect2(251, 121, 508, 1302)
+region_rect = Rect2(306, 137, 568, 1062)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerPlaceholder"]
 shape = SubResource("Rectangle_player")
@@ -36,9 +46,13 @@ shape = SubResource("Rectangle_player")
 [node name="Obstacle" type="StaticBody2D" parent="."]
 position = Vector2(650, 270)
 
-[node name="Visual" type="Polygon2D" parent="Obstacle"]
-polygon = PackedVector2Array(-32, -80, 32, -80, 32, 80, -32, 80)
-color = Color(0.9, 0.55, 0.25, 1)
+[node name="Visual" type="Sprite2D" parent="Obstacle"]
+texture_filter = 1
+position = Vector2(0, -52.18604651)
+scale = Vector2(0.18604651163, 0.18604651163)
+texture = ExtResource("5_stall")
+region_enabled = true
+region_rect = Rect2(119, 101, 1290, 905)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle"]
 shape = SubResource("Rectangle_obstacle")
@@ -49,13 +63,13 @@ collision_layer = 0
 collision_mask = 1
 script = ExtResource("2_sign")
 
-[node name="Visual" type="Polygon2D" parent="Sign"]
-polygon = PackedVector2Array(-3, 0, 3, 0, 3, 32, -3, 32)
-color = Color(0.55, 0.35, 0.18, 1)
-
-[node name="Board" type="Polygon2D" parent="Sign"]
-polygon = PackedVector2Array(-24, -18, 24, -18, 24, 10, -24, 10)
-color = Color(0.8, 0.65, 0.35, 1)
+[node name="Visual" type="Sprite2D" parent="Sign"]
+texture_filter = 1
+position = Vector2(0, -11)
+scale = Vector2(0.07846556234, 0.07846556234)
+texture = ExtResource("6_board")
+region_enabled = true
+region_rect = Rect2(99, 172, 947, 1147)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sign"]
 shape = SubResource("Circle_sign")
@@ -63,9 +77,12 @@ shape = SubResource("Circle_sign")
 [node name="Prompt" type="Label" parent="Sign"]
 visible = false
 offset_left = -60.0
-offset_top = -52.0
+offset_top = -72.0
 offset_right = 60.0
-offset_bottom = -24.0
+offset_bottom = -48.0
+theme_override_colors/font_color = Color(0.98, 0.94, 0.83, 1)
+theme_override_colors/font_outline_color = Color(0.28, 0.20, 0.25, 1)
+theme_override_constants/outline_size = 4
 text = "E: Read sign"
 horizontal_alignment = 1
 
@@ -94,8 +111,9 @@ theme_override_constants/margin_bottom = 16
 
 [node name="Text" type="Label" parent="Sign/DialogueLayer/Dialogue/Margin"]
 layout_mode = 2
-text = "Welcome to Jewel RPG!
-Every small step is a chance to learn.
+text = "First day. Small stock, big plans.
+Plated brass and simulated stones: costume jewellery, honestly labelled.
+The card reader is real. The diamonds are not.
 
 E or Escape: Close"
 autowrap_mode = 2
