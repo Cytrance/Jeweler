@@ -2,6 +2,8 @@
 
 This milestone makes the project runnable. It contains a static placeholder, with no movement, scripts, or finished art.
 
+This is the historical first-scene checkpoint, which the project manager visually tested and approved for merging. The current project adds movement; see [the movement walkthrough](player-movement.md) for current controls and checks.
+
 ## Try the branch on Windows
 
 1. Save your work and close Godot before switching branches. In GitHub Desktop, preserve any uncommitted changes before continuing.
@@ -10,7 +12,7 @@ This milestone makes the project runnable. It contains a static placeholder, wit
 4. In the FileSystem panel, open `scenes/main.tscn`. The Scene panel shows its nodes.
 5. Press **F5** (Run Project). Confirm a cyan rectangle appears in the center of the initial 960 × 540 view, then stop with **F8**. Report any errors shown in Godot's debugger.
 
-The coding agent reported successful headless import and a ten-frame runtime check with Godot 4.7.2. Independent review confirmed the scene tree, dimensions, main-scene path, and viewport settings match the requirements. The Windows visual check is pending. Review approval and cloud headless checks do not replace this check. Return your results to the project manager workflow before merging.
+At this checkpoint, the coding agent reported successful headless import and a ten-frame runtime check with Godot 4.7.2. Independent review confirmed the scene tree, dimensions, main-scene path, and viewport settings matched the requirements. The project manager subsequently confirmed the rectangle on Windows and approved the merge. Review approval and cloud headless checks do not replace visual checks for later milestones.
 
 ## What the files mean
 

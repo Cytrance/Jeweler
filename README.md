@@ -8,7 +8,7 @@ A small 2D RPG project used to learn agentic coding, Git, and Godot. Learning an
 2. Use the standard Godot edition with GDScript. Use Godot 4.7.2, the verified cloud editor version. The project declares the 4.7 feature series; confirm your Windows editor version and record version changes explicitly.
 3. In Godot's Project Manager, import `jewel-rpg/project.godot`.
 
-The renderer is Compatibility. The first scene is `jewel-rpg/scenes/main.tscn`: a static placeholder with no scripts or gameplay systems. See [the first-scene walkthrough](docs/first-scene.md) for how to run and check it. There is no automated test suite yet.
+The renderer is Compatibility. The main scene is `jewel-rpg/scenes/main.tscn`: a cyan placeholder moved with WASD or arrow keys. See [the first-scene walkthrough](docs/first-scene.md) for scene basics and [the movement walkthrough](docs/player-movement.md) for the current implementation, automated movement check, and playtest checklist. Movement has no collision or screen boundaries yet.
 
 The cloud setup has restored Godot 4.7.2 at `/workspace/tools/godot/bin/godot`; its version command was verified. The older system-default `godot` remains installed, so cloud checks must use the explicit executable path. A successful headless check does not verify appearance on Windows.
 
