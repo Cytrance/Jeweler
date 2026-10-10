@@ -1,6 +1,11 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_player"]
+
+[ext_resource type="Script" path="res://scripts/sign.gd" id="2_sign"]
+
+[sub_resource type="CircleShape2D" id="Circle_sign"]
+radius = 72.0
 
 [sub_resource type="RectangleShape2D" id="Rectangle_player"]
 size = Vector2(32, 48)
@@ -31,3 +36,60 @@ color = Color(0.9, 0.55, 0.25, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle"]
 shape = SubResource("Rectangle_obstacle")
+
+[node name="Sign" type="Area2D" parent="."]
+position = Vector2(360, 270)
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("2_sign")
+
+[node name="Visual" type="Polygon2D" parent="Sign"]
+polygon = PackedVector2Array(-3, 0, 3, 0, 3, 32, -3, 32)
+color = Color(0.55, 0.35, 0.18, 1)
+
+[node name="Board" type="Polygon2D" parent="Sign"]
+polygon = PackedVector2Array(-24, -18, 24, -18, 24, 10, -24, 10)
+color = Color(0.8, 0.65, 0.35, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sign"]
+shape = SubResource("Circle_sign")
+
+[node name="Prompt" type="Label" parent="Sign"]
+visible = false
+offset_left = -60.0
+offset_top = -52.0
+offset_right = 60.0
+offset_bottom = -24.0
+text = "E: Read sign"
+horizontal_alignment = 1
+
+[node name="DialogueLayer" type="CanvasLayer" parent="Sign"]
+
+[node name="Dialogue" type="PanelContainer" parent="Sign/DialogueLayer"]
+visible = false
+anchors_preset = 12
+anchor_left = 0.1
+anchor_top = 1.0
+anchor_right = 0.9
+anchor_bottom = 1.0
+offset_top = -150.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="Margin" type="MarginContainer" parent="Sign/DialogueLayer/Dialogue"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
+
+[node name="Text" type="Label" parent="Sign/DialogueLayer/Dialogue/Margin"]
+layout_mode = 2
+text = "Welcome to Jewel RPG!
+Every small step is a chance to learn.
+
+E or Escape: Close"
+autowrap_mode = 2

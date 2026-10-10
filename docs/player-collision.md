@@ -15,7 +15,7 @@ The cyan player still moves with WASD or arrow keys. It now has a physics body t
 
 There are no screen boundaries. If the player leaves the view, press **F8**, then **F5** to restore its starting position. After the approved merge, switch to `main`, fetch and pull to receive the merged checkpoint.
 
-The Windows playtest is pending. Cloud checks and independent review cannot establish how the game appears or responds to physical keyboard input on your PC.
+The project manager completed the Windows playtest and approved the collision milestone, merged at `4d913c3`. The checks below describe evidence from that milestone; cloud checks alone cannot establish appearance or physical keyboard behavior on your PC.
 
 ## Read the scene tree
 

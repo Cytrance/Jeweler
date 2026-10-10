@@ -35,9 +35,9 @@ Acceptance checks:
 
 At that checkpoint, collision, boundaries, animation, and finished sprites were deferred.
 
-## Current milestone: one obstacle and collision
+## Completed milestone: one obstacle and collision
 
-Convert the moving placeholder into a character physics body and add one visible, stationary obstacle. Learn physics bodies, collision shapes, velocity, and sliding. The Windows collision playtest and project manager approval are pending; do not merge yet.
+Convert the moving placeholder into a character physics body and add one visible, stationary obstacle. Learn physics bodies, collision shapes, velocity, and sliding. The project manager tested collision on Windows, approved the change, and merged it into `main` at `4d913c3`.
 
 Acceptance checks:
 
@@ -50,10 +50,25 @@ Acceptance checks:
 
 No screen boundaries, animation, interaction, or finished sprites are included. The player can still move offscreen; restarting restores its starting position.
 
+## Current milestone: sign interaction and short dialogue
+
+Add one sign with a proximity prompt and one fixed message. Learn detection areas, signals, input handling, and UI. Windows playtesting and project manager approval are pending; do not merge yet.
+
+Acceptance checks:
+
+- Existing movement and solid obstacle collision still work.
+- A prompt appears only while the player is near the sign.
+- Pressing E nearby opens the message; pressing E elsewhere does nothing.
+- Movement stops while the dialogue is open.
+- E or Escape closes the dialogue; movement then resumes.
+- Cloud verification reports actual checks, and independent review inspects final code and tests.
+- The project manager follows [the sign-dialogue walkthrough](sign-dialogue.md) on Windows before approving the merge.
+
+No inventory, dialogue choices, animation, sprites, or screen boundaries are included.
+
 ## Later milestones, one at a time
 
-1. One interactive object and short dialogue: learn signals and basic UI.
-2. Agree on a small art guide and replace a placeholder: learn the sprite agent workflow and asset imports.
+1. Agree on a small art guide and replace a placeholder: learn the sprite agent workflow and asset imports.
 
 Inventory, crafting, farming, NPC schedules, and save/load are deferred. Define their requirements only when the earlier milestones are understood and verified.
 
