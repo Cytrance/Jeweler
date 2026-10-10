@@ -1,8 +1,8 @@
 # First player movement
 
-The cyan placeholder now moves using WASD or arrow keys. This is one small programming milestone: no collision, boundaries, animation, or finished art.
+The cyan placeholder now moves using WASD or arrow keys. This is the historical movement milestone: it introduced movement without collision, boundaries, animation, or finished art. The project manager tested and approved it, and it was merged into `main`. The current implementation uses physics bodies; see [the collision walkthrough](player-collision.md).
 
-## Try the branch on Windows
+## Historical branch playtest on Windows
 
 1. Save your work and close Godot. Preserve any uncommitted changes in GitHub Desktop before switching branches.
 2. After the branch is pushed, click **Fetch origin**, select `feat/player-movement` under **Current branch**, and pull updates if offered. This changes your local files without merging into `main`.
@@ -13,11 +13,11 @@ The cyan placeholder now moves using WASD or arrow keys. This is one small progr
 
 There are no obstacles or screen boundaries. If the rectangle leaves the view, stop with **F8** and restart with **F5** to restore its initial position. After the approved merge, switch to `main`, fetch and pull to get the merged checkpoint.
 
-The Windows playtest is pending. The coding agent reported successful headless import and runtime checks using Godot 4.7.2. Independent review inspected the script, scene attachment, input settings, and test harness, and reran the harness: all 16 assertions passed with exit code 0.
+The project manager subsequently confirmed movement on Windows and approved the merge. The coding agent reported successful headless import and runtime checks using Godot 4.7.2. Independent review inspected the script, scene attachment, input settings, and test harness, and reran the harness: all 16 assertions passed with exit code 0.
 
 The harness calls the real attached script with simulated input actions. It checks idle behavior, all four directions and distances, stopping on release, diagonal distance and direction, consistent displacement across split update intervals, and configured key bindings. It does not simulate actual keyboard events or prove Windows appearance and focus behavior.
 
-Run the check from the repository root with your Godot 4.7.2 executable:
+At this historical checkpoint, the harness was run from the repository root with Godot 4.7.2. The current harness has been updated for collision; use the commands in the collision walkthrough for current verification:
 
 ```bash
 godot --headless --path jewel-rpg --script res://tests/verify_movement.gd

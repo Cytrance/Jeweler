@@ -2,7 +2,7 @@
 
 This milestone makes the project runnable. It contains a static placeholder, with no movement, scripts, or finished art.
 
-This is the historical first-scene checkpoint, which the project manager visually tested and approved for merging. The current project adds movement; see [the movement walkthrough](player-movement.md) for current controls and checks.
+This is the historical first-scene checkpoint, which the project manager visually tested and approved for merging. Later milestones add movement and collision; see [the collision walkthrough](player-collision.md) for current controls and checks.
 
 ## Try the branch on Windows
 
