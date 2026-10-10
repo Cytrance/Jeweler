@@ -50,9 +50,9 @@ Acceptance checks:
 
 No screen boundaries, animation, interaction, or finished sprites are included. The player can still move offscreen; restarting restores its starting position.
 
-## Current milestone: sign interaction and short dialogue
+## Completed milestone: sign interaction and short dialogue
 
-Add one sign with a proximity prompt and one fixed message. Learn detection areas, signals, input handling, and UI. Windows playtesting and project manager approval are pending; do not merge yet.
+Add one sign with a proximity prompt and one fixed message. Learn detection areas, signals, input handling, and UI. The project manager tested the sign on Windows, approved the change, and merged it into `main` at `7b7ae25`.
 
 Acceptance checks:
 
@@ -66,9 +66,23 @@ Acceptance checks:
 
 No inventory, dialogue choices, animation, sprites, or screen boundaries are included.
 
+## Current milestone: one static player sprite
+
+Replace the cyan rectangle with a transparent, generated jeweler-apprentice image. Learn the sprite-agent handoff, source assets, texture imports, filtering, and visual versus collision geometry. Windows appearance and project manager art approval are pending; do not merge yet.
+
+Acceptance checks:
+
+- A visible apprentice image replaces only the player's drawing.
+- The source asset, import settings, art specification, and origin record are committed; generated cache files remain ignored.
+- Existing controls, collision shape, and sign dialogue still work.
+- Independent review checks the final asset integration and reruns existing movement and interaction regressions.
+- The project manager follows [the sprite walkthrough](player-sprite.md) and approves readability, transparency, and alignment on Windows.
+
+This is one static pose, not an animated or directional sprite sheet. Exact pixel-grid consistency and a final production art style are not established.
+
 ## Later milestones, one at a time
 
-1. Agree on a small art guide and replace a placeholder: learn the sprite agent workflow and asset imports.
+Agree on the next small learning goal after this milestone is reviewed and merged.
 
 Inventory, crafting, farming, NPC schedules, and save/load are deferred. Define their requirements only when the earlier milestones are understood and verified.
 
