@@ -1,12 +1,16 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_player"]
 
 [ext_resource type="Script" path="res://scripts/sign.gd" id="2_sign"]
 
-[ext_resource type="Texture2D" path="res://assets/player/founder_idle_front.png" id="3_player_texture"]
+[ext_resource type="Texture2D" path="res://assets/player/founder_chibi_idle.png" id="3_player_texture"]
 
 [ext_resource type="PackedScene" path="res://scenes/market.tscn" id="4_market"]
+
+[ext_resource type="Texture2D" path="res://assets/market/jewellery_stall.png" id="5_stall"]
+
+[ext_resource type="Texture2D" path="res://assets/market/price_board.png" id="6_board"]
 
 [sub_resource type="CircleShape2D" id="Circle_sign"]
 radius = 72.0
@@ -31,10 +35,10 @@ script = ExtResource("1_player")
 [node name="Visual" type="Sprite2D" parent="PlayerPlaceholder"]
 texture_filter = 1
 position = Vector2(0, -24)
-scale = Vector2(0.07529411765, 0.07529411765)
+scale = Vector2(0.09039548023, 0.09039548023)
 texture = ExtResource("3_player_texture")
 region_enabled = true
-region_rect = Rect2(325, 57, 478, 1275)
+region_rect = Rect2(306, 137, 568, 1062)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerPlaceholder"]
 shape = SubResource("Rectangle_player")
@@ -42,47 +46,13 @@ shape = SubResource("Rectangle_player")
 [node name="Obstacle" type="StaticBody2D" parent="."]
 position = Vector2(650, 270)
 
-[node name="LeftLeg" type="Polygon2D" parent="Obstacle"]
-polygon = PackedVector2Array(-76, 0, -69, 0, -69, 31, -76, 31)
-color = Color(0.24, 0.29, 0.32, 1)
-
-[node name="RightLeg" type="Polygon2D" parent="Obstacle"]
-polygon = PackedVector2Array(69, 0, 76, 0, 76, 31, 69, 31)
-color = Color(0.24, 0.29, 0.32, 1)
-
-[node name="Visual" type="Polygon2D" parent="Obstacle"]
-polygon = PackedVector2Array(-90, -32, 90, -32, 90, 16, -90, 16)
-color = Color(0.17, 0.48, 0.49, 1)
-
-[node name="ClothFront" type="Polygon2D" parent="Obstacle"]
-polygon = PackedVector2Array(-90, 16, 90, 16, 85, 32, -85, 32)
-color = Color(0.12, 0.35, 0.38, 1)
-
-[node name="LeftTray" type="Polygon2D" parent="Obstacle"]
-polygon = PackedVector2Array(-80, -24, -17, -24, -17, 0, -80, 0)
-color = Color(0.12, 0.18, 0.23, 1)
-
-[node name="RightTray" type="Polygon2D" parent="Obstacle"]
-polygon = PackedVector2Array(-8, -24, 52, -24, 52, 0, -8, 0)
-color = Color(0.12, 0.18, 0.23, 1)
-
-[node name="PaymentTerminal" type="Polygon2D" parent="Obstacle"]
-polygon = PackedVector2Array(63, -23, 82, -23, 82, -1, 63, -1)
-color = Color(0.2, 0.23, 0.27, 1)
-
-[node name="TerminalScreen" type="Polygon2D" parent="Obstacle"]
-polygon = PackedVector2Array(66, -20, 79, -20, 79, -10, 66, -10)
-color = Color(0.64, 0.86, 0.81, 1)
-
-[node name="ProductLabel" type="Label" parent="Obstacle"]
-offset_left = -88.0
-offset_top = 2.0
-offset_right = 88.0
-offset_bottom = 17.0
-theme_override_colors/font_color = Color(0.98, 0.94, 0.81, 1)
-theme_override_font_sizes/font_size = 11
-text = "COSTUME JEWELLERY"
-horizontal_alignment = 1
+[node name="Visual" type="Sprite2D" parent="Obstacle"]
+texture_filter = 1
+position = Vector2(0, -52.18604651)
+scale = Vector2(0.18604651163, 0.18604651163)
+texture = ExtResource("5_stall")
+region_enabled = true
+region_rect = Rect2(119, 101, 1290, 905)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle"]
 shape = SubResource("Rectangle_obstacle")
@@ -93,29 +63,13 @@ collision_layer = 0
 collision_mask = 1
 script = ExtResource("2_sign")
 
-[node name="Visual" type="Polygon2D" parent="Sign"]
-polygon = PackedVector2Array(-23, -4, -17, -4, -28, 34, -34, 34)
-color = Color(0.25, 0.29, 0.31, 1)
-
-[node name="RightLeg" type="Polygon2D" parent="Sign"]
-polygon = PackedVector2Array(17, -4, 23, -4, 34, 34, 28, 34)
-color = Color(0.25, 0.29, 0.31, 1)
-
-[node name="Board" type="Polygon2D" parent="Sign"]
-polygon = PackedVector2Array(-36, -43, 36, -43, 36, 17, -36, 17)
-color = Color(0.97, 0.94, 0.83, 1)
-
-[node name="PriceText" type="Label" parent="Sign"]
-offset_left = -34.0
-offset_top = -39.0
-offset_right = 34.0
-offset_bottom = 15.0
-theme_override_colors/font_color = Color(0.12, 0.25, 0.28, 1)
-theme_override_font_sizes/font_size = 12
-text = "GOLD-TONE
-SIMULATED
-Ask us!"
-horizontal_alignment = 1
+[node name="Visual" type="Sprite2D" parent="Sign"]
+texture_filter = 1
+position = Vector2(0, -11)
+scale = Vector2(0.07846556234, 0.07846556234)
+texture = ExtResource("6_board")
+region_enabled = true
+region_rect = Rect2(99, 172, 947, 1147)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sign"]
 shape = SubResource("Circle_sign")
@@ -126,7 +80,8 @@ offset_left = -60.0
 offset_top = -72.0
 offset_right = 60.0
 offset_bottom = -48.0
-theme_override_colors/font_outline_color = Color(0.12, 0.2, 0.22, 1)
+theme_override_colors/font_color = Color(0.98, 0.94, 0.83, 1)
+theme_override_colors/font_outline_color = Color(0.28, 0.20, 0.25, 1)
 theme_override_constants/outline_size = 4
 text = "E: Read sign"
 horizontal_alignment = 1
@@ -162,33 +117,3 @@ The card reader is real. The diamonds are not.
 
 E or Escape: Close"
 autowrap_mode = 2
-
-[node name="Ring1" type="Line2D" parent="Obstacle"]
-points = PackedVector2Array(-66, -17, -62, -15, -61, -12, -63, -8, -66, -7, -70, -9, -71, -12, -69, -16, -66, -17)
-width = 2.0
-default_color = Color(0.91, 0.72, 0.3, 1)
-
-[node name="Ring2" type="Line2D" parent="Obstacle"]
-points = PackedVector2Array(-45, -17, -41, -15, -40, -12, -42, -8, -45, -7, -49, -9, -50, -12, -48, -16, -45, -17)
-width = 2.0
-default_color = Color(0.91, 0.72, 0.3, 1)
-
-[node name="Ring3" type="Line2D" parent="Obstacle"]
-points = PackedVector2Array(-24, -17, -20, -15, -19, -12, -21, -8, -24, -7, -28, -9, -29, -12, -27, -16, -24, -17)
-width = 2.0
-default_color = Color(0.91, 0.72, 0.3, 1)
-
-[node name="Ring4" type="Line2D" parent="Obstacle"]
-points = PackedVector2Array(5, -17, 9, -15, 10, -12, 8, -8, 5, -7, 1, -9, 0, -12, 2, -16, 5, -17)
-width = 2.0
-default_color = Color(0.91, 0.72, 0.3, 1)
-
-[node name="Ring5" type="Line2D" parent="Obstacle"]
-points = PackedVector2Array(24, -17, 28, -15, 29, -12, 27, -8, 24, -7, 20, -9, 19, -12, 21, -16, 24, -17)
-width = 2.0
-default_color = Color(0.91, 0.72, 0.3, 1)
-
-[node name="Ring6" type="Line2D" parent="Obstacle"]
-points = PackedVector2Array(43, -17, 47, -15, 48, -12, 46, -8, 43, -7, 39, -9, 38, -12, 40, -16, 43, -17)
-width = 2.0
-default_color = Color(0.91, 0.72, 0.3, 1)

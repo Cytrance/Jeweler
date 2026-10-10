@@ -89,7 +89,7 @@ Acceptance checks:
 
 ## Current milestone: modern market visual reset
 
-Replace the fantasy founder and isolated obstacle with a modern founder, pavement, neighbouring market stalls, and a modest jewellery pop-up. Retain movement, collision, and nearby E/Escape interaction. This branch does not implement the economy.
+The initial modern setting was playtested on Windows. The project manager then approved the combined cosy concept, and this milestone now refines the same branch with a chibi founder, warm textured pavement, neighbouring market stalls, and a modest jewellery pop-up. The refined assets still require Windows approval. Retain movement, collision, and nearby E/Escape interaction. This branch does not implement the economy.
 
 Acceptance checks:
 

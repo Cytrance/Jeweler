@@ -29,3 +29,21 @@ Known visual limitations and import guidance are recorded in [the art guide](art
 - Intended use: provisional static modern founder replacing the historical apprentice visual. It is not an animation sheet or a native low-resolution sprite.
 - The tool returned no asset-specific license notice. Applicable service terms govern usage; generation does not establish exclusive ownership or clearance.
 - Full hair and both shoes are framed. All corners are fully transparent, but faint low-alpha residue exists beyond the visible silhouette. Cropping guidance and remaining visual checks are recorded in [the art guide](art-guide.md).
+
+## Cosy chibi founder
+
+- File: `jewel-rpg/assets/player/founder_chibi_idle.png`.
+- Created: 2026-10-11 using the OpenAI image-generation tool.
+- Method: original contemporary founder brief using the project manager's approved `docs/concepts/modern-market-style-v1.png` as the style reference: broader chibi proportions, warm palette, teal casual clothing, sneakers, and pouch; one front-facing frame.
+- Source canvas: 1199 × 1312 RGBA PNG. Copied unchanged from the generated output; metadata and alpha inspection were read-only. Cropping and scaling happen in Godot, not by editing image pixels.
+- Purpose: replace the initial narrow founder in the playable visual reset. No movement frames are included. This generated pixel-style illustration does not establish a native pixel grid.
+- Alpha residue and the exact visible-region settings are documented in [the art guide](art-guide.md). Integrated appearance remains subject to the project manager's Windows review.
+
+## Cosy market environment
+
+- Files: `jewel-rpg/assets/market/market_plaza.png`, `jewel-rpg/assets/market/jewellery_stall.png`, and `jewel-rpg/assets/market/price_board.png`.
+- Created: 2026-10-11 using the OpenAI image-generation tool, with the project manager's approved combined modern-market concept as the style reference.
+- Brief: warm textured contemporary plaza with a clear central play area; a separate modest teal-cloth jewellery table with trays, imitation pieces, payment terminal, and stock box; a separate standing pictorial jewellery board. The foreground objects and player are not baked into the plaza.
+- Source canvases: plaza 1672 × 941 RGB; stall 1448 × 1086 RGBA; board 1096 × 1435 RGBA. Selected generated outputs were copied unchanged. All inspections were read-only; no pixel-processing edits were performed.
+- Purpose: separate background and object textures for the playable visual reset. Decorative merchandise is not inventory, and generated detail is not a native pixel-grid guarantee.
+- Exact source framing, alpha residue, and engine display geometry are recorded in [the art guide](art-guide.md). Visual approval of the concept precedes, and does not replace, approval of the integrated game scene.
