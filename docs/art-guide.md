@@ -2,7 +2,7 @@
 
 ## Current direction
 
-### Style refinement: cute, cosy pixel-art direction
+### Approved style: cute, cosy pixel-art direction
 
 The project manager accepted the modern setting but requested a cutesier, more cohesive pixel-art style. The supplied environmental reference guides mood and rendering, not historical architecture: warm peach/gold light, muted pastels, textured paving and foliage, soft dark outlines, and charming rounded forms.
 
@@ -15,7 +15,7 @@ The project manager accepted the modern setting but requested a cutesier, more c
 
 The current in-game founder and geometric market remain provisional until the separate asset-refinement work is reviewed. The style concept does not change game code or gameplay.
 
-The proposed [combined market concept](concepts/modern-market-style-v1.png) shows the warmer palette, chibi founder, cloth stall, plants, and textured plaza together. Project-manager style approval is pending. It establishes a visual target, not the starting stock quantity or the cost of decorative surroundings; the actual starter stall should remain modest and use imitation goods. Produce separate grounded assets after approval rather than using this entire illustration as an interactive map.
+The project manager approved the [combined market concept](concepts/modern-market-style-v1.png) on 2026-10-11 as the ongoing art direction: warmer palette, chibi founder, cloth stall, plants, and textured plaza together. It establishes a visual target, not the starting stock quantity or the cost of decorative surroundings; the actual starter stall should remain modest and use imitation goods. Produce separate grounded assets matching this direction rather than using this entire illustration as an interactive map. Approval of the concept does not establish that individual playable assets are complete or visually verified.
 
 Present-day, friendly 2D jewellery-business RPG. The starting location is a modest market pop-up, not a medieval workshop. The [game-design brief](game-design.md) governs the setting and player progression. The modern founder is generated and awaiting project-manager review in the combined market scene.
 
