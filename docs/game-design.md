@@ -85,4 +85,4 @@ Cash balance, sales revenue, and profit are different. Buying stock lowers cash 
 4. Implement prices, claims, and one explicit customer sale/rejection.
 5. Implement day-end complaints, reserved refunds, and reputation feedback.
 
-Each step has its own branch, focused checks, independent review, and project-manager approval. The entire business loop is the destination across several milestones, not the next single coding assignment.
+Each step normally has its own branch, focused checks, independent review, and project-manager approval. The project manager may authorize several separately committed checkpoints on one branch for a combined pull request; this does not skip focused review or final merge approval. The entire business loop is the destination across several milestones, not the next single coding assignment.

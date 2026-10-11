@@ -67,3 +67,13 @@ Known visual limitations and import guidance are recorded in [the art guide](art
 - Tree source output: `exec-1b5f1dd5-da76-4306-8c15-e55235f18668.png`; lamp source output: `exec-eb9dd24c-d053-46d7-914f-88bccff488f9.png`. Original outputs remain in the task workspace's generated-images directory.
 - Both have transparent corners and faint alpha residue beyond the useful silhouette. These are high-resolution pixel-style illustrations, not animation sheets or a shared native pixel grid.
 - Collision is authored in each Godot scene. The warm lamp illumination is part of the static drawing, not dynamic lighting. Final geometry and framing are recorded in [the art guide](art-guide.md) and [scenery walkthrough](plaza-scenery.md).
+
+## Directional founder walking sheet
+
+- File: `jewel-rpg/assets/player/founder_walk_sheet.png`.
+- Created: 2026-10-11 using the OpenAI image-generation tool, referencing the existing chibi founder and approved market style.
+- Brief: nine complete transparent poses, arranged as down, up, and right views, each with idle and two stride poses. Left uses Godot mirroring.
+- The initial generated sheet repeated the front/back step pose. An image-generation edit corrected opposite-leg poses in the third column. The selected edited output `exec-cc5c8de1-b1ae-4a96-9632-26f5f61e5e02.png` is copied unchanged into the repository; the initial output was `exec-36f76215-b7b8-4928-a20e-a510e8132ad8.png`.
+- Source canvas: 1254 × 1254 RGBA, alpha 0–255. Inspection is read-only; regions, logical padding, uniform scale, and mirroring are configured in Godot without pixel edits.
+- Purpose: first directional walking animation. Frame positions are uneven, so the engine uses explicitly measured regions rather than assuming nine equal cells. This is pixel-style illustration, not a native low-resolution grid.
+- Known limitations: warm edge residue, small pose-to-pose size differences, subtle side-step leg identity, and a mirrored pouch on the left view. Actual gameplay-size motion requires review. See [the art guide](art-guide.md) and [animation walkthrough](player-animation.md).

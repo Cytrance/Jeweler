@@ -2,13 +2,18 @@
 
 [ext_resource type="Script" uid="uid://biagacoptac8l" path="res://scripts/player.gd" id="1_player"]
 [ext_resource type="PackedScene" path="res://scenes/props/price_board.tscn" id="2_sign"]
-[ext_resource type="Texture2D" uid="uid://di6458vwbom8o" path="res://assets/player/founder_chibi_idle.png" id="3_player_texture"]
+[ext_resource type="SpriteFrames" path="res://assets/player/founder_frames.tres" id="3_player_frames"]
 [ext_resource type="PackedScene" path="res://scenes/market.tscn" id="4_market"]
 [ext_resource type="PackedScene" path="res://scenes/props/jewellery_stall.tscn" id="5_stall"]
 [ext_resource type="PackedScene" path="res://scenes/props/flower_planter.tscn" id="6_planter"]
 
 [ext_resource type="PackedScene" path="res://scenes/props/flowering_tree.tscn" id="7_tree"]
 [ext_resource type="PackedScene" path="res://scenes/props/streetlamp.tscn" id="8_lamp"]
+
+[ext_resource type="Script" path="res://scripts/business_state.gd" id="9_state"]
+[ext_resource type="Resource" path="res://resources/prototype_economy.tres" id="10_economy"]
+[ext_resource type="PackedScene" path="res://scenes/props/supplier_counter.tscn" id="11_supplier"]
+[ext_resource type="PackedScene" path="res://scenes/business_hud.tscn" id="12_hud"]
 
 [sub_resource type="RectangleShape2D" id="Rectangle_player"]
 size = Vector2(32, 48)
@@ -24,13 +29,12 @@ position = Vector2(440, 350)
 motion_mode = 1
 script = ExtResource("1_player")
 
-[node name="Visual" type="Sprite2D" parent="PlayerPlaceholder" unique_id=1277779890]
+[node name="Visual" type="AnimatedSprite2D" parent="PlayerPlaceholder" unique_id=1277779890]
 texture_filter = 1
-position = Vector2(0, -24)
-scale = Vector2(0.09039548, 0.09039548)
-texture = ExtResource("3_player_texture")
-region_enabled = true
-region_rect = Rect2(306, 137, 568, 1062)
+position = Vector2(0, -25.5609756)
+scale = Vector2(0.2601626, 0.2601626)
+sprite_frames = ExtResource("3_player_frames")
+animation = &"idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerPlaceholder" unique_id=1960409329]
 shape = SubResource("Rectangle_player")
@@ -68,3 +72,15 @@ position = Vector2(260, 180)
 
 [node name="LampRight" parent="." instance=ExtResource("8_lamp")]
 position = Vector2(740, 155)
+
+[node name="BusinessState" type="Node" parent="."]
+script = ExtResource("9_state")
+economy = ExtResource("10_economy")
+
+[node name="SupplierCounter" parent="." instance=ExtResource("11_supplier")]
+position = Vector2(270, 440)
+player_path = NodePath("../PlayerPlaceholder")
+business_state_path = NodePath("../BusinessState")
+
+[node name="BusinessHUD" parent="." instance=ExtResource("12_hud")]
+business_state_path = NodePath("../BusinessState")
