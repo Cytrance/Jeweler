@@ -14,6 +14,7 @@ signal day_ended(day_id: int)
 var day := 1
 var hour := 8.0
 var awaiting_report := false
+var market_hold := false
 
 func _ready() -> void:
 	hour = starting_hour
@@ -23,7 +24,7 @@ func _process(delta: float) -> void:
 	advance_time(delta)
 
 func advance_time(delta: float) -> void:
-	if awaiting_report or state.imprisoned or player.movement_locked or seconds_per_day <= 0:
+	if market_hold or awaiting_report or state.imprisoned or player.movement_locked or seconds_per_day <= 0:
 		return
 	hour = minf(24.0, hour + maxf(0.0, delta) * 24.0 / seconds_per_day)
 	_refresh()
@@ -31,7 +32,7 @@ func advance_time(delta: float) -> void:
 		finish_day()
 
 func finish_day() -> void:
-	if awaiting_report or state.imprisoned or player.movement_locked:
+	if market_hold or awaiting_report or state.imprisoned or player.movement_locked:
 		return
 	awaiting_report = true
 	hour = 24.0
@@ -72,3 +73,7 @@ func color_at_hour(value: float) -> Color:
 func _refresh() -> void:
 	tint.color = color_at_hour(hour)
 	time_changed.emit()
+
+func skip_to_evening() -> void:
+	hour = 18.0
+	_refresh()

@@ -3,6 +3,7 @@ extends CanvasLayer
 @export var clock_path: NodePath
 @export var business_state_path: NodePath
 @export var player_path: NodePath
+@onready var session = get_node("../MarketSession")
 @onready var clock = get_node(clock_path)
 @onready var state = get_node(business_state_path)
 @onready var player = get_node(player_path)
@@ -15,6 +16,7 @@ extends CanvasLayer
 
 func _ready() -> void:
 	clock.time_changed.connect(_refresh_clock)
+	session.changed.connect(_refresh_clock)
 	clock.day_ended.connect(_show_report)
 	continue_button.pressed.connect(_continue)
 	restart_button.pressed.connect(_restart)
@@ -23,6 +25,8 @@ func _ready() -> void:
 
 func _refresh_clock() -> void:
 	clock_label.text = clock.time_label()
+	if session.active:
+		clock_label.text += "\nMarket: %ds | %d/%d served" % [ceili(session.remaining_seconds), session.processed, session.quota]
 
 func end_day() -> void:
 	clock.finish_day()

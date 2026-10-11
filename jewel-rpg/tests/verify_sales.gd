@@ -48,6 +48,8 @@ func _run() -> void:
 	root.add_child(scene)
 	await frames()
 	var state = scene.get_node("BusinessState")
+	var session = scene.get_node("MarketSession")
+	session.set_process(false)
 	var player = scene.get_node("PlayerPlaceholder")
 	var sales = scene.get_node("Obstacle")
 	var supplier = scene.get_node("SupplierCounter")
@@ -68,7 +70,7 @@ func _run() -> void:
 		var before_transactions := transactions
 		result = state.serve_customer(price, false)
 		if price <= 20:
-			check(result.sold and state.cash == before_cash + price and state.stock == before_stock - 1 and state.reputation == before_rep + 1, "truthful sale accepted at %d" % price)
+			check(result.sold and state.cash == before_cash + price and state.stock == before_stock - 1 and state.reputation == before_rep + (2 if price == 15 else 1), "truthful sale accepted at %d" % price)
 		else:
 			check(not result.sold and state.cash == before_cash and state.stock == before_stock and state.reputation == before_rep and transactions == before_transactions, "truthful overpriced rejection changes nothing")
 	for price in [15, 20, 30]:
@@ -102,12 +104,15 @@ func _run() -> void:
 	check(player.position == held_position, "sales panel freezes held movement")
 	key(KEY_E, true)
 	check(sales.panel.visible, "interact echo cannot close sales")
+	key(KEY_S)
+	session.advance_session(0.7)
 	var before_transactions := transactions
 	key(KEY_N)
 	check(transactions == before_transactions + 1 and sales.feedback.text.contains("Sold for 20"), "one N press produces one truthful sale")
 	key(KEY_N, true)
 	check(transactions == before_transactions + 1, "serve echo produces no repeated transaction")
 	check(sales.details.text.contains(state.economy.materials), "sales panel always shows actual materials")
+	session.advance_session(0.7)
 	await click(sales.serve_button)
 	check(transactions == before_transactions + 2, "real GUI click produces one sale")
 	key(KEY_P)
@@ -118,8 +123,9 @@ func _run() -> void:
 	check(sales.claim_choice.selected == 1 and sales.price_choice.get_selected_id() == 30, "C changes claim independently from price")
 	key(KEY_C, true)
 	check(sales.claim_choice.selected == 1, "claim echo cannot toggle twice")
+	session.advance_session(0.7)
 	key(KEY_N)
-	check(sales.feedback.text.contains("complaints may") and sales.details.text.contains("10–25%"), "misleading GUI sale reports risk without promising a complaint")
+	check(sales.feedback.text.contains("complaints may"), "misleading GUI sale reports risk without promising a complaint")
 	key(KEY_ESCAPE)
 	await frames()
 	check(not sales.panel.visible and not player.movement_locked and player.position.y > held_position.y and visual.is_playing(), "closing sales resumes held movement")

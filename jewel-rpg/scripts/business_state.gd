@@ -45,9 +45,10 @@ func serve_customer(price: int, misleading: bool) -> Dictionary:
 	if misleading:
 		misleading_sales.append(price)
 	else:
-		reputation += economy.truthful_reputation_gain
+		reputation += economy.cheap_truthful_reputation_gain if price < economy.default_sale_price else economy.truthful_reputation_gain
 	changed.emit()
-	var message := "Mina: A little sparkle for my commute! Sold for %d credits. Reputation +%d." % [price, economy.truthful_reputation_gain]
+	var gain: int = economy.cheap_truthful_reputation_gain if price < economy.default_sale_price else economy.truthful_reputation_gain
+	var message := "Mina: A little sparkle for my commute! Sold for %d credits. Reputation +%d." % [price, gain]
 	if misleading:
 		message = "Mina: Real gold? What a deal! Sold for %d credits. All proceeds are spendable; complaints may arrive tonight." % price
 	return {"sold": true, "message": message}

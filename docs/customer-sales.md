@@ -1,6 +1,8 @@
 # Prices, claims, and customer sales
 
-The founder's original stall now has an explicit **Serve next customer** interaction. Mina, a commuter with a taste for bargains, responds to your offer. There is no autonomous queue or walking customer sprite: a deliberate action starts one predictable encounter. This keeps the first sales rule easy to understand before adding crowds or varied customers.
+This walkthrough records the first sales checkpoint. The current [timed-market revision](market-session.md) adds Start day, visible customer arrivals, and a finite daily quota, so its playtest supersedes the unlimited encounter steps below.
+
+The founder's original stall first introduced an explicit **Serve next customer** interaction. Mina, a commuter with a taste for bargains, responds to your offer. There is no autonomous queue or walking customer sprite: a deliberate action starts one predictable encounter. This keeps the first sales rule easy to understand before adding crowds or varied customers.
 
 The ring remains **plated brass with a simulated stone**. Its real materials, asking price, and sales claim are three separate facts. Raising the price does not change the materials or automatically make a claim dishonest.
 
@@ -8,7 +10,7 @@ The ring remains **plated brass with a simulated stone**. Its real materials, as
 
 | Choice | Result |
 |---|---|
-| Truthful claim, price 15 or 20 | Sell one stocked ring; gain the price in cash and revenue, plus 1 reputation |
+| Truthful claim, price 15 or 20 | Sell one stocked ring; gain the price in cash and revenue, plus 2 reputation at 15 or 1 at 20 |
 | Truthful claim, price 30 | Customer rejects; business values stay unchanged |
 | Misleading claim, price 15, 20, or 30 | Sell one stocked ring; gain fully spendable cash and revenue, record the sale for a possible day-end refund |
 | Any offer without stock | No sale; customer asks you to buy stock |
@@ -54,7 +56,7 @@ This is why the new sales rule also needs focused purchase verification: both fe
 
 The evidence below records the **original sales commit** (`664702d`), whose reservation rule is superseded by the day/refunds revision. Its historical counts are not evidence for the revised risk rules. Current verification is recorded in [day and refunds](day-and-refunds.md).
 
-This checkpoint adds one product and one repeatable named encounter. It does not add customer pathfinding, varied preferences, save/load, or final accounting. The following revision on this same branch adds [day progression and complaint resolution](day-and-refunds.md); its state persists only within the running session. Keyboard and mouse controls request the same state operation; echoed key events must not create extra transactions.
+This historical checkpoint added one product and one repeatable named encounter; the timed-market revision now limits encounters and supplies visible visitors. It does not add customer pathfinding, varied preferences, save/load, or final accounting. The following revision on this same branch adds [day progression and complaint resolution](day-and-refunds.md); its state persists only within the running session. Keyboard and mouse controls request the same state operation; echoed key events must not create extra transactions.
 
 The coding agent completed the Godot 4.7.2 editor import and reported **32 sales checks and 25 purchase checks passed**. Purchase checks were relevant because shared business state and affordability changed. Wrapping the existing stall in the new interaction scene also moved its artwork/collider paths under `Obstacle/Stall`; three older test fixtures were updated to follow that hierarchy. The coding agent ran their affected checks only: **4 collision-only movement checks, 4 market checks, and 27 market-art checks passed**. These were dependency checks caused by changed scene paths, rather than an automatic rerun of all historical tests. Unchanged animation and scenery suites were not repeated.
 

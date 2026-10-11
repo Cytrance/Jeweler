@@ -172,7 +172,7 @@ Acceptance checks:
 - E opens the sales panel nearby; E or Escape closes it. Price and claim controls work with keyboard and mouse.
 - Serving is one deliberate action per customer; keyboard echoes and closed-panel input do not create transactions.
 - A sale requires stock. Truthful claims sell at prices up to 20; misleading claims sell at prices up to 30. Rejection leaves business values unchanged and explains why.
-- Successful sales consume one ring, add the price to cash and sales revenue, and give clear customer feedback. Truthful sales add one reputation point.
+- Successful sales consume one ring, add the price to cash and sales revenue, and give clear customer feedback. The first sales checkpoint gave truthful sales one reputation point; the timed-market revision gives +2 at 15 credits and +1 at 20.
 - Each misleading sale records its price for a possible day-end refund; its full proceeds remain spendable. This supersedes the first sales commit’s reservation rule before merging.
 - HUD and panels agree with the central business state. Movement and animation stop while interacting, without overlapping the supplier or board's lock.
 - Relevant sales and purchase checks run because business state is shared; unchanged animation and prop-art evidence is reused.
@@ -193,6 +193,21 @@ Acceptance checks:
 - Smooth outdoor canvas tint supplies daylight, dusk, and night, with legible untinted HUD and panels.
 - Focused deterministic refund/time checks use seeded randomness and boundary probabilities; affected shared sales/purchase checks run. Existing art/animation evidence is reused.
 - The project manager follows [day and refunds](day-and-refunds.md), tests daylight transitions and report/prison feedback on Windows, and approves the combined branch.
+
+## Current revision: one-minute market and reputation-driven attendance
+
+The project manager requested a further revision before merging `feat/customer-sales`, then chose midnight refund settlement so the 18:00 evening remains available for exploration and spending. Keep this as another checkpoint on the same branch; no checkpoint is merged merely because it was pushed.
+
+Acceptance checks:
+
+- Start day at YOUR STALL freezes one quota: base 12, integer random variation -2..+2, plus floor(reputation / 5), clamped to 3..30. Reputation changes affect future days, not today’s frozen attendance.
+- Visible customer sprites arrive one at a time; only the current ready visitor can be served. Accepted and rejected offers consume a visitor; lacking stock does not.
+- Truthful 15-credit sales gain +2 reputation, while truthful 20-credit sales gain +1. Truthful describes the actual imitation materials, not genuine gold.
+- A 60-real-second countdown continues through all menus; closing or reopening the stall cannot pause or reset it. Serving everyone early does not shorten the session.
+- At the deadline, all remaining visitors leave and reputation falls by ceil(unserved / 5). Sales stop, other interactions close safely, and closing feedback plus a fade skip the calendar clock to 18:00.
+- Closing is not refund settlement. Evening purchases remain available; midnight retains random refunds, revenue/item return, reputation penalties, and insolvency prison.
+- Start day cannot repeat on the same calendar day. End day cannot bypass an active market or closing transition.
+- Focused deterministic checks cover attendance, customers, deadline, ownership, transition, and midnight boundaries. The project manager follows [the timed-market walkthrough](market-session.md) before approving the combined branch.
 
 ## Later milestones
 

@@ -17,3 +17,12 @@ extends Resource
 @export_range(0.0, 1.0) var refund_chance_min: float = 0.10
 @export_range(0.0, 1.0) var refund_chance_max: float = 0.25
 @export var complaint_reputation_loss: int = 5
+
+@export var cheap_truthful_reputation_gain: int = 2
+@export var daily_customer_base: int = 12
+@export var daily_customer_variation: int = 2
+@export var reputation_per_customer: int = 5
+@export var minimum_daily_customers: int = 3
+@export var maximum_daily_customers: int = 30
+@export var market_session_seconds: float = 60.0
+@export var unserved_customers_per_reputation_loss: int = 5

@@ -30,12 +30,12 @@ One contemporary market stall, one supplier interaction, one product, and one cu
 
 1. Inspect the product's actual materials and buy stock.
 2. Set a price and choose a sales claim.
-3. Start a customer encounter and hear the purchase or rejection response.
+3. Start a 60-real-second market session at the stall; serve arriving customers and hear purchase or rejection responses.
 4. See cash, stock, sales revenue, and reputation update.
-5. Resolve any requested refunds when ending the prototype market day.
+5. Close at the session deadline, skip to 18:00, then explore or reinvest before midnight resolves requested refunds.
 6. Reinvest or start another day. Restart is available while save/load is absent.
 
-Use an explicit "Serve next customer" interaction initially rather than autonomous crowds, queues, pathfinding, or timers. Customers can have short humorous dialogue and visible reactions. They must communicate why an offer succeeds or fails.
+The first encounter checkpoint used a repeatable explicit Serve action. The timed-market revision supersedes that unlimited flow: Start day freezes one reputation-dependent quota, sprites arrive one at a time, and each valid offer serves one visitor. A sale or price rejection consumes that visitor; lacking stock does not. Customers communicate why an offer succeeds or fails. Decorative customer movement is not navigation or pathfinding.
 
 ## Placeholder economy v0
 
@@ -53,7 +53,10 @@ All figures below are deliberately artificial development values in credits. The
 | Customer maximum, truthful description | 20 credits |
 | Customer maximum, misleading description | 30 credits |
 | Starting reputation | 0; signed integer with no prototype clamp |
-| Successful truthful sale | +1 reputation |
+| Successful truthful sale | +2 reputation at 15 credits; +1 at 20 |
+| Daily visitor quota | clamp(12 + integer jitter from -2 to +2 + floor(reputation / 5), 3, 30) |
+| Market session | 60 real seconds, including time in menus |
+| Unserved visitor penalty | -ceil(unserved / 5) reputation at closing |
 | Complaint resolution | Full refund, item returned, -5 reputation |
 
 At day end, draw one daily complaint probability uniformly between **10% and 25%**, then independently roll that probability for each misleading sale recorded that day. Truthful sales cannot produce this complaint. The range describes a probability, not a quota: a small day's actual fraction can be zero, all, or anywhere between. Do not guarantee one refund per misleading sale or reroll settled sales. These remain placeholder risk values, not a final balance.
@@ -66,7 +69,7 @@ Example: start with 100, buy one ring (cash 90, stock 1), sell truthfully for 20
 
 ## Market time
 
-A configured full 24-hour day lasts eight real minutes and begins at 08:00. The first day is therefore shorter: its remaining sixteen game hours last five minutes twenty seconds. Later days begin at midnight. The clock pauses during an interaction, day report, or prison outcome. Midnight automatically settles the day; an explicit End day control lets the player finish earlier. Both paths use the same operation and cannot settle a day twice.
+A configured full 24-hour day lasts eight real minutes and begins at 08:00. Without opening the market, the initial remaining sixteen game hours take five minutes twenty seconds. A market session instead holds the clock for its minute and skips to 18:00 at closing; the six-hour evening then takes two real minutes outside paused interactions. Later days begin at midnight. Outside the active market, the calendar clock pauses during an interaction or report and stops after imprisonment. The calendar clock pauses throughout the active market and its closing transition; its separate 60-second countdown keeps running through interactions. Once the deadline expires, a closing notice and fade advance the clock to 18:00. Refunds remain unsettled during this evening. Midnight automatically settles the day; the existing manual End day shortcut can settle early only outside the active market and transition. Both settlement paths use the same operation and cannot settle a day twice.
 
 Outdoor world colour moves smoothly through daylight, sunset, and night. A Godot `CanvasModulate` changes the world canvas tint, while HUD and panels in separate `CanvasLayer`s remain readable. This supplies ambient colour rather than new lamp beams or dynamic shadows. Indoor lighting will need its own scene/canvas rules when indoor environments are added.
 
@@ -80,7 +83,9 @@ Cash balance, sales revenue, and profit are different. Buying stock lowers cash 
 - Acceptance/rejection matches the prototype price thresholds and stock requirements.
 - Cash, stock, revenue, reputation, and transaction feedback agree; all sale proceeds are spendable.
 - Truthful and misleading routes are both testable; eligible misleading sales persist until day end, refunds are rolled once, and unpaid totals lead to prison.
-- Midnight and manual day end share settlement; time pauses during interactions/reports and stops in prison. World tint changes smoothly while UI remains readable.
+- Start day freezes a quota based on current reputation and one random variation; reopening menus cannot reroll it. A market can run only once per calendar day.
+- Market time lasts 60 real seconds even through menus. Unserved customers leave at the deadline with a small reputation penalty; a fade skips to 18:00, leaving refunds for midnight.
+- Midnight and permitted manual day end share settlement; calendar time pauses during interactions/reports and the market, and stops in prison. World tint changes smoothly while UI remains readable.
 - Insufficient funds or stock gives clear feedback and does not corrupt state.
 - Focused transaction checks cover changed business rules; Windows playtesting covers readability, navigation, feedback, and enjoyment.
 
@@ -91,6 +96,7 @@ Cash balance, sales revenue, and profit are different. Buying stock lowers cash 
 3. Implement purchases and visible cash/stock only.
 4. Implement prices, claims, one explicit customer sale/rejection, and truthful-sale reputation.
 5. Implement day/night progression, uncertain day-end complaints, refund/item return, revenue reversal, reputation penalties, and prison for an unaffordable refund batch.
+6. Refine selling into one finite 60-second session per day, with reputation-dependent attendance, visible customer arrivals, closing feedback, and evening before midnight settlement.
 
 The first sales checkpoint used guaranteed complaints and cash reservations. The project manager superseded that rule before merging it; the current branch includes a separate revision commit with fully spendable proceeds and random day-end risk.
 

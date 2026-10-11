@@ -1,5 +1,22 @@
 # Modern market art guide
 
+## Reusable market customers
+
+`assets/customers/customer_sheet.png` supplies four original static, front-facing customer figures: Mina in sage with a tote, Jo in a navy blazer and glasses, Noor in a purple hoodie, and Bea in a pink cardigan with silver hair. Their contemporary clothing and warm chibi rendering follow the approved market concept and founder. These are idle poses for a reusable customer actor; movement between arrival and service points can use scene transforms. The sheet does not provide walking animation or other directions.
+
+The unchanged source is **1199 × 1312 RGBA**. Alpha spans 0–255; strict nonzero-alpha bounds are `(0, 40, 1144, 1312)`. Three corners are fully transparent; the bottom-left has alpha 1. Cropping at the measured alpha ≥16 bounds excludes distant residue, without guaranteeing a perfectly clean fringe.
+
+| Customer | Full-body region | Head/neck portrait region | Logical top padding |
+|---|---|---|---|
+| Mina | `Rect2(225, 45, 341, 599)` | `Rect2(225, 45, 341, 280)` | 13 |
+| Jo | `Rect2(662, 47, 282, 598)` | `Rect2(662, 47, 282, 280)` | 14 |
+| Noor | `Rect2(257, 663, 285, 612)` | `Rect2(257, 663, 285, 280)` | 0 |
+| Bea | `Rect2(649, 670, 300, 605)` | `Rect2(649, 670, 300, 280)` | 7 |
+
+For full-body `AtlasTexture` frames, use a common **360 × 612 logical canvas**. Set `margin.position` to `((360 - region_width) / 2, 612 - region_height)` and `margin.size` to `(360 - region_width, 612 - region_height)`. Uniform scale **`96.0 / 612.0`** preserves proportions and gives visible heights about 94–96 game pixels while aligning all feet to the same logical lower edge. A centred visual at local `(0, -48)` places that lower edge at a customer root defined as ground contact. The coding agent owns actor placement and scene resources. Portraits should preserve proportions in their UI rectangle rather than stretch to fill it.
+
+Source inspection confirms full hair, hands, and shoes are framed. The generated figures have small height differences, fine edge residue, and subtle age/skin-tone distinctions; their clothing provides the strongest identity at gameplay size. They are high-resolution pixel-style illustrations with noninteger display scaling, not a shared native low-resolution pixel grid. Review the actual actors and portraits against the founder, scenery, and interface at normal gameplay size; source inspection does not establish integrated visual approval.
+
 ## Current direction
 
 ### Approved style: cute, cosy pixel-art direction
