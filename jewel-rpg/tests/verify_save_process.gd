@@ -49,11 +49,28 @@ func _run() -> void:
 			push_error("Sleep did not finish with one delivery")
 			quit(1)
 			return
-		print("PROCESS read: restored report, delivered once, Save & Quit")
-		saves.quit_game()
+		game.get_node("AreaTravel").travel_to("plaza")
+		var market = game.get_node("MarketSession")
+		market.set_process(false)
+		market.start_day()
+		market.advance_session(60)
+		market.advance_session(2)
+		await process_frame
+		var button = saves.get_node("Toolbar/Quit")
+		var point: Vector2 = button.get_global_rect().get_center()
+		var motion := InputEventMouseMotion.new()
+		motion.position = point
+		root.push_input(motion, true)
+		for pressed in [true, false]:
+			var event := InputEventMouseButton.new()
+			event.position = point
+			event.button_index = MOUSE_BUTTON_LEFT
+			event.pressed = pressed
+			root.push_input(event, true)
+		print("PROCESS read: restored sleep, delivered once, mouse Save & Quit after market closing")
 		return
 	game.get_node("DeliveryOrders").check_deliveries()
-	if state.stock != 3 or state.cash != 70 or game.get_node("DeliveryOrders").pending_quantity() != 0:
+	if state.stock != 3 or state.cash != 70 or game.get_node("DeliveryOrders").pending_quantity() != 0 or not game.get_node("MarketSession").report.visible:
 		push_error("Second process duplicated or lost the delivery")
 		quit(1)
 		return

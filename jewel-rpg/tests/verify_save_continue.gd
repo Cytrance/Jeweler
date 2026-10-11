@@ -54,6 +54,50 @@ func click(button: Control) -> void:
 		event.pressed = pressed
 		root.push_input(event, true)
 	await frames()
+func check_closing_shortcut(saves: Node, label: String) -> void:
+	var current = saves.game
+	var clock = current.get_node("MarketClock")
+	var market = current.get_node("MarketSession")
+	clock.set_process(false)
+	market.set_process(false)
+	current.get_node("AreaTravel").travel_to("plaza")
+	if not market.can_start():
+		clock.finish_day()
+		current.get_node("DayCycle")._continue()
+	market.start_day()
+	market.advance_session(60.0)
+	saves.notice.text = "Not saved yet"
+	var event := InputEventKey.new()
+	event.physical_keycode = KEY_F6
+	event.pressed = true
+	root.push_input(event)
+	var saved := Store.read_file(saves.save_path)
+	check(saved.market.closing and not saved.market.report_visible and saves.notice.text == "Business saved.", label + " F6 saves during closing notice")
+	check(saves.get_node("Toolbar/Save").disabled and saves.get_node("Toolbar/Quit").disabled, label + " closing explicitly disables mouse save controls")
+	var before_click := FileAccess.get_file_as_string(saves.save_path)
+	await click(saves.get_node("Toolbar/Save"))
+	check(FileAccess.get_file_as_string(saves.save_path) == before_click, label + " disabled Save click does not write")
+	await click(saves.get_node("Toolbar/Quit"))
+	check(FileAccess.get_file_as_string(saves.save_path) == before_click and saves.playing, label + " disabled Save and Quit click leaves the game running")
+	market.advance_session(0.7)
+	root.push_input(event)
+	saved = Store.read_file(saves.save_path)
+	check(is_equal_approx(saved.market.transition_elapsed, 0.7), label + " F6 saves during closing fade")
+	var bytes := FileAccess.get_file_as_string(saves.save_path)
+	saves.notice.text = "Echo must not save"
+	event.echo = true
+	root.push_input(event)
+	check(FileAccess.get_file_as_string(saves.save_path) == bytes and saves.notice.text == "Echo must not save", label + " echoed F6 cannot save repeatedly")
+	event.pressed = false
+	event.echo = false
+	root.push_input(event)
+	market.advance_session(2.0)
+	check(not saves.get_node("Toolbar/Save").disabled and not saves.get_node("Toolbar/Quit").disabled, label + " closing report re-enables mouse save controls")
+	await click(saves.get_node("Toolbar/Save"))
+	check(Store.read_file(saves.save_path).market.report_visible, label + " actual Save click writes the closing report")
+	market.continue_evening()
+	current.get_node("AreaTravel").travel_to("apartment")
+
 func _run() -> void:
 	path = "user://save-check-%d/business.json" % OS.get_process_id()
 	DirAccess.make_dir_recursive_absolute(path.get_base_dir())
@@ -276,6 +320,7 @@ func _run() -> void:
 	await click(saves.confirm.get_ok_button())
 	await frames()
 	check(saves.playing and not paused and Store.read_file(path).business.cash == 100, "confirmed new game creates valid fresh save")
+	await check_closing_shortcut(saves, "New game")
 	saves.game.get_node("MarketClock").set_process(false)
 	saves.game.get_node("DeliveryOrders").place_order(2)
 	var key := InputEventKey.new()
@@ -294,6 +339,7 @@ func _run() -> void:
 	check(not saves.continue_button.disabled and paused, "valid save enables Continue without advancing time")
 	await click(saves.continue_button)
 	check(saves.playing and saves.game.get_node("BusinessState").cash == 80 and saves.game.get_node("DeliveryOrders").pending_quantity() == 2, "actual Continue restores saved business")
+	await check_closing_shortcut(saves, "Continue")
 	var original_path: String = saves.save_path
 	saves.save_path = path + "/unwritable/file.json"
 	check(not saves.save_now() and "failed" in saves.notice.text, "failed save is visible and not claimed successful")
@@ -313,6 +359,7 @@ func _run() -> void:
 	await click(saves.game.get_node("DayCycle").restart_button)
 	await click(saves.confirm.get_ok_button())
 	check(saves.game.get_node("BusinessState").cash == 100 and not saves.game.get_node("BusinessState").imprisoned and Store.read_file(path).business.cash == 100, "confirmed prison restart replaces run and disk snapshot")
+	await check_closing_shortcut(saves, "Prison restart")
 	wrapper.queue_free()
 	await frames()
 	for suffix in ["", ".bak", ".tmp", ".bak.tmp"]:

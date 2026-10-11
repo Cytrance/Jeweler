@@ -56,6 +56,9 @@ func start_new_game() -> void:
 	# leaves both the running game and the previous save available.
 	var fresh = GAME.instantiate()
 	get_parent().add_child(fresh)
+	# Input visits later siblings first: keep SaveGame after gameplay so F6
+	# reaches it before the market closing transition consumes other input.
+	get_parent().move_child(fresh, game.get_index())
 	var error := Store.write_slot(save_path, Snapshot.capture(fresh))
 	if error != OK:
 		fresh.queue_free()
@@ -70,8 +73,19 @@ func _begin_play(text: String) -> void:
 	playing = true
 	title.hide()
 	toolbar.show()
+	game.get_node("MarketSession").changed.connect(_refresh_save_controls)
+	_refresh_save_controls()
 	get_tree().paused = false
 	show_status(text)
+
+func _refresh_save_controls() -> void:
+	var market = game.get_node("MarketSession")
+	# The brief closing transition intentionally consumes mouse input before GUI
+	# dispatch. Make that visible; F6 is handled earlier and remains available.
+	var transitioning: bool = market.closing and not market.report.visible
+	for button in [$Toolbar/Save, $Toolbar/Quit]:
+		button.disabled = transitioning
+		button.tooltip_text = "Market closing — use F6 to save now." if transitioning else ""
 
 func save_now() -> bool:
 	if not playing:
