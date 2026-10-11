@@ -87,9 +87,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -250.0
-offset_top = -220.0
+offset_top = -250.0
 offset_right = 250.0
-offset_bottom = 220.0
+offset_bottom = 250.0
 theme_override_styles/panel = SubResource("PanelStyle")
 
 [node name="Margin" type="MarginContainer" parent="UILayer/Panel"]
@@ -134,6 +134,11 @@ theme_override_styles/pressed = SubResource("BuyPressed")
 layout_mode = 2
 autowrap_mode = 2
 custom_minimum_size = Vector2(450, 68)
+
+[node name="EndDay" type="Button" parent="UILayer/Panel/Margin/Rows"]
+layout_mode = 2
+focus_mode = 0
+text = "End day (T)"
 
 [node name="Help" type="Label" parent="UILayer/Panel/Margin/Rows"]
 layout_mode = 2

@@ -173,16 +173,30 @@ Acceptance checks:
 - Serving is one deliberate action per customer; keyboard echoes and closed-panel input do not create transactions.
 - A sale requires stock. Truthful claims sell at prices up to 20; misleading claims sell at prices up to 30. Rejection leaves business values unchanged and explains why.
 - Successful sales consume one ring, add the price to cash and sales revenue, and give clear customer feedback. Truthful sales add one reputation point.
-- Each misleading sale records a pending refund and reserves its full price immediately. Supplier purchases use available cash, so reserved funds cannot be spent.
+- Each misleading sale records its price for a possible day-end refund; its full proceeds remain spendable. This supersedes the first sales commit’s reservation rule before merging.
 - HUD and panels agree with the central business state. Movement and animation stop while interacting, without overlapping the supplier or board's lock.
 - Relevant sales and purchase checks run because business state is shared; unchanged animation and prop-art evidence is reused.
 - The project manager follows [the customer-sales walkthrough](customer-sales.md), checks panel readability and feedback on Windows, and approves the branch.
 
-## Next milestones, each reviewed separately
+## Current revision: day/night and uncertain refunds
 
-1. Consequences: explicitly end the day, resolve each scheduled refund once, return its ring, reverse its revenue, and apply the reputation penalty. Refund reservations already protect cash in the sales checkpoint; resolution is still deferred.
+The project manager tested the sales interaction and requested revised risk and time before merging. Keep this revision as a second commit on `feat/customer-sales`; one pull request will compare the combined result with `main`.
 
-The [design brief](game-design.md) defines acceptance checks across the first complete loop. Research, precious-material suppliers, staff, boutiques, supply chains, and luxury competition remain later goals. Save/load and a final balanced economy are not yet implemented.
+Acceptance checks:
+
+- Misleading sale proceeds are fully spendable; no guaranteed complaint or cash reservation remains.
+- Day end draws a uniform 10–25% daily probability and independently checks each misleading sale once. Truthful sales never generate this complaint. Small samples need not yield a 10–25% actual fraction.
+- An affordable total refund batch deducts full prices, returns rings, reverses refunded revenue, and applies -5 reputation per refund. No partial settlement occurs.
+- Requested refunds exceeding current cash lead to a terminal prison outcome. Purchases, sales, movement, and time stop; restart begins a fresh session.
+- A repeating clock starts at 08:00, using an eight-real-minute full day. Midnight and the manual End day control share exactly-once settlement.
+- Interactions and reports pause time; continue begins the next day, while large elapsed frames cannot skip multiple reports.
+- Smooth outdoor canvas tint supplies daylight, dusk, and night, with legible untinted HUD and panels.
+- Focused deterministic refund/time checks use seeded randomness and boundary probabilities; affected shared sales/purchase checks run. Existing art/animation evidence is reused.
+- The project manager follows [day and refunds](day-and-refunds.md), tests daylight transitions and report/prison feedback on Windows, and approves the combined branch.
+
+## Later milestones
+
+Customer variation, indoor environments, and saved progress need separate scoped design and review. The [design brief](game-design.md) defines acceptance across the first complete business loop. Research, precious-material suppliers, staff, boutiques, supply chains, and luxury competition remain later goals. Save/load and a final balanced economy are not yet implemented.
 
 ## Task handoff template
 

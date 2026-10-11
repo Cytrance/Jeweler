@@ -13,3 +13,7 @@ extends Resource
 @export var truthful_claim: String = "Gold-tone plated brass; simulated stone"
 @export var misleading_claim: String = "Solid gold; genuine gemstone"
 @export var truthful_reputation_gain: int = 1
+
+@export_range(0.0, 1.0) var refund_chance_min: float = 0.10
+@export_range(0.0, 1.0) var refund_chance_max: float = 0.25
+@export var complaint_reputation_loss: int = 5

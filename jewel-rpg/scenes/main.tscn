@@ -15,6 +15,9 @@
 [ext_resource type="PackedScene" path="res://scenes/props/supplier_counter.tscn" id="11_supplier"]
 [ext_resource type="PackedScene" path="res://scenes/business_hud.tscn" id="12_hud"]
 
+[ext_resource type="Script" path="res://scripts/market_clock.gd" id="13_clock"]
+[ext_resource type="PackedScene" path="res://scenes/day_cycle.tscn" id="14_cycle"]
+
 [sub_resource type="RectangleShape2D" id="Rectangle_player"]
 size = Vector2(32, 48)
 
@@ -41,6 +44,7 @@ shape = SubResource("Rectangle_player")
 
 [node name="Obstacle" parent="." unique_id=35722720 instance=ExtResource("5_stall")]
 position = Vector2(650, 270)
+day_cycle_path = NodePath("../DayCycle")
 player_path = NodePath("../PlayerPlaceholder")
 business_state_path = NodePath("../BusinessState")
 
@@ -86,3 +90,16 @@ business_state_path = NodePath("../BusinessState")
 
 [node name="BusinessHUD" parent="." instance=ExtResource("12_hud")]
 business_state_path = NodePath("../BusinessState")
+
+[node name="OutdoorTint" type="CanvasModulate" parent="."]
+
+[node name="MarketClock" type="Node" parent="."]
+script = ExtResource("13_clock")
+player_path = NodePath("../PlayerPlaceholder")
+business_state_path = NodePath("../BusinessState")
+tint_path = NodePath("../OutdoorTint")
+
+[node name="DayCycle" parent="." instance=ExtResource("14_cycle")]
+clock_path = NodePath("../MarketClock")
+business_state_path = NodePath("../BusinessState")
+player_path = NodePath("../PlayerPlaceholder")

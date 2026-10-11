@@ -2,6 +2,8 @@ extends Area2D
 
 @export var player_path: NodePath
 @export var business_state_path: NodePath
+@export var day_cycle_path: NodePath
+@onready var day_cycle = get_node_or_null(day_cycle_path) if not day_cycle_path.is_empty() else null
 @onready var player = get_node_or_null(player_path) if not player_path.is_empty() else null
 @onready var state = get_node_or_null(business_state_path) if not business_state_path.is_empty() else null
 @onready var panel: PanelContainer = $UILayer/Panel
@@ -25,6 +27,7 @@ func _ready() -> void:
 	body_exited.connect(_on_body_exited)
 	state.changed.connect(_refresh)
 	serve_button.pressed.connect(_serve)
+	$UILayer/Panel/Margin/Rows/EndDay.pressed.connect(_end_day)
 	for price in state.economy.sale_prices:
 		price_choice.add_item("Asking price: %d credits" % price, price)
 		if price == state.economy.default_sale_price:
@@ -60,6 +63,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		price_choice.select((price_choice.selected + 1) % price_choice.item_count)
 	elif panel.visible and event.is_action_pressed("toggle_claim", false):
 		claim_choice.select(1 - claim_choice.selected)
+	elif panel.visible and event.is_action_pressed("end_day", false):
+		_end_day()
 	elif panel.visible and event.is_action_pressed("serve_customer", false):
 		_serve()
 	else:
@@ -85,6 +90,10 @@ func _serve() -> void:
 
 func _refresh() -> void:
 	details.text = "Actual materials: %s\nStock: %d rings | Sales revenue: %d credits | Reputation: %+d" % [state.economy.materials, state.stock, state.revenue, state.reputation]
-	if state.reserved_cash() > 0:
-		details.text += "\nAvailable cash: %d | Held for refunds: %d\nComplaint pending; refund money is protected." % [state.available_cash(), state.reserved_cash()]
+	details.text += "\nMisleading sales carry a 10–25% complaint chance.\nRefunds exceed your cash? Prison ends this run."
 	serve_button.text = "Serve next customer (N)"
+
+func _end_day() -> void:
+	if day_cycle != null and panel.visible:
+		_set_open(false)
+		day_cycle.end_day()

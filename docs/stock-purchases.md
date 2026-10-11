@@ -39,11 +39,11 @@ The project manager authorized continuing before merging the animation. We keep 
 
 A suitable combined pull-request title is **Add directional walking and starter-stock purchases**. Its Files changed view compares the branch's combined result with `main`. **Squash and merge includes both checkpoints' final changes**, not just the newest commit. It creates one new checkpoint on `main`; the branch's individual commits remain useful while reviewing.
 
-The project manager tested and squash-merged this combined branch into `main` at `37f1681`. Fetching and pulling `main` on each computer supplies both features. Customer sales now use a new branch; complaint resolution is still deferred.
+The project manager tested and squash-merged this combined branch into `main` at `37f1681`. Fetching and pulling `main` on each computer supplies both features. Customer sales and their day-end consequences now use `feat/customer-sales`, with separate commits awaiting one combined review.
 
 ## Limits and verification
 
-The original purchase checkpoint handled one product per action, without customer sales. The following [sales checkpoint](customer-sales.md) adds claims, revenue, reputation, and refund reservations. Purchasing now checks **available cash** instead of the total balance, so money held for refunds cannot be spent. Actual refund resolution, supplier ethics simulation, and save/load remain deferred. Restarting resets the session.
+The original purchase checkpoint handled one product per action, without customer sales. The following [sales checkpoint](customer-sales.md) adds claims, revenue, and reputation. Its original refund reservation rule was superseded at the project manager’s request: purchasing now uses **all current cash**, including misleading-sale proceeds. [Day-end refunds](day-and-refunds.md) can therefore exceed money left after purchasing and send the founder to prison. While a report or prison outcome is open, purchases are blocked. Supplier ethics simulation and save/load remain deferred. Restarting resets the session.
 
 The coding agent completed a Godot 4.7.2 editor import and **25 focused purchase checks passed**. The reviewer inspected the new scripts, configuration, scenes, input action, and actual input-dispatch tests, then independently reran only `verify_purchases.gd`: **25 passed, zero failures, exit code 0**.
 

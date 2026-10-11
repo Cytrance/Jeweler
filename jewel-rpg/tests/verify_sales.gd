@@ -74,16 +74,16 @@ func _run() -> void:
 	for price in [15, 20, 30]:
 		var before_cash: int = state.cash
 		var before_rep: int = state.reputation
-		var before_held: int = state.reserved_cash()
+		var before_pending: int = state.misleading_sales.size()
 		result = state.serve_customer(price, true)
-		check(result.sold and state.cash == before_cash + price and state.reputation == before_rep and state.reserved_cash() == before_held + price, "misleading sale reserves full refund at %d" % price)
+		check(result.sold and state.cash == before_cash + price and state.reputation == before_rep and state.misleading_sales.size() == before_pending + 1, "misleading sale records risk and credits full proceeds at %d" % price)
 	check(state.revenue == 100 and state.economy.materials == "Plated brass • simulated stone", "revenue totals accepted sales; claims never change actual materials")
-	state.cash = state.reserved_cash() + 9
+	state.cash = 9
 	var before_stock: int = state.stock
-	check(not state.purchase_one() and state.stock == before_stock and state.available_cash() == 9, "supplier cannot spend protected refunds")
+	check(not state.purchase_one() and state.stock == before_stock and state.cash == 9, "insufficient cash purchase rejected")
 	state.cash += 1
-	check(state.purchase_one() and state.available_cash() == 0 and state.cash == state.reserved_cash(), "purchase spends exact available cash preserving refunds")
-	check(hud.text.contains("Available: 0") and hud.text.contains("Held: 65"), "HUD signal displays reservation consistently")
+	check(state.purchase_one() and state.cash == 0, "full cash spendable despite misleading sales")
+	check(hud.text.contains("Cash: 0") and not hud.text.contains("Held"), "HUD displays spendable cash without reservations")
 	key(KEY_N)
 	check(state.stock == before_stock + 1, "closed sales panel ignores serve key")
 	# Walk into the preserved founder stall from its reachable right side.
@@ -119,7 +119,7 @@ func _run() -> void:
 	key(KEY_C, true)
 	check(sales.claim_choice.selected == 1, "claim echo cannot toggle twice")
 	key(KEY_N)
-	check(sales.feedback.text.contains("complaint") and sales.details.text.contains("Held for refunds"), "misleading GUI sale reports protected future complaint")
+	check(sales.feedback.text.contains("complaints may") and sales.details.text.contains("10–25%"), "misleading GUI sale reports risk without promising a complaint")
 	key(KEY_ESCAPE)
 	await frames()
 	check(not sales.panel.visible and not player.movement_locked and player.position.y > held_position.y and visual.is_playing(), "closing sales resumes held movement")

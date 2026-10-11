@@ -13,5 +13,3 @@ func _ready() -> void:
 
 func _refresh() -> void:
 	summary.text = "Cash: %d credits\nRings in stock: %d\nRevenue: %d | Rep: %+d" % [state.cash, state.stock, state.revenue, state.reputation]
-	if state.reserved_cash() > 0:
-		summary.text += "\nAvailable: %d | Held: %d" % [state.available_cash(), state.reserved_cash()]
