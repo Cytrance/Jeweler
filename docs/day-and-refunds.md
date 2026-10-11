@@ -31,7 +31,7 @@ Time pauses while the board, supplier, or sales interaction is open, while a day
 5. Let time run while walking or standing outside a panel. Look for smooth changes from day through dusk into night. The HUD should remain readable. At midnight, one report appears; waiting on that report must not generate extra reports or transactions.
 6. On another run, buy and sell misleadingly. All proceeds are spendable at the supplier. End the day and read the count and total of actual refund requests. A single misleading sale may not produce any complaint; repeated runs are not proof of a particular quota.
 7. To explore insolvency, spend the misleading proceeds on stock before closing. A requested total exceeding cash must show a prison outcome. Movement and transactions stop; **Start a fresh business** resets the run. Random play does not guarantee prison on any one attempt.
-8. Check controls, panels, tints, and routes at normal game size. Stop/restart resets business values, day, and eligible sales; save/load is absent.
+8. Check controls, panels, tints, and routes at normal game size. At the original checkpoint, stop/restart reset the run. With [save/continue](save-and-continue.md), Continue preserves values, eligible sales, financial reports, and prison; a confirmed New game deliberately resets the run.
 
 ## Follow the responsibilities
 

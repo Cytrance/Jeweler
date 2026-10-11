@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3]
+[ext_resource type="PackedScene" path="res://scenes/main.tscn" id="1_game"]
+[ext_resource type="Script" path="res://scripts/save_game.gd" id="2_save"]
+[ext_resource type="Theme" path="res://resources/room_menu_theme.tres" id="3_theme"]
+[node name="JewelRPG" type="Node"]
+[node name="Game" parent="." instance=ExtResource("1_game")]
+[node name="SaveGame" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 20
+script = ExtResource("2_save")
+[node name="Title" type="Control" parent="SaveGame"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+[node name="Backdrop" type="ColorRect" parent="SaveGame/Title"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.10, 0.07, 0.12, 0.94)
+[node name="Panel" type="PanelContainer" parent="SaveGame/Title"]
+offset_left = 200.0
+offset_top = 95.0
+offset_right = 760.0
+offset_bottom = 445.0
+theme = ExtResource("3_theme")
+[node name="Margin" type="MarginContainer" parent="SaveGame/Title/Panel"]
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 24
+[node name="Rows" type="VBoxContainer" parent="SaveGame/Title/Panel/Margin"]
+theme_override_constants/separation = 16
+[node name="Heading" type="Label" parent="SaveGame/Title/Panel/Margin/Rows"]
+text = "JEWEL RPG"
+theme_override_font_sizes/font_size = 32
+[node name="Message" type="Label" parent="SaveGame/Title/Panel/Margin/Rows"]
+custom_minimum_size = Vector2(504, 75)
+autowrap_mode = 2
+[node name="Continue" type="Button" parent="SaveGame/Title/Panel/Margin/Rows"]
+text = "Continue"
+[node name="New" type="Button" parent="SaveGame/Title/Panel/Margin/Rows"]
+text = "New game"
+[node name="Quit" type="Button" parent="SaveGame/Title/Panel/Margin/Rows"]
+text = "Quit"
+[node name="Toolbar" type="Control" parent="SaveGame"]
+mouse_filter = 2
+theme = ExtResource("3_theme")
+[node name="Save" type="Button" parent="SaveGame/Toolbar"]
+offset_left = 820.0
+offset_top = 456.0
+offset_right = 948.0
+offset_bottom = 490.0
+focus_mode = 0
+text = "Save (F6)"
+[node name="Quit" type="Button" parent="SaveGame/Toolbar"]
+offset_left = 820.0
+offset_top = 496.0
+offset_right = 948.0
+offset_bottom = 530.0
+focus_mode = 0
+text = "Save & Quit"
+[node name="Notice" type="Label" parent="SaveGame/Toolbar"]
+offset_left = 175.0
+offset_top = 465.0
+offset_right = 785.0
+offset_bottom = 505.0
+autowrap_mode = 2
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(1, 0.94, 0.82, 1)
+theme_override_colors/font_outline_color = Color(0.1, 0.07, 0.12, 1)
+theme_override_constants/outline_size = 6
+[node name="ConfirmNew" type="ConfirmationDialog" parent="SaveGame"]
+title = "Start a new business?"
+dialog_text = "Replace your saved run with a fresh business?\nChoose Cancel to keep your current progress."
+ok_button_text = "Start new game"
