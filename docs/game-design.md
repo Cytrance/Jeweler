@@ -26,14 +26,14 @@ Questionable sourcing and misleading claims are player choices. They may produce
 
 ## First playable business loop
 
-One contemporary market stall, one supplier interaction, one product, and one customer encounter at a time:
+One contemporary market stall, one apartment computer, one product, and one customer encounter at a time:
 
-1. Inspect the product's actual materials and buy stock.
+1. Inspect the product's actual materials and order stock at the apartment computer. Orders consume cash immediately and arrive the next day at 08:00.
 2. Set a price and choose a sales claim.
 3. Start a 60-real-second market session at the stall; serve arriving customers and hear purchase or rejection responses.
 4. See cash, stock, sales revenue, and reputation update.
 5. Close at the session deadline, skip to 18:00, then explore or reinvest before midnight resolves requested refunds.
-6. Reinvest or start another day. Restart is available while save/load is absent.
+6. Travel home, order tomorrow's stock, and sleep until 08:00. Midnight refunds settle before waking and delivery. Restart is available while save/load is absent.
 
 The first encounter checkpoint used a repeatable explicit Serve action. The timed-market revision supersedes that unlimited flow: Start day freezes one reputation-dependent quota, sprites arrive one at a time, and each valid offer serves one visitor. A sale or price rejection consumes that visitor; lacking stock does not. Customers communicate why an offer succeeds or fails. Decorative customer movement is not navigation or pathfinding.
 
@@ -63,15 +63,15 @@ At day end, draw one daily complaint probability uniformly between **10% and 25%
 
 All sale proceeds immediately become spendable cash. Nothing is reserved for possible refunds. Before paying any day-end refunds, add their full sale prices and compare the total with current cash. If cash covers the total, settle the whole batch once: subtract the total, return one ring for each refund, reverse the corresponding sales revenue, and apply -5 reputation per refunded sale. If requests exceed cash, the founder goes to prison and the run stops; do not partially pay refunds or silently forgive the shortfall. No purchases, sales, player movement, or time progression continue in prison. Restart creates a fresh run; there is no save/load yet.
 
-A rejection changes no cash, stock, or reputation. A sale requires stock, subtracts one ring, and adds the asking price to cash. A purchase requires cash >= 10, subtracts 10 cash, and adds one ring. Cash and stock never become negative; rapid repeated input must not duplicate a single transaction.
+A rejection changes no cash, stock, or reputation. A sale requires stock, subtracts one ring, and adds the asking price to cash. An order requires cash >= 10 and immediately subtracts 10 cash per ring. It creates pending stock for the following day at 08:00; available inventory changes only when delivery arrives. Cash and stock never become negative; rapid repeated input must not duplicate a single transaction.
 
-Example: start with 100, buy one ring (cash 90, stock 1), sell truthfully for 20 (cash 110, stock 0, reputation 1). Net trading profit is 10. A misleading sale for 30 instead leaves cash 120, stock 0, revenue 30, reputation 0; all 120 credits can be spent. If that sale produces no refund at day end, those figures remain. If its refund is requested and affordable, cash becomes 90, stock 1, revenue 0, reputation -5. If the founder spent cash below 30 first, that requested refund instead ends the run in prison. The returned ring retains its real composition.
+Example: start with 100 and order one ring (cash 90, available stock 0, pending 1). After the next 08:00 delivery, stock is 1. Sell truthfully for 20 (cash 110, stock 0, reputation 1). Net trading profit is 10. A misleading sale for 30 instead leaves cash 120, stock 0, revenue 30, reputation 0; all 120 credits can be spent. If that sale produces no refund at day end, those figures remain. If its refund is requested and affordable, cash becomes 90, stock 1, revenue 0, reputation -5. If the founder spent cash below 30 first, that requested refund instead ends the run in prison. The returned ring retains its real composition.
 
 ## Market time
 
 A configured full 24-hour day lasts eight real minutes and begins at 08:00. Without opening the market, the initial remaining sixteen game hours take five minutes twenty seconds. A market session instead holds the clock for its minute and skips to 18:00 at closing; the six-hour evening then takes two real minutes outside paused interactions. Later days begin at midnight. Outside the active market, the calendar clock pauses during an interaction or report and stops after imprisonment. The calendar clock pauses throughout the active market and its closing transition; its separate 60-second countdown keeps running through interactions. Once the deadline expires, a closing notice and fade advance the clock to 18:00. Refunds remain unsettled during this evening. Midnight automatically settles the day; the existing manual End day shortcut can settle early only outside the active market and transition. Both settlement paths use the same operation and cannot settle a day twice.
 
-Outdoor world colour moves smoothly through daylight, sunset, and night. A Godot `CanvasModulate` changes the world canvas tint, while HUD and panels in separate `CanvasLayer`s remain readable. This supplies ambient colour rather than new lamp beams or dynamic shadows. Indoor lighting will need its own scene/canvas rules when indoor environments are added.
+Outdoor world colour moves smoothly through daylight, sunset, and night. A Godot `CanvasModulate` changes the world canvas tint, while HUD and panels in separate `CanvasLayer`s remain readable. This supplies ambient colour rather than new lamp beams or dynamic shadows. The apartment uses a separate indoor canvas without the outdoor tint, while the same calendar continues across both areas.
 
 Cash balance, sales revenue, and profit are different. Buying stock lowers cash but creates inventory; selling generates revenue; refunds reverse revenue. Prototype realised trading profit counts unrefunded sales minus the cost of their sold units. A full refund with the item returned reverses both its sale revenue and its recognition as a sold unit's cost, restoring that cost to inventory. Unsold or returned stock is not automatically a realised loss. Rent, wages, taxes, and full accounting are deferred.
 
@@ -98,6 +98,17 @@ Cash balance, sales revenue, and profit are different. Buying stock lowers cash 
 5. Implement day/night progression, uncertain day-end complaints, refund/item return, revenue reversal, reputation penalties, and prison for an unaffordable refund batch.
 6. Refine selling into one finite 60-second session per day, with reputation-dependent attendance, visible customer arrivals, closing feedback, and evening before midnight settlement.
 
-The first sales checkpoint used guaranteed complaints and cash reservations. The project manager superseded that rule before merging it; the current branch includes a separate revision commit with fully spendable proceeds and random day-end risk.
+7. Add a modest apartment, reusable indoor tiles and furniture, computer ordering with next-morning delivery, shared travel destinations, and a bed that advances through midnight settlement before waking.
+
+The first sales checkpoint used guaranteed complaints and cash reservations. The project manager superseded that rule before merging the combined market milestone at `4093d6d`; proceeds are fully spendable with random day-end risk. The apartment milestone supersedes instant supplier purchases in playable sessions; the legacy purchase implementation remains available to historical isolated checks.
 
 Each step normally has its own branch, focused checks, independent review, and project-manager approval. The project manager may authorize several separately committed checkpoints on one branch for a combined pull request; this does not skip focused review or final merge approval. The entire business loop is the destination across several milestones, not the next single coding assignment.
+
+
+## Apartment, travel, and deliveries
+
+Start a fresh run in a small, worn modern apartment. Reusable floor and wall tiles, a bed, table, TV, and computer desk establish a starter interior rather than a finished housing/decorating system. Solid furniture blocks movement by default. The computer displays actual imitation-ring materials and the unit cost. Ordering pays immediately and queues stock for **08:00 on the following calendar day**; it does not hand over rings immediately. Delivery adds inventory and gives a notification whether the founder is indoors or in the plaza.
+
+The apartment door and plaza exit open one reusable destination menu. Each exposes only the other location for now. Travel advances **30 game minutes**, preserves inventory, cash, reputation, refund exposure, and today's market status, and activates only the destination area's rendering, input, and collision. Neither travel nor sleeping can bypass an active market, closing transition, financial report, or prison.
+
+The bed advances to the next 08:00, including midnight settlement first. An affordable refund report must be continued before the remaining sleep time and delivery are applied. Insolvency ends the run before wake-up or delivery. Ordering before midnight is therefore a choice between tomorrow's stock and keeping enough cash for possible refunds; the prototype deliberately reserves no refund money. Orders placed on day D are due on day D+1 at 08:00, including orders placed early on day D. Cutoff and timing are explicit placeholder rules. There is no save/load, placement editor, or housing upgrade system yet.

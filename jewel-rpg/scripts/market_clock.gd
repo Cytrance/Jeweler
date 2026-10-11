@@ -15,6 +15,7 @@ var day := 1
 var hour := 8.0
 var awaiting_report := false
 var market_hold := false
+var indoors := false
 
 func _ready() -> void:
 	hour = starting_hour
@@ -71,9 +72,12 @@ func color_at_hour(value: float) -> Color:
 	return night
 
 func _refresh() -> void:
-	tint.color = color_at_hour(hour)
+	tint.color = Color.WHITE if indoors else color_at_hour(hour)
 	time_changed.emit()
 
 func skip_to_evening() -> void:
 	hour = 18.0
 	_refresh()
+
+func advance_minutes(minutes: float) -> void:
+	advance_time(maxf(0.0, minutes) * seconds_per_day / 1440.0)

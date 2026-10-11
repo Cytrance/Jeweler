@@ -35,7 +35,7 @@ func serve_customer(price: int, misleading: bool) -> Dictionary:
 	if economy == null or not price in economy.sale_prices:
 		return {"sold": false, "message": "Choose one of the listed prices first."}
 	if stock <= 0:
-		return {"sold": false, "message": "Mina: Lovely display. Does the invisible ring come in my size? Buy stock first."}
+		return {"sold": false, "message": "Mina: Lovely display. Does the invisible ring come in my size? Order stock at your apartment computer and wait for morning delivery."}
 	var maximum: int = economy.misleading_customer_max if misleading else economy.truthful_customer_max
 	if price > maximum:
 		return {"sold": false, "message": "Mina: %d credits? My lunch budget objects! At most %d for that description. No sale." % [price, maximum]}

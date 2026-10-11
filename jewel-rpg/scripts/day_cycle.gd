@@ -51,6 +51,9 @@ func _continue() -> void:
 	player.movement_locked = false
 	state.begin_day()
 	clock.next_day()
+	var travel = get_node_or_null("../AreaTravel")
+	if travel != null:
+		travel.resume_after_report()
 
 func _restart() -> void:
 	if report.visible and state.imprisoned:

@@ -140,7 +140,7 @@ func _end_session() -> void:
 	fade.color.a = 0.0
 	fade.show()
 	$ClosingNotice.show()
-	details.text = "Served: %d / %d customers\nWent home: %d | Reputation: -%d\n\nThe market has closed. It is now 6pm.\nSpend the evening exploring or restocking.\nRefund requests are settled at midnight." % [processed, quota, unserved, reputation_penalty]
+	details.text = "Served: %d / %d customers\nWent home: %d | Reputation: -%d\n\nThe market has closed. It is now 6pm.\nSpend the evening exploring or ordering tomorrow’s stock.\nRefund requests are settled at midnight." % [processed, quota, unserved, reputation_penalty]
 	session_closing.emit()
 	customer_changed.emit()
 

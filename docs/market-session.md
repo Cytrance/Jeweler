@@ -1,14 +1,14 @@
 # A one-minute market day
 
-This revision on **`feat/customer-sales`** replaces unlimited encounters with one timed selling session per calendar day. It remains on the same unmerged branch as sales and refund/time revisions, so one pull request compares their combined final result with `main`.
+The timed-market milestone replaces unlimited encounters with one timed selling session per calendar day. The project manager tested and merged the combined sales, refunds, and timed-market branch into `main` at `4093d6d`. The next apartment milestone changes sourcing and travel; current steps below reflect that flow.
 
 ## The player’s day
 
-Buy stock at SUPPLIER before opening YOUR STALL. Open the stall with **E**, then click **Start day** or press **S**. Visible customers arrive in a small queue, and the panel identifies the visitor you are serving. Choose a price with **P** and a claim with **C**, then serve with **N** or the button. The dropdown menus also work with the mouse.
+Order stock at the apartment computer, sleep through midnight settlement, and collect the following morning’s delivery before travelling to YOUR STALL. See [apartment and deliveries](apartment-and-deliveries.md). Open the stall with **E**, then click **Start day** or press **S**. Visible customers arrive in a small queue, and the panel identifies the visitor you are serving. Choose a price with **P** and a claim with **C**, then serve with **N** or the button. The dropdown menus also work with the mouse.
 
-Each accepted offer or overpriced rejection uses one visitor. Trying to sell with no stock leaves that visitor waiting. A brief arrival interval prevents a second transaction from using the same customer. Closing the panel lets you move, but does not pause the market. The countdown runs through the sales, supplier, and board menus alike. A persistent top-right market timer and served count remain visible outside the stall panel.
+Each accepted offer or overpriced rejection uses one visitor. Trying to sell with no stock leaves that visitor waiting. A brief arrival interval prevents a second transaction from using the same customer. Closing the panel lets you move, but does not pause the market. The countdown runs through sales and board menus; closing the panel does not pause it. Travel to the apartment is blocked during selling, so computer restocking is preparation for a later day. A persistent top-right market timer and served count remain visible outside the stall panel.
 
-After **60 real seconds**, remaining visitors go home. A closing report shows served and unserved counts and the reputation penalty; a short fade advances the calendar clock to **18:00**. Serving everybody early does not finish early: the session still lasts its full minute. Continue the closing notice to explore or restock during the evening. You cannot reopen business on that same calendar day.
+After **60 real seconds**, remaining visitors go home. A closing report shows served and unserved counts and the reputation penalty; a short fade advances the calendar clock to **18:00**. Serving everybody early does not finish early: the session still lasts its full minute. Continue the closing notice to explore or travel home to order tomorrow’s stock during the evening. You cannot reopen business on that same calendar day.
 
 **Refunds settle at midnight, not at market closing.** Misleading income stays fully spendable through the evening. The existing midnight report pays affordable random refunds or sends an insolvent founder to prison. End day (**T**) remains an early-settlement shortcut outside an active market or closing transition; it cannot bypass the one-minute session. Restart still resets all progress.
 
@@ -38,13 +38,13 @@ Central economy settings in `resources/prototype_economy.tres` and `scripts/econ
 
 ## Try it on Windows
 
-1. Close Godot, fetch, select **`feat/customer-sales`**, and pull. Open the project in Godot 4.7.2 and press F5.
-2. Buy several rings at SUPPLIER, then open YOUR STALL with E. Before Start day, N must not sell anything.
+1. Close Godot, fetch, select **`feat/apartment-deliveries`** for this milestone (or merged `main` afterward), and pull. Open the project in Godot 4.7.2 and press F5.
+2. Order several rings at the apartment computer, sleep, continue midnight’s report, and receive the morning delivery. Travel to the plaza, then open YOUR STALL with E. Before Start day, N must not sell anything.
 3. Start day with the button or S. Check the fixed quota, one-minute countdown, visible visitors, and named panel portrait. Holding S cannot restart or reroll today.
 4. Sell truthfully at 15: cash rises by 15, stock falls by one, and reputation rises by two. Try 20 for +1 reputation. Reject a truthful 30-credit offer: the visitor is served, but cash and stock stay unchanged.
-5. Close the stall, open the supplier or board, and watch the service countdown continue. Try T during the active session: it must not settle or skip closing.
+5. Close the stall, open the board, and watch the service countdown continue. Try the plaza exit: travel must be blocked during the market. Try T during the active session: it must not settle or skip closing.
 6. Let the minute expire with visitors left. Expect one reputation penalty, visitors departing, a fade, 18:00, and the closing report. Movement and transactions must not reopen underneath that report.
-7. Continue and buy stock in the evening. Return to YOUR STALL: another Start day is unavailable. Midnight should settle refunds once, separately from the market report.
+7. Continue, travel home, and order stock for tomorrow. Return to YOUR STALL: another Start day is unavailable. Midnight should settle refunds once, separately from the market report.
 8. On a fresh run, serve everyone before the deadline if your stock permits. The countdown must continue until its minute ends, with zero unserved penalty.
 9. Check portraits, sprites, controls, text fit, and queue layering at normal game size. These visual and usability checks matter alongside automated results.
 
@@ -66,6 +66,6 @@ The coordinating agent also inspected the resumed 18:00 evening view and the sep
 
 These captures verify rendered layout and selected outcomes, not Windows usability or balance. Suggested Windows steps above remain the project manager’s separate playtest.
 
-There is one ring product and four recurring customer appearances. Visitor preferences still share the prototype price thresholds. Queued customers are visual actors rather than solid navigable NPCs. No save/load, final balance, genuine-material supply tier, indoor lighting, or dynamic lamp lights are included.
+There is one ring product and four recurring customer appearances. Visitor preferences still share the prototype price thresholds. Queued customers are visual actors rather than solid navigable NPCs. This original market checkpoint included no save/load, final balance, genuine-material supply tier, indoor lighting, or dynamic lamp lights. The apartment milestone subsequently adds its own indoor canvas rules.
 
-A combined pull request may be titled **Add timed market days, customer sales, and refund consequences**. Squash and merge includes all branch changes in one `main` checkpoint; it does not select only the latest commit.
+The combined market pull request was squash-merged as `4093d6d`. Squash and merge includes all branch changes in one `main` checkpoint; it does not select only the latest commit.

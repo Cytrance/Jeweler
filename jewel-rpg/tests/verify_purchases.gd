@@ -33,11 +33,15 @@ func key(code: int, echo: bool = false) -> void:
 
 func _run() -> void:
 	var scene = load("res://scenes/main.tscn").instantiate()
+	# This historical fixture targets the plaza, while new games begin in the apartment.
+	scene.get_node("AreaTravel").starting_area = "plaza"
 	root.add_child(scene)
 	await frames()
 	var player = scene.get_node("PlayerPlaceholder")
 	var state = scene.get_node("BusinessState")
 	var supplier = scene.get_node("SupplierCounter")
+	# Retain the original purchase modal only in this isolated compatibility fixture.
+	scene.get_node("AreaTravel")._set_enabled(supplier, true)
 	var sign = scene.get_node("Sign")
 	var hud = scene.get_node("BusinessHUD/Panel/Margin/Summary")
 	var visual = player.get_node("Visual")

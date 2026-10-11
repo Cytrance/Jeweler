@@ -88,7 +88,7 @@ func _set_open(open: bool) -> void:
 		player.movement_locked = open
 	prompt.visible = player_nearby and not open
 	if open:
-		feedback.text = "Buy stock, then start a one-minute market day. Cheaper truthful offers earn more reputation."
+		feedback.text = "Order stock at your apartment computer and collect morning delivery before starting a one-minute market day. Cheaper truthful offers earn more reputation."
 		_refresh()
 
 func _serve() -> void:

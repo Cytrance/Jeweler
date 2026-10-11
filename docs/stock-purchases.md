@@ -1,5 +1,7 @@
 # Starter-stock purchases
 
+**Historical checkpoint:** instant buying at the plaza supplier has been replaced in playable sessions by [apartment computer orders and next-morning delivery](apartment-and-deliveries.md). The original interaction and checks below describe the earlier purchase milestone; they are not the current sourcing walkthrough.
+
 This checkpoint introduces the first business operation: buying imitation rings from a supplier. Each new run starts with **100 credits and zero rings**. One ring costs **10 credits** and is genuinely **plated brass with a simulated stone**. These are dummy balancing figures, not final material prices.
 
 The supplier uses our existing modular stall artwork. A reusable scene adds proximity detection and an interaction panel to that prop; artwork alone does not determine whether an object can be used. The founder's original stall now hosts [customer sales](customer-sales.md).
@@ -14,7 +16,7 @@ After `purchase_one()` succeeds, its `changed` signal informs `scripts/business_
 
 An unaffordable purchase changes nothing. The panel explains the failure, and cash and stock cannot become negative. Purchases are one ring per action; holding a keyboard key does not repeatedly spend money.
 
-## Try it on Windows
+## Historical Windows playtest
 
 1. Preserve local edits, close Godot, and fetch in GitHub Desktop.
 2. Select **`main`** for the accepted purchase checkpoint, or **`feat/customer-sales`** to review purchases alongside the new sales rules; pull if offered.
@@ -39,7 +41,7 @@ The project manager authorized continuing before merging the animation. We keep 
 
 A suitable combined pull-request title is **Add directional walking and starter-stock purchases**. Its Files changed view compares the branch's combined result with `main`. **Squash and merge includes both checkpoints' final changes**, not just the newest commit. It creates one new checkpoint on `main`; the branch's individual commits remain useful while reviewing.
 
-The project manager tested and squash-merged this combined branch into `main` at `37f1681`. Fetching and pulling `main` on each computer supplies both features. Customer sales and their day-end consequences now use `feat/customer-sales`, with separate commits awaiting one combined review.
+The project manager tested and squash-merged this combined branch into `main` at `37f1681`. Fetching and pulling `main` on each computer supplies both features. The combined sales, day-end consequences, and timed-market branch was subsequently merged at `4093d6d`.
 
 ## Limits and verification
 

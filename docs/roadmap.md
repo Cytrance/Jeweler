@@ -163,7 +163,7 @@ Acceptance checks:
 - Focused purchase checks and independent review cover the new rules and interaction dependencies; previous animation and prop-art evidence is reused where unchanged.
 - The project manager follows [the stock-purchases walkthrough](stock-purchases.md) before approving the combined pull request.
 
-## Current checkpoint: prices, claims, and customer sales
+## Completed milestone: prices, claims, and customer sales
 
 At the founder's stall, set a price of 15, 20, or 30 credits, choose a truthful or misleading description, and explicitly serve the next customer. Keep the product's actual composition visible independently of the chosen claim. This checkpoint uses predictable prototype thresholds, rather than autonomous crowds or a balanced customer simulation.
 
@@ -178,9 +178,9 @@ Acceptance checks:
 - Relevant sales and purchase checks run because business state is shared; unchanged animation and prop-art evidence is reused.
 - The project manager follows [the customer-sales walkthrough](customer-sales.md), checks panel readability and feedback on Windows, and approves the branch.
 
-## Current revision: day/night and uncertain refunds
+## Completed revision: day/night and uncertain refunds
 
-The project manager tested the sales interaction and requested revised risk and time before merging. Keep this revision as a second commit on `feat/customer-sales`; one pull request will compare the combined result with `main`.
+The project manager tested sales, requested revised risk and time, and later merged the combined branch into `main` at `4093d6d`. This was a separate checkpoint commit within that combined pull request.
 
 Acceptance checks:
 
@@ -194,9 +194,9 @@ Acceptance checks:
 - Focused deterministic refund/time checks use seeded randomness and boundary probabilities; affected shared sales/purchase checks run. Existing art/animation evidence is reused.
 - The project manager follows [day and refunds](day-and-refunds.md), tests daylight transitions and report/prison feedback on Windows, and approves the combined branch.
 
-## Current revision: one-minute market and reputation-driven attendance
+## Completed revision: one-minute market and reputation-driven attendance
 
-The project manager requested a further revision before merging `feat/customer-sales`, then chose midnight refund settlement so the 18:00 evening remains available for exploration and spending. Keep this as another checkpoint on the same branch; no checkpoint is merged merely because it was pushed.
+The project manager chose midnight refund settlement so the 18:00 evening remains available for exploration and spending, tested the timed session, and merged the combined branch into `main` at `4093d6d`. Three feature commits became one shared checkpoint through squash and merge.
 
 Acceptance checks:
 
@@ -209,9 +209,24 @@ Acceptance checks:
 - Start day cannot repeat on the same calendar day. End day cannot bypass an active market or closing transition.
 - Focused deterministic checks cover attendance, customers, deadline, ownership, transition, and midnight boundaries. The project manager follows [the timed-market walkthrough](market-session.md) before approving the combined branch.
 
+## Current milestone: apartment, travel, orders, and sleep
+
+The project manager confirmed the market works and requested two playable areas, next-morning computer orders, reusable indoor artwork and furniture, and a sleep interaction. The preceding combined market milestone is merged into `main` at `4093d6d`. Apartment work remains on `feat/apartment-deliveries` for review.
+
+Acceptance checks:
+
+- A fresh run starts in a modest, worn apartment with reusable floor/wall tiles and solid bed, TV, table, and computer desk scenes. Routes to the computer, bed, and door remain usable.
+- Apartment door and plaza exit share a destination menu; travel costs 30 game minutes, with only the other area selectable for now.
+- Cash, stock, reputation, calendar, refund exposure, and once-per-day market status persist across travel. Inactive scenery cannot render, receive input, or collide with the founder. Indoor lighting is separate from outdoor tint.
+- Orders spend cash immediately, add no immediate rings, and deliver once at 08:00 the following day, with inventory and notification updated in either area. Playable instant supplier buying is superseded.
+- Sleeping advances through midnight refunds before waking at 08:00 and delivering stock. An unaffordable refund batch blocks the remaining skip, wake-up, travel, and delivery.
+- Market phases, modals, reports, and prison prevent conflicting travel/sleep/order actions. Calendar skips crossing midnight cannot bypass the financial report.
+- Independent review inspects the shared clock/state/area boundaries and performs relevant focused checks; unchanged historical art and movement suites are reused.
+- The project manager follows [apartment and deliveries](apartment-and-deliveries.md) on Windows, checks visual quality, collisions, paths, menus, timing, and feedback, then approves the branch.
+
 ## Later milestones
 
-Customer variation, indoor environments, and saved progress need separate scoped design and review. The [design brief](game-design.md) defines acceptance across the first complete business loop. Research, precious-material suppliers, staff, boutiques, supply chains, and luxury competition remain later goals. Save/load and a final balanced economy are not yet implemented.
+Customer variation, further indoor environments, and saved progress need separate scoped design and review. The [design brief](game-design.md) defines acceptance across the first complete business loop. Research, precious-material suppliers, staff, boutiques, supply chains, and luxury competition remain later goals. Save/load and a final balanced economy are not yet implemented.
 
 ## Task handoff template
 

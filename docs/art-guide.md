@@ -1,5 +1,27 @@
 # Modern market art guide
 
+## Reusable starter-apartment art
+
+The apartment kit follows the approved warm, cute market direction while showing limited capital: a stained sage blanket, scuffed thrift furniture, an old television, a cheap computer, chipped cream door paint, and aged plaster. The room is assembled from separate tile materials and reusable furniture scenes; the artwork is not one flattened room image.
+
+`assets/interiors/apartment_furniture.png` is an unchanged **1254 × 1254 RGBA** source containing five isolated objects. Alpha spans 0–255 and all four corners are transparent. Strict nonzero-alpha bounds are `(0, 16, 1234, 1254)`; bounds at alpha ≥16 are `(109, 21, 1159, 1227)`. Engine regions exclude distant residue but do not certify clean fringes.
+
+| Prop | AtlasTexture region | Suggested display size, preserving proportions |
+|---|---|---|
+| Single bed | `Rect2(164, 21, 301, 441)` | 130 × 190.47 |
+| Television and stand | `Rect2(732, 112, 381, 321)` | 100 × 84.25 |
+| Low table | `Rect2(109, 581, 414, 225)` | 100 × 54.35 |
+| Computer desk | `Rect2(692, 483, 467, 338)` | 160 × 115.80 |
+| Apartment door | `Rect2(193, 849, 238, 378)` | 90 × 142.94 |
+
+Use nearest filtering and uniform scaling, with the visual's lower edge anchored at the prop's ground-contact root. Collision belongs to the reusable Godot scene: a furniture footprint must block the grounded body without turning the entire tall illustration into an invisible wall. Door and computer interaction proximity should remain separate from physical collision. The computer is attached to this desk artwork; it is not a separate movable monitor asset. Bed, table, television, computer desk, and door can be reused in later indoor scenes; they do not provide alternate rotations or animation.
+
+`assets/interiors/apartment_surfaces.png` is an unchanged opaque **1254 × 1254 RGB** material atlas. Its left half, `Rect2(0, 0, 627, 1254)`, supplies worn honey-brown floor planks; its right half, `Rect2(627, 0, 627, 1254)`, supplies muted sage plaster. Each half can be treated as two **627 × 627** source tile variants, uniformly scaled to a **32 × 32 game-pixel** grid. Baseboard geometry and wall collision are authored in the room scene, rather than baked into furniture art. Generation requested seamless repetition, but exact edge matching is not certified; inspect repeated edges and recurring marks in the integrated room.
+
+These are textured high-resolution pixel-style illustrations, not a shared native low-resolution pixel grid. Source framing and alpha inspection were read-only; no PNG pixels were edited. Review furniture readability against the 96-pixel founder, wall/floor repetition, foot alignment, and drawing order at the actual 960 × 540 gameplay view. Art-source inspection does not replace the project manager's room playtest.
+
+The sprite agent inspected an actual **960 × 540** starter-apartment render on 2026-10-11 after integration. The worn blanket, television, keyboard, desk drawers, chipped door, and low table remain recognisable beside the founder; displayed proportions and warm muted colours fit the brief. Repeated floor tiles show recurring small marks, but no conspicuous hard seams were apparent in this capture. This verifies the starting room's visible composition only; it does not establish collision behavior, every possible prop arrangement, or the project manager's Windows approval.
+
 ## Reusable market customers
 
 `assets/customers/customer_sheet.png` supplies four original static, front-facing customer figures: Mina in sage with a tote, Jo in a navy blazer and glasses, Noor in a purple hoodie, and Bea in a pink cardigan with silver hair. Their contemporary clothing and warm chibi rendering follow the approved market concept and founder. These are idle poses for a reusable customer actor; movement between arrival and service points can use scene transforms. The sheet does not provide walking animation or other directions.

@@ -102,6 +102,7 @@ func _run() -> void:
 	for node in [zero, full, seeded_a, seeded_b]:
 		node.queue_free()
 	var scene = load("res://scenes/main.tscn").instantiate()
+	scene.get_node("AreaTravel").starting_area = "plaza"
 	root.add_child(scene)
 	current_scene = scene
 	await frames()

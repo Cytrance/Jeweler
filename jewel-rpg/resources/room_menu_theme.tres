@@ -1,0 +1,39 @@
+[gd_resource type="Theme" load_steps=5 format=3]
+[sub_resource type="StyleBoxFlat" id="Panel"]
+bg_color = Color(0.19, 0.12, 0.19, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.67, 0.39, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_left = 10
+corner_radius_bottom_right = 10
+[sub_resource type="StyleBoxFlat" id="Button"]
+bg_color = Color(0.19, 0.38, 0.36, 1)
+content_margin_top = 9.0
+content_margin_bottom = 9.0
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_left = 6
+corner_radius_bottom_right = 6
+[sub_resource type="StyleBoxFlat" id="Hover"]
+bg_color = Color(0.28, 0.5, 0.43, 1)
+content_margin_top = 9.0
+content_margin_bottom = 9.0
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_left = 6
+corner_radius_bottom_right = 6
+[sub_resource type="StyleBoxFlat" id="Pressed"]
+bg_color = Color(0.13, 0.27, 0.25, 1)
+content_margin_top = 9.0
+content_margin_bottom = 9.0
+[resource]
+default_font_size = 17
+PanelContainer/styles/panel = SubResource("Panel")
+Button/styles/normal = SubResource("Button")
+Button/styles/hover = SubResource("Hover")
+Button/styles/pressed = SubResource("Pressed")
+Label/colors/font_color = Color(1, 0.94, 0.82, 1)

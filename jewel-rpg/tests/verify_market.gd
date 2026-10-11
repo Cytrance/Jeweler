@@ -19,6 +19,8 @@ func check(ok: bool, label: String) -> void:
 
 func _run() -> void:
 	var scene = load("res://scenes/main.tscn").instantiate()
+	# This historical fixture targets the plaza, while new games begin in the apartment.
+	scene.get_node("AreaTravel").starting_area = "plaza"
 	root.add_child(scene)
 	var player = scene.get_node("PlayerPlaceholder")
 	var stall = scene.get_node("Obstacle")

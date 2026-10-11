@@ -45,6 +45,7 @@ func click(button: Control) -> void:
 
 func _run() -> void:
 	var scene = load("res://scenes/main.tscn").instantiate()
+	scene.get_node("AreaTravel").starting_area = "plaza"
 	root.add_child(scene)
 	await frames()
 	var state = scene.get_node("BusinessState")
@@ -53,6 +54,8 @@ func _run() -> void:
 	var player = scene.get_node("PlayerPlaceholder")
 	var sales = scene.get_node("Obstacle")
 	var supplier = scene.get_node("SupplierCounter")
+	# This legacy fixture exercises the original supplier modal, disabled in the playable world.
+	scene.get_node("AreaTravel")._set_enabled(supplier, true)
 	var board = scene.get_node("Sign")
 	var cycle = scene.get_node("DayCycle")
 	session.set_process(false)

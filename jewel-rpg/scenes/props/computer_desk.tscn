@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3]
+[ext_resource type="Texture2D" path="res://assets/interiors/apartment_furniture.png" id="1"]
+[sub_resource type="AtlasTexture" id="Art"]
+atlas = ExtResource("1")
+region = Rect2(692, 483, 467, 338)
+[sub_resource type="RectangleShape2D" id="Footprint"]
+size = Vector2(145, 42)
+[node name="ComputerDesk" type="StaticBody2D"]
+[node name="Visual" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("Art")
+position = Vector2(0, -57.901498929336185)
+scale = Vector2(0.3426124197002141, 0.3426124197002141)
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -21.0)
+shape = SubResource("Footprint")

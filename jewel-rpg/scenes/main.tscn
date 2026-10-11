@@ -20,6 +20,11 @@
 
 [ext_resource type="PackedScene" path="res://scenes/market_session.tscn" id="15_session"]
 
+[ext_resource type="PackedScene" path="res://scenes/apartment.tscn" id="16_apartment"]
+[ext_resource type="PackedScene" path="res://scenes/area_travel.tscn" id="17_travel"]
+[ext_resource type="PackedScene" path="res://scenes/delivery_orders.tscn" id="18_orders"]
+[ext_resource type="PackedScene" path="res://scenes/props/room_interaction.tscn" id="19_exit"]
+
 [sub_resource type="RectangleShape2D" id="Rectangle_player"]
 size = Vector2(32, 48)
 
@@ -27,6 +32,7 @@ size = Vector2(32, 48)
 y_sort_enabled = true
 
 [node name="Market" parent="." unique_id=19959331 instance=ExtResource("4_market")]
+metadata/playable_area = "plaza"
 z_index = -10
 
 [node name="PlayerPlaceholder" type="CharacterBody2D" parent="." unique_id=1903157680]
@@ -45,6 +51,7 @@ animation = &"idle_down"
 shape = SubResource("Rectangle_player")
 
 [node name="Obstacle" parent="." unique_id=35722720 instance=ExtResource("5_stall")]
+metadata/playable_area = "plaza"
 position = Vector2(650, 270)
 day_cycle_path = NodePath("../DayCycle")
 market_session_path = NodePath("../MarketSession")
@@ -52,34 +59,44 @@ player_path = NodePath("../PlayerPlaceholder")
 business_state_path = NodePath("../BusinessState")
 
 [node name="Sign" parent="." unique_id=1383773037 instance=ExtResource("2_sign")]
+metadata/playable_area = "plaza"
 position = Vector2(503, 278)
 player_path = NodePath("../PlayerPlaceholder")
 
 [node name="PlanterTopLeft" parent="." unique_id=1830510193 instance=ExtResource("6_planter")]
+metadata/playable_area = "plaza"
 position = Vector2(831, 226)
 
 [node name="PlanterTopRight" parent="." unique_id=1052063878 instance=ExtResource("6_planter")]
+metadata/playable_area = "plaza"
 position = Vector2(830, 150)
 
 [node name="PlanterBottomLeft" parent="." unique_id=1085705920 instance=ExtResource("6_planter")]
+metadata/playable_area = "plaza"
 position = Vector2(831, 187)
 
 [node name="PlanterBottomRight" parent="." unique_id=189066104 instance=ExtResource("6_planter")]
+metadata/playable_area = "plaza"
 position = Vector2(482, 137)
 
 [node name="FlowerPlanter" parent="." unique_id=1121042292 instance=ExtResource("6_planter")]
+metadata/playable_area = "plaza"
 position = Vector2(380, 135)
 
 [node name="TreeLeft" parent="." instance=ExtResource("7_tree")]
+metadata/playable_area = "plaza"
 position = Vector2(150, 260)
 
 [node name="TreeRight" parent="." instance=ExtResource("7_tree")]
+metadata/playable_area = "plaza"
 position = Vector2(830, 430)
 
 [node name="LampLeft" parent="." instance=ExtResource("8_lamp")]
+metadata/playable_area = "plaza"
 position = Vector2(260, 180)
 
 [node name="LampRight" parent="." instance=ExtResource("8_lamp")]
+metadata/playable_area = "plaza"
 position = Vector2(740, 155)
 
 [node name="BusinessState" type="Node" parent="."]
@@ -114,3 +131,24 @@ player_path = NodePath("../PlayerPlaceholder")
 sales_path = NodePath("../Obstacle")
 supplier_path = NodePath("../SupplierCounter")
 sign_path = NodePath("../Sign")
+
+[node name="Apartment" parent="." instance=ExtResource("16_apartment")]
+metadata/playable_area = "apartment"
+
+[node name="PlazaExit" parent="." instance=ExtResource("19_exit")]
+metadata/playable_area = "plaza"
+position = Vector2(80, 430)
+prompt_text = "E • Go home"
+
+[node name="ExitMarker" type="Label" parent="PlazaExit"]
+offset_left = -60.0
+offset_top = -70.0
+offset_right = 80.0
+offset_bottom = -30.0
+text = "← APARTMENT"
+theme_override_colors/font_outline_color = Color(0.1, 0.1, 0.15, 1)
+theme_override_constants/outline_size = 4
+
+[node name="DeliveryOrders" parent="." instance=ExtResource("18_orders")]
+
+[node name="AreaTravel" parent="." instance=ExtResource("17_travel")]

@@ -1,6 +1,6 @@
 # Prices, claims, and customer sales
 
-This walkthrough records the first sales checkpoint. The current [timed-market revision](market-session.md) adds Start day, visible customer arrivals, and a finite daily quota, so its playtest supersedes the unlimited encounter steps below.
+This walkthrough records the first sales checkpoint. The current [timed-market revision](market-session.md) adds Start day, visible customer arrivals, and a finite daily quota, so its playtest supersedes the unlimited encounter steps below. The apartment milestone also replaces instant supplier purchases with [computer orders delivered the following morning](apartment-and-deliveries.md); the older supplier instructions are historical.
 
 The founder's original stall first introduced an explicit **Serve next customer** interaction. Mina, a commuter with a taste for bargains, responds to your offer. There is no autonomous queue or walking customer sprite: a deliberate action starts one predictable encounter. This keeps the first sales rule easy to understand before adding crowds or varied customers.
 
@@ -29,7 +29,7 @@ Alternatively, sell that ring misleadingly for 30: cash 120, stock 0, revenue 30
 
 The 10–25% range is a probability, not a guaranteed fraction of customers. With only one misleading sale, that day's result is necessarily either zero refunds or one refund.
 
-## Try it on Windows
+## Historical Windows playtest
 
 1. Preserve local edits, close Godot, fetch in GitHub Desktop, select **`feat/customer-sales`**, and pull if offered.
 2. Open `jewel-rpg/project.godot` with Godot 4.7.2 and press F5. Each fresh run begins with 100 credits, zero rings, zero revenue, and zero reputation.

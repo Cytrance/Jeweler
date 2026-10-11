@@ -1,5 +1,16 @@
 # Asset origins
 
+## Starter-apartment furniture and materials
+
+- Files: `jewel-rpg/assets/interiors/apartment_furniture.png` and `jewel-rpg/assets/interiors/apartment_surfaces.png`.
+- Created: 2026-10-11 using the OpenAI image-generation tool. The approved market concept was visually inspected before preparing the original matching interior briefs.
+- Furniture brief: five fully framed contemporary thrift props on a transparent sheet: worn single bed with sage blanket, television on a stand, low wooden table, desk with cheap computer, and chipped cream apartment door. Warm muted palette, cute textured pixel-style rendering, consistent front-facing three-quarter top-down perspective, no baked floor or labels.
+- Material brief: opaque side-by-side worn honey-brown floor planks and aged muted sage plaster, for a reusable indoor tile atlas. Seamless repetition was requested but is not guaranteed by generation.
+- Furniture source output: `exec-747b8545-e822-4aa6-a380-3822c7acf339.png`, **1254 × 1254 RGBA**. Material source output: `exec-21590775-5ba5-4657-93e2-5881ced22190.png`, **1254 × 1254 RGB**. Original outputs remain in the workspace generated-images directory and were copied unchanged into the repository.
+- Metadata and alpha measurements were read-only. Atlas regions, scaling, tile layout, and collisions are Godot settings; no source pixels were edited.
+- Purpose: modular starter-apartment room and furniture reusable in future indoor environments. These are high-resolution pixel-style illustrations, not a native pixel-grid guarantee, rotation set, or animated sprite sheet.
+- The tool returned no asset-specific license notice. Applicable service terms govern usage; generation does not establish exclusive ownership or clearance. Measured framing, display guidance, and remaining appearance checks are recorded in [the art guide](art-guide.md).
+
 ## Modern market customers
 
 - File: `jewel-rpg/assets/customers/customer_sheet.png`.
