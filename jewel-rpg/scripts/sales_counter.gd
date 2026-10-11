@@ -103,7 +103,8 @@ func _refresh() -> void:
 		return
 	details.text = "Actual materials: %s\nCash: %d | Stock: %d | Revenue: %d | Rep: %+d" % [state.economy.materials, state.cash, state.stock, state.revenue, state.reputation]
 	var rows = $UILayer/Panel/Margin/Rows
-	rows.get_node("Start").visible = session.can_start()
+	rows.get_node("Start").visible = not session.active and not session.closing and session.session_day != session.clock.day and session.clock.hour < 18.0
+	rows.get_node("Start").disabled = not session.can_start()
 	rows.get_node("EndDay").visible = not session.active and not session.closing
 	price_choice.visible = session.active
 	claim_choice.visible = session.active
@@ -117,7 +118,7 @@ func _refresh() -> void:
 	elif session.can_start():
 		rows.get_node("SessionStatus").text = "Ready to open. More reputation brings more visitors."
 	else:
-		rows.get_node("SessionStatus").text = "Too late to open today. Come back before 6pm."
+		rows.get_node("SessionStatus").text = session.start_block_reason()
 	_refresh_customer()
 
 func _refresh_customer() -> void:
@@ -133,6 +134,8 @@ func _start_day() -> void:
 		return
 	if session.start_day():
 		feedback.text = "The queue is open! One minute to serve your visitors. The timer continues while menus are open."
+	else:
+		feedback.text = session.start_block_reason()
 	_refresh()
 
 func _end_day() -> void:

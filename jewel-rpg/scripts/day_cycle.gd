@@ -33,6 +33,10 @@ func end_day() -> void:
 
 func _show_report(day_id: int) -> void:
 	var result: Dictionary = state.settle_day(day_id)
+	present_report(result)
+
+func present_report(result: Dictionary) -> void:
+	var day_id: int = int(result.day)
 	player.movement_locked = true
 	report.show()
 	continue_button.visible = not state.imprisoned
@@ -57,4 +61,8 @@ func _continue() -> void:
 
 func _restart() -> void:
 	if report.visible and state.imprisoned:
-		get_tree().reload_current_scene()
+		var saves = get_tree().get_first_node_in_group("save_game")
+		if saves != null:
+			saves.request_new_game()
+		else:
+			get_tree().reload_current_scene()

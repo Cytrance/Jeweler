@@ -62,6 +62,7 @@ func _run() -> void:
 	clock.set_process(false)
 	state.economy = state.economy.duplicate()
 	state.economy.daily_customer_variation = 0
+	state.stock = 1 # Opening requires delivered inventory.
 	check(not session.serve_offer(20, false).sold and session.processed == 0, "sales gated before Start")
 	for entry in [[0, 12], [10, 14], [-10, 10], [10000, 30], [-10000, 3]]:
 		state.reputation = entry[0]
@@ -98,6 +99,7 @@ func _run() -> void:
 	key(KEY_T)
 	check(session.active and not cycle.report.visible and sales.panel.visible, "manual End day cannot bypass market")
 	session.advance_session(0.7)
+	state.stock = 0 # Exhaustion after opening does not cancel the market.
 	key(KEY_N)
 	check(session.processed == 0 and state.stock == 0, "missing stock does not spend customer")
 	state.stock = 20
@@ -179,6 +181,7 @@ func _run() -> void:
 	await frames(4)
 	key(KEY_E)
 	check(board.dialogue.visible, "board owns its lock before market expiry fixture")
+	state.stock = 1
 	session.start_day()
 	session.advance_session(100.0)
 	check(not board.dialogue.visible and player.movement_locked, "expiry closes board before taking its modal lock")

@@ -209,9 +209,9 @@ Acceptance checks:
 - Start day cannot repeat on the same calendar day. End day cannot bypass an active market or closing transition.
 - Focused deterministic checks cover attendance, customers, deadline, ownership, transition, and midnight boundaries. The project manager follows [the timed-market walkthrough](market-session.md) before approving the combined branch.
 
-## Current milestone: apartment, travel, orders, and sleep
+## Completed milestone: apartment, travel, orders, and sleep
 
-The project manager confirmed the market works and requested two playable areas, next-morning computer orders, reusable indoor artwork and furniture, and a sleep interaction. The preceding combined market milestone is merged into `main` at `4093d6d`. Apartment work remains on `feat/apartment-deliveries` for review.
+The project manager confirmed the market works and requested two playable areas, next-morning computer orders, reusable indoor artwork and furniture, and a sleep interaction. The preceding combined market milestone is merged into `main` at `4093d6d`. The project manager approved the checkpoint, and `9053091` was fast-forward merged and published to `main` after independent cloud verification. This does not claim an additional Windows playtest.
 
 Acceptance checks:
 
@@ -224,9 +224,24 @@ Acceptance checks:
 - Independent review inspects the shared clock/state/area boundaries and performs relevant focused checks; unchanged historical art and movement suites are reused.
 - The project manager follows [apartment and deliveries](apartment-and-deliveries.md) on Windows, checks visual quality, collisions, paths, menus, timing, and feedback, then approves the branch.
 
+## Current milestone: save and continue
+
+The project manager approved preserving money, inventory, pending paid deliveries, and game time across quitting. Work is on `feat/save-continue`, based on `9053091`, and requires a new review before merge.
+
+Acceptance checks:
+
+- Continue / New game offers one local save slot. Missing saves disable Continue; replacing an existing run requires confirmation.
+- Save (F6), Save & Quit, and normal window closing preserve business values, refund exposure, calendar, area/position, pending orders, price/claim choices, and market eligibility.
+- An active market retains its attendance, processed visitors, arrival delay, and remaining countdown. Closing penalties, deliveries, and settled refunds cannot repeat after loading.
+- Financial reports, interrupted travel/sleep, and prison resume coherently; continuing a saved report applies only the remaining work.
+- Save data is validated before changing the game. A valid backup can recover an unreadable primary with a warning; unreadable files are not overwritten just by launching. Failed saves report the failure and prevent Save & Quit from closing.
+- The pre-merge stock fix prevents a zero-inventory market from starting, including when paid orders are pending, without changing attendance RNG, timer, or today’s eligibility. Rejected opening leaves travel available; exhausting stock during a valid session retains its countdown and travel guard.
+- Reusable physical plaza edges keep the whole founder on screen while allowing access to the exit. They disable in the apartment; older out-of-bounds plaza save positions restore inside the safe area without changing save format or business data.
+- Relevant regression checks, separate-process save/quit/reload checks, and rendered interface inspection run. The project manager follows [save and continue](save-and-continue.md) on Windows before approving this checkpoint.
+
 ## Later milestones
 
-Customer variation, further indoor environments, and saved progress need separate scoped design and review. The [design brief](game-design.md) defines acceptance across the first complete business loop. Research, precious-material suppliers, staff, boutiques, supply chains, and luxury competition remain later goals. Save/load and a final balanced economy are not yet implemented.
+Customer variation and further indoor environments need separate scoped design and review. The [design brief](game-design.md) defines acceptance across the first complete business loop. Research, precious-material suppliers, staff, boutiques, supply chains, and luxury competition remain later goals. Multiple save slots, cloud synchronization, and a final balanced economy remain deferred.
 
 ## Task handoff template
 

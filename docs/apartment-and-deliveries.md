@@ -1,6 +1,6 @@
 # Apartment, travel, and next-morning stock
 
-This milestone on **`feat/apartment-deliveries`** extends the merged market prototype with two areas. A fresh run starts in the founder's small, worn apartment; the existing plaza remains the selling location. The implementation and focused checks below are complete; Windows playtesting remains the project manager’s review step. Pushing a branch does not merge it into `main`.
+This milestone on **`feat/apartment-deliveries`** extends the merged market prototype with two areas. A fresh run starts in the founder's small, worn apartment; the existing plaza remains the selling location. The project manager subsequently approved this checkpoint; `9053091` was fast-forward merged and published to `main`. The verification described below records the apartment milestone; save/continue is a separate review checkpoint.
 
 ## The player’s routine
 
@@ -64,4 +64,4 @@ The coordinator rendered the actual game at **960 × 540** with Godot 4.7.2’s 
 
 For stable captures, the coordinator paused automatic calendar progression and positioned the founder near each interaction before sending actual keyboard/mouse events. These captures verify rendered layout and selected transitions; they do not establish full manual route navigation or Windows usability. The Windows steps above remain the project manager’s separate playtest.
 
-Progress is in memory only: closing or restarting the game resets balances, pending orders, and areas. Only the apartment and plaza are destinations. There is no furniture placement interface, save/load, rent, shipping cost, supplier tier, or final economy balance. Pending purchases are not available inventory and no money is reserved for possible refunds.
+This original apartment checkpoint kept progress in memory only. The subsequent [save/continue milestone](save-and-continue.md) adds local persistence across quitting. Only the apartment and plaza are destinations. There is no furniture placement interface, rent, shipping cost, supplier tier, or final economy balance. Pending purchases are not available inventory and no money is reserved for possible refunds.
