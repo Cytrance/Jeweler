@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/sign.gd" id="2_sign"]
+[ext_resource type="Texture2D" path="res://assets/market/price_board.png" id="6_board"]
+
+[sub_resource type="CircleShape2D" id="Circle_sign"]
+radius = 72.0
+
+[sub_resource type="RectangleShape2D" id="Rectangle_footprint"]
+size = Vector2(48, 20)
+
+[node name="Sign" type="Area2D"]
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("2_sign")
+
+[node name="Visual" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -11)
+scale = Vector2(0.07846556234, 0.07846556234)
+texture = ExtResource("6_board")
+region_enabled = true
+region_rect = Rect2(99, 172, 947, 1147)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("Circle_sign")
+
+[node name="Prompt" type="Label" parent="."]
+visible = false
+offset_left = -60.0
+offset_top = -72.0
+offset_right = 60.0
+offset_bottom = -48.0
+theme_override_colors/font_color = Color(0.98, 0.94, 0.83, 1)
+theme_override_colors/font_outline_color = Color(0.28, 0.20, 0.25, 1)
+theme_override_constants/outline_size = 4
+text = "E: Read sign"
+horizontal_alignment = 1
+
+[node name="DialogueLayer" type="CanvasLayer" parent="."]
+
+[node name="Dialogue" type="PanelContainer" parent="DialogueLayer"]
+visible = false
+anchors_preset = 12
+anchor_left = 0.1
+anchor_top = 1.0
+anchor_right = 0.9
+anchor_bottom = 1.0
+offset_top = -150.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="Margin" type="MarginContainer" parent="DialogueLayer/Dialogue"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
+
+[node name="Text" type="Label" parent="DialogueLayer/Dialogue/Margin"]
+layout_mode = 2
+text = "First day. Small stock, big plans.
+Plated brass and simulated stones: costume jewellery, honestly labelled.
+The card reader is real. The diamonds are not.
+
+E or Escape: Close"
+autowrap_mode = 2
+
+[node name="SolidFootprint" type="StaticBody2D" parent="."]
+position = Vector2(0, 24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SolidFootprint"]
+shape = SubResource("Rectangle_footprint")

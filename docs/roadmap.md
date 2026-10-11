@@ -87,9 +87,9 @@ Acceptance checks:
 - Planned features are distinguished from the currently running prototype.
 - Independent review checks documents; no gameplay suites are rerun for this documentation-only milestone.
 
-## Current milestone: modern market visual reset
+## Previous milestone: modern market visual reset
 
-The initial modern setting was playtested on Windows. The project manager then approved the combined cosy concept, and this milestone now refines the same branch with a chibi founder, warm textured pavement, neighbouring market stalls, and a modest jewellery pop-up. The refined assets still require Windows approval. Retain movement, collision, and nearby E/Escape interaction. This branch does not implement the economy.
+The initial modern setting was playtested on Windows. The project manager then approved the combined cosy concept, and the refined visual checkpoint was merged into `main` at `aaf5da0`. It introduced a chibi founder, warm textured pavement, neighbouring market stalls, and a modest jewellery pop-up while retaining movement, collision, and nearby E/Escape interaction. The merge records inclusion in the shared baseline; it does not establish that every visual acceptance check was separately reported. No economy was implemented.
 
 Acceptance checks:
 
@@ -102,11 +102,27 @@ Acceptance checks:
 - Independent review inspects the actual scene and assets; focused checks cover changed scene dependencies rather than automatically repeating every historical suite.
 - Follow [the modern-market walkthrough](modern-market.md) and report the visual playtest before approving the merge.
 
+## Current milestone: reusable modular plaza kit
+
+Replace the fixed plaza backdrop with repeatable ground and separately placed objects. Extract the existing stall and board into reusable scenes, and add a flower planter with its own solid footprint. This is a small asset workflow checkpoint before the business loop; it does not promise a complete town or convert every pictured object into a game asset.
+
+Acceptance checks:
+
+- Ground uses a `TileMapLayer` with 192-game-pixel cells and is walkable.
+- A reusable planter scene combines artwork and a solid base footprint; multiple instances inherit those settings.
+- The existing stall scene includes its collision by default; the board includes proximity detection, dialogue, and a small solid base by default.
+- The board works without assuming its parent contains a specifically named player sibling.
+- Player, stall, board, and planters layer coherently; foliage can extend over walkable space outside a planter's base.
+- Repeated paving looks coherent at gameplay size, and the founder and props retain the approved warm, cute direction.
+- Relevant physics, interaction, and asset checks run; unchanged suites are reused when justified.
+- The project manager follows [the modular-plaza walkthrough](modular-plaza.md), judges appearance and collision fit on Windows, and approves the merge.
+
 ## Next milestones, each reviewed separately
 
-1. Purchase loop: supplier, cash, stock, insufficient-funds feedback.
-2. Sales loop: prices, sales claims, customer acceptance/rejection, transaction feedback.
-3. Consequences: end-day complaints, reserved refunds, reputation feedback.
+1. Expand the modular scenery kit: agree on the next small set, such as a tree, lamp, or storefront doorway, with reusable collision and interaction where appropriate.
+2. Purchase loop: supplier, cash, stock, insufficient-funds feedback.
+3. Sales loop: prices, sales claims, customer acceptance/rejection, transaction feedback.
+4. Consequences: end-day complaints, reserved refunds, reputation feedback.
 
 The [design brief](game-design.md) defines acceptance checks across the first complete loop. Research, precious-material suppliers, staff, boutiques, supply chains, and luxury competition remain later goals. Save/load and a final balanced economy are not yet implemented.
 

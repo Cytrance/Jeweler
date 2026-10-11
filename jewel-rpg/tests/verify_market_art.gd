@@ -44,15 +44,25 @@ func _run() -> void:
 		return
 	var scene := packed.instantiate()
 	root.add_child(scene)
-	var plaza := scene.get_node("Market/Plaza") as Sprite2D
+	var ground := scene.get_node("Market/Ground") as TileMapLayer
 	var stall := scene.get_node("Obstacle/Visual") as Sprite2D
 	var board := scene.get_node("Sign/Visual") as Sprite2D
-	check_art(plaza, "plaza")
-	check_art(stall, "stall")
-	check_art(board, "board")
-	if plaza != null and plaza.texture != null:
-		var bounds := plaza.transform * plaza.get_rect()
-		check(bounds.encloses(Rect2(0, 0, 960, 540)), "plaza covers initial view without stretching")
+	check(ground.tile_set != null and ground.get_used_cells().size() == 15, "ground has 5 by 3 persisted editable cells")
+	var cell_size: Vector2 = Vector2(ground.tile_set.tile_size) * ground.scale
+	check(cell_size.is_equal_approx(Vector2(192, 192)), "source tile cells display at 192 game pixels")
+	var used := ground.get_used_rect()
+	var ground_bounds := Rect2(Vector2(used.position) * cell_size, Vector2(used.size) * cell_size)
+	check(ground_bounds.encloses(Rect2(0, 0, 960, 540)), "ground covers initial viewport without gaps")
+	var atlas := ground.tile_set.get_source(0) as TileSetAtlasSource
+	check(atlas.texture != null and atlas.texture_region_size == Vector2i(atlas.texture.get_size()), "ground atlas uses complete square source tile")
+	check(ground.texture_filter == CanvasItem.TEXTURE_FILTER_NEAREST, "ground uses nearest filtering")
+	var planter := scene.get_node("PlanterTopLeft/Visual") as Sprite2D
+	check_art(planter, "planter")
+	var planter_bounds := planter.transform * planter.get_rect()
+	check(absf(planter_bounds.size.x - 110.0) < 0.01 and absf(planter_bounds.end.y - 18.0) < 0.01, "planter is readable and grounded at footprint bottom")
+	if not "--modular-only" in OS.get_cmdline_user_args():
+		check_art(stall, "stall")
+		check_art(board, "board")
 	if stall != null and stall.texture != null:
 		var bounds := stall.transform * stall.get_rect()
 		check(absf(bounds.size.x - 240.0) < 0.01 and absf(bounds.end.y - 32.0) < 0.01, "stall is readable and grounded at collider bottom")

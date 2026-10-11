@@ -1,0 +1,12 @@
+[gd_resource type="TileSet" format=3 uid="uid://bjq6dgvtbjhjs"]
+
+[ext_resource type="Texture2D" uid="uid://ynd337xi7xuf" path="res://assets/modular/paving.png" id="1_a4e0h"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fcr5u"]
+texture = ExtResource("1_a4e0h")
+texture_region_size = Vector2i(1254, 1254)
+0:0/0 = 0
+
+[resource]
+tile_size = Vector2i(1254, 1254)
+sources/0 = SubResource("TileSetAtlasSource_fcr5u")

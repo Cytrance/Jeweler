@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/modular/flower_planter.png" id="1_art"]
+
+[sub_resource type="RectangleShape2D" id="Rectangle_base"]
+size = Vector2(80, 36)
+
+[node name="FlowerPlanter" type="StaticBody2D"]
+
+[node name="Visual" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -25.482472324723247)
+scale = Vector2(0.1014760147601476, 0.1014760147601476)
+texture = ExtResource("1_art")
+region_enabled = true
+region_rect = Rect2(76, 278, 1084, 857)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("Rectangle_base")
