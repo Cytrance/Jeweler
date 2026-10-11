@@ -17,7 +17,7 @@ The initial modern founder and geometric market were playtested for the setting 
 
 The project manager approved the [combined market concept](concepts/modern-market-style-v1.png) on 2026-10-11 as the ongoing art direction: warmer palette, chibi founder, cloth stall, plants, and textured plaza together. It establishes a visual target, not the starting stock quantity or the cost of decorative surroundings; the actual starter stall should remain modest and use imitation goods. Produce separate grounded assets matching this direction rather than using this entire illustration as an interactive map. Approval of the concept does not establish that individual playable assets are complete or visually verified.
 
-Present-day, friendly 2D jewellery-business RPG. The starting location is a modest market pop-up, not a medieval workshop. The [game-design brief](game-design.md) governs the setting and player progression. The current milestone replaces the initial narrow founder and flat geometric scenery with a broader chibi founder and textured market assets.
+Present-day, friendly 2D jewellery-business RPG. The starting location is a modest market pop-up, not a medieval workshop. The [game-design brief](game-design.md) governs the setting and player progression. The preceding visual milestone replaced the initial narrow founder and flat geometric scenery with a broader chibi founder and textured market assets. The current milestone makes a small reusable plaza kit from that direction.
 
 - Founder: casual contemporary clothing, sneakers, optional utility apron or crossbody pouch. Keep the person approachable; no fantasy tunic, leather bracers, or adventurer accessories.
 - Stall: folding table, jewellery trays, modest price cards, stock boxes, simple fabric cover, and a small card-payment device. No luxury-brand logos. The initial supplier offers imitation goods.
@@ -27,6 +27,18 @@ Present-day, friendly 2D jewellery-business RPG. The starting location is a mode
 - Begin with one static founder frame facing down. Animation is a later assignment. Preserve transparent padding, full framing, clear outlines, and aspect ratio.
 - Generate source images to a documented brief; inspect real resolution, alpha, and framing. Prefer artwork designed for the final display size. A large illustration scaled down is not automatically pixel-grid-consistent art.
 - Record palette, source dimensions, display dimensions, crop, filenames, and provenance at each handoff. Review the combined scene at normal gameplay size rather than approving isolated asset previews alone.
+
+## Modular asset workflow
+
+The current kit replaces the old fixed plaza image with repeatable paving and separately placed props. `scenes/props/` holds the stall, board, and planter scenes, including their default physics and interaction nodes. Future artwork should arrive with measured framing, display dimensions, a ground-contact point, and a suggested physical footprint. The coding agent owns collision configuration and verifies it through actual player movement.
+
+A canopy, flower, or transparent margin is not automatically solid. Block the grounded base where a person would collide and allow movement beyond that footprint. Check drawing order from both sides. The board has separate proximity detection and a small solid base: detection range must not become a large invisible wall. Ground paving remains walkable.
+
+`assets/modular/paving.png` is an opaque **1254 × 1254 RGB** source generated on 2026-10-11. The TileSet uses the full source canvas as a cell, and the layer is uniformly scaled so that each cell occupies **192 × 192 game pixels**. Cells are saved in the market scene and editable with Godot's TileMap paint tools. This layout choice does not establish native 192 × 192 source art. The original image is not certified seamless; inspect repeated edges and recurring highlights at actual gameplay size.
+
+`assets/modular/flower_planter.png` is a **1212 × 1298 RGBA** source generated on the same date. Alpha ranges from 0 to 255 and all corners are transparent. Strict nonzero-alpha bounds are `(0, 21, 1198, 1298)`; visible bounds at alpha ≥16 are `(76, 278, 1160, 1135)`. Region `Rect2(76, 278, 1084, 857)` excludes distant residue but does not guarantee a clean fringe. The source is preserved unchanged. The sprite agent suggested a 112-game-pixel display width; final integration uses 110 pixels, producing about 86.96 pixels of height under uniform scaling. The planter is a waist-height flower prop, not a full-size tree. Final scene footprint and rendered checks are recorded in [the modular-plaza walkthrough](modular-plaza.md).
+
+The older environment handoff below describes the preceding visual checkpoint. Its plaza background is retained as historical artwork; it is no longer the playable modular ground. Stall, board, and founder source images continue to be reused.
 
 ## Current chibi founder handoff
 
@@ -38,7 +50,7 @@ Godot uses region `Rect2(306, 137, 568, 1062)`, nearest filtering, and uniform s
 
 The crop excludes distant alpha residue but cannot guarantee a clean fringe. Inspect the character against the integrated plaza at gameplay size. Source illustration detail and noninteger downscaling mean this is **high-resolution pixel-style artwork**, not a native low-resolution pixel grid. A consistent animation grid is still a future milestone.
 
-## Current environment asset handoff
+## Previous environment asset handoff
 
 All three images were generated on 2026-10-11 using the approved combined concept. The sources are preserved unchanged. Godot uses nearest filtering and uniform scales to avoid stretching. These are high-resolution pixel-style illustrations, not a modular native-grid tileset.
 
@@ -52,7 +64,7 @@ Paths above are relative to `jewel-rpg/`. The plaza is rendered beneath the sepa
 
 Read-only alpha inspection found 0–255 and transparent corners for both props. Strict nonzero-alpha bounds are `(0, 0, 1432, 1068)` for the stall and `(0, 9, 1048, 1397)` for the board. The regions above match bounds at alpha ≥16: `(119, 101, 1409, 1006)` and `(99, 172, 1046, 1319)` respectively. Low-alpha residue remains in the source images; the crop removes distant residue but is not a guarantee of a clean outline.
 
-The stall is centred on the existing body at `(650, 270)`; its lower visual edge is local y=32. Its wider 240-pixel drawing surrounds the unchanged **180 × 64** solid footprint. The board remains at `(360, 270)` with radius-72 proximity detection, is deliberately non-solid, and has lower visual edge local y=34. Its artwork depicts jewellery rather than containing a trustworthy price label; product descriptions remain in the existing dialogue. Review whether approaching and walking around these visual footprints feels natural.
+The stall is centred on the existing body at `(650, 270)`; its lower visual edge is local y=32. Its wider 240-pixel drawing surrounds the unchanged **180 × 64** solid footprint. The board drawing remains at `(360, 270)` with radius-72 proximity detection and lower visual edge local y=34. The current modular kit adds a separate 48 × 20 solid base centred at local `(0, 24)`; the larger detection area still only controls interaction range. Its artwork depicts jewellery rather than containing a trustworthy price label; product descriptions remain in the existing dialogue. Review whether approaching and walking around these visual footprints feels natural.
 
 ## Previous modern founder handoff
 

@@ -47,3 +47,12 @@ Known visual limitations and import guidance are recorded in [the art guide](art
 - Source canvases: plaza 1672 × 941 RGB; stall 1448 × 1086 RGBA; board 1096 × 1435 RGBA. Selected generated outputs were copied unchanged. All inspections were read-only; no pixel-processing edits were performed.
 - Purpose: separate background and object textures for the playable visual reset. Decorative merchandise is not inventory, and generated detail is not a native pixel-grid guarantee.
 - Exact source framing, alpha residue, and engine display geometry are recorded in [the art guide](art-guide.md). Visual approval of the concept precedes, and does not replace, approval of the integrated game scene.
+
+## Modular paving and flower planter
+
+- Files: `jewel-rpg/assets/modular/paving.png` and `jewel-rpg/assets/modular/flower_planter.png`.
+- Created: 2026-10-11 using the OpenAI image-generation tool, referencing the approved modern-market concept for warm paving, muted colours, and cute contemporary scenery.
+- Source canvases: paving 1254 × 1254 RGB; planter 1212 × 1298 RGBA. The selected generated outputs were copied unchanged; metadata and alpha inspection were read-only. Engine cropping, scaling, and tile transforms do not edit source image pixels.
+- Purpose: repeatable ground texture and a single reusable flower-planter design. The planter's collision is authored in its Godot scene; the paving's walkable configuration is authored in the TileSet.
+- Planter alpha ranges from 0 to 255, with transparent corners and faint exterior residue. The paving source is not guaranteed exactly seamless; repeated appearance requires review in the rendered game. These are pixel-style illustrations, not an established native low-resolution grid.
+- Source framing and final engine geometry are recorded in [the art guide](art-guide.md).

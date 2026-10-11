@@ -1,23 +1,23 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=4]
 
-[ext_resource type="Texture2D" path="res://assets/market/market_plaza.png" id="1_plaza"]
+[ext_resource type="TileSet" path="res://resources/plaza_paving.tres" id="1_aifk4"]
 
-[node name="Market" type="Node2D"]
+[node name="Market" type="Node2D" unique_id=308173327]
 
-[node name="Plaza" type="Sprite2D" parent="."]
+[node name="Ground" type="TileMapLayer" parent="." unique_id=1908366760]
 texture_filter = 1
-position = Vector2(480, 270)
-scale = Vector2(0.57416267943, 0.57416267943)
-texture = ExtResource("1_plaza")
+scale = Vector2(0.15311004, 0.15311004)
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAIAAAAAAAAAAAACAAIAAAAAAAAAAAADAAIAAAAAAAAAAAAEAAIAAAAAAAAAAAA=")
+tile_set = ExtResource("1_aifk4")
 
-[node name="MarketName" type="Label" parent="."]
+[node name="MarketName" type="Label" parent="." unique_id=544133966]
 offset_left = 300.0
 offset_top = 32.0
 offset_right = 660.0
 offset_bottom = 80.0
-theme_override_colors/font_color = Color(0.98, 0.94, 0.83, 1)
-theme_override_colors/font_outline_color = Color(0.28, 0.20, 0.25, 1)
-theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.98, 0.94, 0.83, 1)
+theme_override_colors/font_outline_color = Color(0.28, 0.2, 0.25, 1)
+theme_override_constants/outline_size = 3
 text = "THE WEEKEND MARKET"
 horizontal_alignment = 1
