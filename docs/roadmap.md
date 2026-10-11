@@ -119,9 +119,9 @@ Acceptance checks:
 - Relevant physics, interaction, and asset checks run; unchanged suites are reused when justified.
 - The project manager follows [the modular-plaza walkthrough](modular-plaza.md), judges appearance and collision fit on Windows, and approves the merge.
 
-## Current milestone: flowering trees and streetlamps
+## Completed milestone: flowering trees and streetlamps
 
-Restore some of the approved cosy atmosphere with two tall reusable prop designs, each combining its artwork and a solid grounded base. This builds on the tested modular kit rather than returning to a flat background.
+The project manager tested and merged this checkpoint into `main` at `4128dae`. Restore some of the approved cosy atmosphere with two tall reusable prop designs, each combining its artwork and a solid grounded base. This builds on the tested modular kit rather than returning to a flat background.
 
 Acceptance checks:
 
@@ -132,6 +132,21 @@ Acceptance checks:
 - The initial player position and routes to the board and stall remain usable.
 - Focused checks cover new prop integration and physics. Existing checks that depend on level layout remain usable without automatically repeating every historical suite.
 - The project manager follows [the scenery walkthrough](plaza-scenery.md), checks visual quality and routes on Windows, and approves the merge.
+
+## Current milestone: directional founder walking animation
+
+Replace the static founder with down, up, and side poses and a simple alternating-leg walk cycle. Mirror the side view for left movement. Keep the existing physical movement, map placements, collision, and board interaction.
+
+Acceptance checks:
+
+- WASD and arrows select the appropriate facing; equal diagonal input consistently uses the side view.
+- Walking visibly alternates leg poses, with a small visual bob. Up shows the back; side movement uses a side pose.
+- Releasing input keeps the last facing and returns to idle. Pressing into a blocking wall stops the stride when there is no actual displacement.
+- Dialogue immediately stops the animation and bob; closing it allows movement to resume.
+- Frame crops share a canvas and uniform scale so changing poses does not resize the body or slide its grounding point.
+- Existing player speed, diagonal normalization, solid collision, and scene placements remain intact.
+- Relevant animation, movement, and interaction checks run; unchanged prop-art suites are not automatically repeated.
+- The project manager follows [the animation walkthrough](player-animation.md), judges the cycle at gameplay size, and approves the merge.
 
 ## Next milestones, each reviewed separately
 

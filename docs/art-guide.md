@@ -13,18 +13,18 @@ The project manager accepted the modern setting but requested a cutesier, more c
 - Review one combined style concept first. It is visual direction, not a playable level, collision map, animation sheet, or evidence of a native pixel grid.
 - After concept approval, define a common source grid, display scale, transparent padding, and sprite origins before producing individual assets. Match shadows and lighting direction across assets; do not independently downscale mismatched generated illustrations and call them a consistent tileset.
 
-The initial modern founder and geometric market were playtested for the setting on Windows. The project manager then approved a cosier combined concept. The reusable plaza kit was subsequently playtested and merged. New tree and lamp integration still requires its own Windows appearance check. Concept approval is not approval of every delivered asset.
+The initial modern founder and geometric market were playtested for the setting on Windows. The project manager then approved a cosier combined concept. The reusable plaza kit was subsequently playtested and merged. The tree and lamp checkpoint was also tested and merged. New animation still requires its own Windows appearance check. Concept approval is not approval of every delivered asset.
 
 The project manager approved the [combined market concept](concepts/modern-market-style-v1.png) on 2026-10-11 as the ongoing art direction: warmer palette, chibi founder, cloth stall, plants, and textured plaza together. It establishes a visual target, not the starting stock quantity or the cost of decorative surroundings; the actual starter stall should remain modest and use imitation goods. Produce separate grounded assets matching this direction rather than using this entire illustration as an interactive map. Approval of the concept does not establish that individual playable assets are complete or visually verified.
 
-Present-day, friendly 2D jewellery-business RPG. The starting location is a modest market pop-up, not a medieval workshop. The [game-design brief](game-design.md) governs the setting and player progression. The preceding visual milestone replaced the initial narrow founder and flat geometric scenery with a broader chibi founder and textured market assets. The reusable plaza kit has been playtested and merged; the current milestone extends it with flowering trees and streetlamps.
+Present-day, friendly 2D jewellery-business RPG. The starting location is a modest market pop-up, not a medieval workshop. The [game-design brief](game-design.md) governs the setting and player progression. The preceding visual milestone replaced the initial narrow founder and flat geometric scenery with a broader chibi founder and textured market assets. The reusable plaza kit has been playtested and merged; the current milestone adds directional founder animation.
 
 - Founder: casual contemporary clothing, sneakers, optional utility apron or crossbody pouch. Keep the person approachable; no fantasy tunic, leather bracers, or adventurer accessories.
 - Stall: folding table, jewellery trays, modest price cards, stock boxes, simple fabric cover, and a small card-payment device. No luxury-brand logos. The initial supplier offers imitation goods.
 - Surroundings: recognisable market pavement and neighbouring stall silhouettes, with a restrained readable palette. Keep routes and interaction targets clear.
 - Readability target: founder roughly 96 game pixels tall at the initial view. Check stall height against the person; a tabletop should feel waist-height in the chosen perspective. Do not mechanically reuse the workshop obstacle's proportions as a modern folding table.
 - Separate visual height from foot collision geometry. Define the stall's visual and solid footprints explicitly before integration.
-- Begin with one static founder frame facing down. Animation is a later assignment. Preserve transparent padding, full framing, clear outlines, and aspect ratio.
+- The initial static founder is retained as historical source art. Directional animation uses a separate shared-frame handoff. Preserve transparent padding, full framing, clear outlines, and aspect ratio.
 - Generate source images to a documented brief; inspect real resolution, alpha, and framing. Prefer artwork designed for the final display size. A large illustration scaled down is not automatically pixel-grid-consistent art.
 - Record palette, source dimensions, display dimensions, crop, filenames, and provenance at each handoff. Review the combined scene at normal gameplay size rather than approving isolated asset previews alone.
 
@@ -55,7 +55,23 @@ The broad tree canopy is deliberately wider than its trunk collision. Its region
 
 Trees and lamps do not have interaction prompts. Lamp glow is baked into its static artwork; the milestone does not implement dynamic light or a day/night cycle. Source scenes and main-level placements are recorded in [the scenery walkthrough](plaza-scenery.md).
 
-## Current chibi founder handoff
+## Directional animation handoff
+
+`assets/player/founder_walk_sheet.png` is a 1254 × 1254 RGBA image generated and edited on 2026-10-11. It supplies nine poses: rows are down, up, and right; columns are idle, stride A, and stride B. The left view mirrors right, including its pouch. Front and back stride poses alternate the forward leg; side stride silhouettes are more similar, with distinct arm swings. The initial front/back repeat was corrected through the image-generation tool before integration.
+
+The sheet does not have equal grid cells. Visible bounds at alpha ≥16, in left/top/right/bottom coordinates, are:
+
+| View | Idle | Stride A | Stride B |
+|---|---|---|---|
+| Down | `(183, 36, 398, 405)` | `(515, 36, 732, 408)` | `(853, 38, 1069, 410)` |
+| Up | `(184, 428, 398, 802)` | `(521, 425, 733, 802)` | `(857, 427, 1070, 798)` |
+| Right | `(188, 820, 384, 1201)` | `(514, 820, 738, 1200)` | `(858, 821, 1081, 1201)` |
+
+The source is preserved unchanged. `AtlasTexture` regions select each pose; logical margins centre them horizontally and align their bottoms on one shared canvas. A single uniform display scale avoids stretching or resizing each pose independently. Small generated height differences remain and should be judged in motion. The resting feet stay at local y=24, matching the existing collider's lower edge; the visual bob rises by at most two game pixels without moving that collider.
+
+The sheet has alpha values 0–255 and some warm outline residue, visible against a dark inspection background. Cropping excludes distant residue but does not certify clean transparency. Nearest filtering and engine scaling do not establish a shared native pixel grid. Final resource geometry and verification are recorded in [the animation walkthrough](player-animation.md).
+
+## Previous static chibi founder handoff
 
 `jewel-rpg/assets/player/founder_chibi_idle.png` is a **1199 × 1312 RGBA PNG**, generated on 2026-10-11 from the approved combined concept. The broader, shorter character has brown hair, a teal casual shirt, navy trousers, white sneakers, and a tan pouch. It is one static front-facing frame, not a walking-animation sheet.
 
@@ -63,7 +79,7 @@ Read-only inspection found alpha values 0–255. Strict nonzero-alpha bounds are
 
 Godot uses region `Rect2(306, 137, 568, 1062)`, nearest filtering, and uniform scale `96 / 1062` (about `0.09039548`). The figure displays at approximately **51.34 × 96 game pixels**. Offset `(0, -24)` puts the lower region edge at local y=24, aligned with the unchanged 32 × 48 player collider. The wider artwork does not widen the solid body. This means shoulders may visually overlap objects when the player's smaller foot/body collider does not.
 
-The crop excludes distant alpha residue but cannot guarantee a clean fringe. Inspect the character against the integrated plaza at gameplay size. Source illustration detail and noninteger downscaling mean this is **high-resolution pixel-style artwork**, not a native low-resolution pixel grid. A consistent animation grid is still a future milestone.
+The crop excludes distant alpha residue but cannot guarantee a clean fringe. Inspect the character against the integrated plaza at gameplay size. Source illustration detail and noninteger downscaling mean this is **high-resolution pixel-style artwork**, not a native low-resolution pixel grid. The new animation handoff below defines a shared frame canvas; it does not retroactively make this static illustration animation-ready.
 
 ## Previous environment asset handoff
 
