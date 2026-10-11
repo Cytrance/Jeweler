@@ -235,6 +235,8 @@ Acceptance checks:
 - An active market retains its attendance, processed visitors, arrival delay, and remaining countdown. Closing penalties, deliveries, and settled refunds cannot repeat after loading.
 - Financial reports, interrupted travel/sleep, and prison resume coherently; continuing a saved report applies only the remaining work.
 - Save data is validated before changing the game. A valid backup can recover an unreadable primary with a warning; unreadable files are not overwritten just by launching. Failed saves report the failure and prevent Save & Quit from closing.
+- The pre-merge stock fix prevents a zero-inventory market from starting, including when paid orders are pending, without changing attendance RNG, timer, or today’s eligibility. Rejected opening leaves travel available; exhausting stock during a valid session retains its countdown and travel guard.
+- Reusable physical plaza edges keep the whole founder on screen while allowing access to the exit. They disable in the apartment; older out-of-bounds plaza save positions restore inside the safe area without changing save format or business data.
 - Relevant regression checks, separate-process save/quit/reload checks, and rendered interface inspection run. The project manager follows [save and continue](save-and-continue.md) on Windows before approving this checkpoint.
 
 ## Later milestones

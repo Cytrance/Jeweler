@@ -162,7 +162,7 @@ static func apply(game: Node, data: Dictionary) -> void:
 	clock.market_hold = market.active or market.closing
 	# Area activation emits time_changed; all business, clock and queue fields are ready first.
 	travel.set_area(data.travel.current_area)
-	player.position = Vector2(data.player.x, data.player.y)
+	player.position = travel.safe_player_position(Vector2(data.player.x, data.player.y))
 	player.facing = data.player.facing
 	player.facing_left = data.player.left
 	player.movement_locked = clock.awaiting_report or market.closing

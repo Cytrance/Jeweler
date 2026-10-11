@@ -121,10 +121,15 @@ func set_area(area: String) -> void:
 			_set_enabled(node, String(node.get_meta("playable_area")) == area)
 	# The old instant supplier is retained only for isolated historical fixtures.
 	_set_enabled(root.get_node("SupplierCounter"), false)
-	player.position = Vector2(610, 390) if area == "apartment" else Vector2(380, 430)
+	player.position = safe_player_position(Vector2(610, 390) if area == "apartment" else Vector2(380, 430))
 	clock.indoors = area == "apartment"
 	clock._refresh()
 	area_changed.emit(area)
+
+func safe_player_position(point: Vector2) -> Vector2:
+	if current_area == "plaza":
+		return get_node("../Market/Boundaries").safe_position(point)
+	return point
 
 func _set_enabled(node: Node, enabled: bool) -> void:
 	if node.has_method("set_area_active"):

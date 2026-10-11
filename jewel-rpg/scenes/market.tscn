@@ -1,8 +1,11 @@
 [gd_scene format=4]
 
 [ext_resource type="TileSet" path="res://resources/plaza_paving.tres" id="1_aifk4"]
+[ext_resource type="PackedScene" path="res://scenes/plaza_boundaries.tscn" id="2_bounds"]
 
 [node name="Market" type="Node2D" unique_id=308173327]
+
+[node name="Boundaries" parent="." instance=ExtResource("2_bounds")]
 
 [node name="Ground" type="TileMapLayer" parent="." unique_id=1908366760]
 texture_filter = 1

@@ -50,7 +50,21 @@ func _on_clock_changed() -> void:
 		changed.emit()
 
 func can_start() -> bool:
-	return not active and not closing and session_day != clock.day and clock.hour < 18.0 and not clock.awaiting_report and not state.imprisoned and not state.day_closed
+	return start_block_reason().is_empty()
+
+func start_block_reason() -> String:
+	# Check calendar/state gates before stock, so an empty inventory does not hide closing.
+	if active or closing:
+		return "Today’s market is already in progress."
+	if session_day == clock.day:
+		return "Market finished today. Refunds settle at midnight."
+	if clock.awaiting_report or state.imprisoned or state.day_closed:
+		return "Settle the day before opening the market."
+	if clock.hour >= 18.0:
+		return "Too late to open today. Come back before 6pm."
+	if state.stock <= 0:
+		return "No stock to sell. Order at your apartment computer and wait for morning delivery."
+	return ""
 
 func start_day() -> bool:
 	if not can_start():

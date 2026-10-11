@@ -64,6 +64,7 @@ func check_closing_shortcut(saves: Node, label: String) -> void:
 	if not market.can_start():
 		clock.finish_day()
 		current.get_node("DayCycle")._continue()
+	current.get_node("BusinessState").stock = maxi(1, current.get_node("BusinessState").stock)
 	market.start_day()
 	market.advance_session(60.0)
 	saves.notice.text = "Not saved yet"

@@ -116,6 +116,7 @@ layout_mode = 2
 
 [node name="SessionStatus" type="Label" parent="UILayer/Panel/Margin/Rows"]
 layout_mode = 2
+autowrap_mode = 2
 
 [node name="CustomerRow" type="HBoxContainer" parent="UILayer/Panel/Margin/Rows"]
 layout_mode = 2
