@@ -13,12 +13,16 @@ var pending_travel_minutes := 0.0
 @onready var heading: Label = $Panel/Margin/Rows/Heading
 @onready var action: Button = $Panel/Margin/Rows/Action
 @onready var feedback: Label = $Panel/Margin/Rows/Feedback
+@onready var quantity: SpinBox = $Panel/Margin/Rows/OrderQuantity
 var mode := "travel"
 var source: Node = null
 
 func _ready() -> void:
 	panel.hide()
 	action.pressed.connect(_act)
+	quantity.value_changed.connect(func(_value: float):
+		if mode == "order":
+			_refresh())
 	$Panel/Margin/Rows/Close.pressed.connect(close_menu)
 	set_area(starting_area)
 
@@ -29,6 +33,7 @@ func open_menu(kind: String, owner: Node) -> bool:
 	if blocked() or player.movement_locked:
 		return false
 	mode = kind
+	quantity.value = 1
 	source = owner
 	panel.show()
 	player.movement_locked = true
@@ -37,10 +42,15 @@ func open_menu(kind: String, owner: Node) -> bool:
 	return true
 
 func _refresh() -> void:
+	quantity.visible = mode == "order"
+	action.disabled = false
 	if mode == "order":
 		heading.text = "Budget Sparkle Online • Stock orders"
-		action.text = "Order 1 imitation ring — %d credits (B)" % state.economy.unit_cost
-		feedback.text = "%s\n%s\nCash: %d | Inventory: %d | On order: %d\nPaid now. Delivery day %d at 08:00. Orders close at midnight." % [state.economy.product_name, state.economy.materials, state.cash, state.stock, get_node("../DeliveryOrders").pending_quantity(), clock.day + 1]
+		var count := int(quantity.value)
+		var cost: int = count * state.economy.unit_cost
+		action.text = "Order %d rings • Total %d credits (B)" % [count, cost]
+		action.disabled = state.cash < cost
+		feedback.text = "%s\n%s\nCash: %d | Inventory: %d | On order: %d\nPaid now. Delivery day %d at 08:00.\nOrders arrive the following day; order before midnight for tomorrow morning." % [state.economy.product_name, state.economy.materials, state.cash, state.stock, get_node("../DeliveryOrders").pending_quantity(), clock.day + 1]
 	elif mode == "sleep":
 		heading.text = "A mattress with ambition"
 		action.text = "Sleep until 8am"
@@ -70,7 +80,7 @@ func _act() -> void:
 	if not panel.visible or blocked():
 		return
 	if mode == "order":
-		var success: bool = get_node("../DeliveryOrders").place_order()
+		var success: bool = get_node("../DeliveryOrders").place_order(int(quantity.value))
 		_refresh()
 		feedback.text += "\nOrder confirmed." if success else "\nNot enough cash to place this order."
 	elif mode == "sleep":

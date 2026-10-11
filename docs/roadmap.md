@@ -224,9 +224,9 @@ Acceptance checks:
 - Independent review inspects the shared clock/state/area boundaries and performs relevant focused checks; unchanged historical art and movement suites are reused.
 - The project manager follows [apartment and deliveries](apartment-and-deliveries.md) on Windows, checks visual quality, collisions, paths, menus, timing, and feedback, then approves the branch.
 
-## Current milestone: save and continue
+## Completed milestone: save and continue
 
-The project manager approved preserving money, inventory, pending paid deliveries, and game time across quitting. Work is on `feat/save-continue`, based on `9053091`, and requires a new review before merge.
+The project manager approved preserving money, inventory, pending paid deliveries, and game time across quitting. The project manager tested the save checkpoint and its empty-stock/plaza-boundary fix, then merged the combined result into `main` at `df67f0a`.
 
 Acceptance checks:
 
@@ -238,6 +238,22 @@ Acceptance checks:
 - The pre-merge stock fix prevents a zero-inventory market from starting, including when paid orders are pending, without changing attendance RNG, timer, or today’s eligibility. Rejected opening leaves travel available; exhausting stock during a valid session retains its countdown and travel guard.
 - Reusable physical plaza edges keep the whole founder on screen while allowing access to the exit. They disable in the apartment; older out-of-bounds plaza save positions restore inside the safe area without changing save format or business data.
 - Relevant regression checks, separate-process save/quit/reload checks, and rendered interface inspection run. The project manager follows [save and continue](save-and-continue.md) on Windows before approving this checkpoint.
+
+## Current milestone: business UI and modular interior polish
+
+Work is on `feat/business-ui-interiors`, based on merged `df67f0a`. The project manager requested clearer business UI and reusable indoor wall borders, drywall/window tiles, and additional furniture. Existing save data, delivery timing, refund rules, and market duration must remain compatible.
+
+Acceptance checks:
+
+- HUD distinguishes spendable cash, available inventory, pending delivery, reputation, and calendar time.
+- Computer previews quantity, total price, and delivery date; keyboard and mouse cannot bypass affordability or award stock immediately.
+- Stall shows the visitor, offer choices, and countdown clearly; zero-stock opening stays disabled.
+- Market closing at 18:00 and midnight refund settlement remain visibly distinct.
+- Four visible room edges match solid boundaries; routes to bed, computer, and door remain clear.
+- Drywall/windows and furniture are separate reusable resources/scenes. Solid furniture inherits collision; a floor mat remains walkable.
+- Focused checks and actual rendered inspection run; Windows visual quality and merge approval remain the project manager's checkpoint.
+
+See [business UI and interiors](business-ui-and-interiors.md) for the current implementation and review evidence.
 
 ## Later milestones
 

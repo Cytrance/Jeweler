@@ -14,13 +14,13 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAA
 tile_set = ExtResource("1_aifk4")
 
 [node name="MarketName" type="Label" parent="." unique_id=544133966]
-offset_left = 300.0
-offset_top = 32.0
-offset_right = 660.0
-offset_bottom = 80.0
-theme_override_font_sizes/font_size = 24
+offset_left = 432.0
+offset_top = 20.0
+offset_right = 728.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 20
 theme_override_colors/font_color = Color(0.98, 0.94, 0.83, 1)
 theme_override_colors/font_outline_color = Color(0.28, 0.2, 0.25, 1)
 theme_override_constants/outline_size = 3
-text = "THE WEEKEND MARKET"
+text = "WEEKEND MARKET"
 horizontal_alignment = 1

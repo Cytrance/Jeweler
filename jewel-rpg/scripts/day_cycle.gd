@@ -41,8 +41,8 @@ func present_report(result: Dictionary) -> void:
 	report.show()
 	continue_button.visible = not state.imprisoned
 	restart_button.visible = state.imprisoned
-	heading.text = "Prison: the sparkle stops here" if state.imprisoned else "Day %d • Closing the books" % day_id
-	details.text = "Misleading sales: %d | Refund requests: %d\nRefunds due: %d credits | Cash before refunds: %d credits\n" % [result.misleading_count, result.complaints, result.refund_total, result.cash_before]
+	heading.text = "Prison: the sparkle stops here" if state.imprisoned else "Midnight • Day %d refund settlement" % day_id
+	details.text = "REFUND REQUESTS\nMisleading sales: %d   •   Requests: %d\n\nCASH SETTLEMENT\nRefunds due: %d credits\nCash before: %d credits\n" % [result.misleading_count, result.complaints, result.refund_total, result.cash_before]
 	if state.imprisoned:
 		details.text += "You cannot cover tonight’s refunds. Your jewellery empire has traded its stall for a cell.\n\nThis run has ended. Start again to try a different strategy."
 	else:

@@ -172,7 +172,7 @@ func continue_evening() -> void:
 	changed.emit()
 
 func _refresh_report() -> void:
-	details.text = "Served: %d / %d customers\nWent home: %d | Reputation: -%d\n\nThe market has closed. It is now 6pm.\nSpend the evening exploring or ordering tomorrow’s stock.\nRefund requests are settled at midnight." % [processed, quota, unserved, reputation_penalty]
+	details.text = "6PM • MARKET CLOSED\nServed: %d / %d customers\nWent home: %d   •   Reputation lost: %d\n\nYour sale proceeds remain available.\nExplore or order tomorrow’s stock this evening.\nMidnight: refund requests are settled separately." % [processed, quota, unserved, reputation_penalty]
 
 func restore_presentation(show_report: bool) -> void:
 	_refresh_report()

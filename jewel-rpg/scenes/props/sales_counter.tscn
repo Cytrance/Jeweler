@@ -1,51 +1,14 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scripts/sales_counter.gd" id="1"]
 [ext_resource type="PackedScene" path="res://scenes/props/jewellery_stall.tscn" id="2"]
 
 [ext_resource type="Script" path="res://scripts/customer_visuals.gd" id="3"]
 
+[ext_resource type="Theme" path="res://resources/room_menu_theme.tres" id="4"]
+
 [sub_resource type="CircleShape2D" id="Range"]
 radius = 128.0
-
-[sub_resource type="StyleBoxFlat" id="PanelStyle"]
-bg_color = Color(0.19, 0.12, 0.19, 0.98)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.71, 0.55, 0.35, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_left = 10
-corner_radius_bottom_right = 10
-
-[sub_resource type="StyleBoxFlat" id="BuyNormal"]
-content_margin_top = 8.0
-content_margin_bottom = 8.0
-bg_color = Color(0.14, 0.36, 0.35, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_left = 6
-corner_radius_bottom_right = 6
-
-[sub_resource type="StyleBoxFlat" id="BuyHover"]
-content_margin_top = 8.0
-content_margin_bottom = 8.0
-bg_color = Color(0.2, 0.46, 0.43, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_left = 6
-corner_radius_bottom_right = 6
-
-[sub_resource type="StyleBoxFlat" id="BuyPressed"]
-content_margin_top = 8.0
-content_margin_bottom = 8.0
-bg_color = Color(0.1, 0.27, 0.27, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_left = 6
-corner_radius_bottom_right = 6
 
 [node name="SalesCounter" type="Area2D"]
 y_sort_enabled = true
@@ -89,25 +52,26 @@ visible = false
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 16.0
-offset_top = -250.0
-offset_right = 516.0
+offset_top = -180.0
+offset_right = 576.0
 offset_bottom = 250.0
-theme_override_styles/panel = SubResource("PanelStyle")
+theme = ExtResource("4")
+theme_override_font_sizes/font_size = 16
 
 [node name="Margin" type="MarginContainer" parent="UILayer/Panel"]
 layout_mode = 2
 theme_override_constants/margin_left = 22
-theme_override_constants/margin_top = 18
+theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 22
-theme_override_constants/margin_bottom = 18
+theme_override_constants/margin_bottom = 12
 
 [node name="Rows" type="VBoxContainer" parent="UILayer/Panel/Margin"]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 4
 
 [node name="Heading" type="Label" parent="UILayer/Panel/Margin/Rows"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 23
+theme_override_font_sizes/font_size = 22
 theme_override_colors/font_color = Color(1, 0.9, 0.72, 1)
 text = "Your pop-up jewellery stall"
 
@@ -123,7 +87,7 @@ layout_mode = 2
 
 [node name="Portrait" type="TextureRect" parent="UILayer/Panel/Margin/Rows/CustomerRow"]
 layout_mode = 2
-custom_minimum_size = Vector2(56, 76)
+custom_minimum_size = Vector2(48, 48)
 expand_mode = 1
 stretch_mode = 5
 texture_filter = 1
@@ -152,14 +116,11 @@ focus_mode = 0
 theme_override_colors/font_color = Color(1, 0.94, 0.82, 1)
 theme_override_colors/font_hover_color = Color(1, 0.96, 0.86, 1)
 theme_override_colors/font_pressed_color = Color(1, 0.94, 0.82, 1)
-theme_override_styles/normal = SubResource("BuyNormal")
-theme_override_styles/hover = SubResource("BuyHover")
-theme_override_styles/pressed = SubResource("BuyPressed")
 
 [node name="Feedback" type="Label" parent="UILayer/Panel/Margin/Rows"]
 layout_mode = 2
 autowrap_mode = 2
-custom_minimum_size = Vector2(450, 54)
+custom_minimum_size = Vector2(510, 38)
 
 [node name="EndDay" type="Button" parent="UILayer/Panel/Margin/Rows"]
 layout_mode = 2

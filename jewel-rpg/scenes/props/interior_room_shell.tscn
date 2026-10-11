@@ -1,0 +1,16 @@
+[gd_scene load_steps=7 format=3]
+[ext_resource type="Script" path="res://scripts/interior_room_shell.gd" id="1"]
+[ext_resource type="Texture2D" path="res://resources/wall_cap_front.tres" id="front"]
+[ext_resource type="Texture2D" path="res://resources/wall_cap_left.tres" id="left"]
+[ext_resource type="Texture2D" path="res://resources/wall_cap_right.tres" id="right"]
+[ext_resource type="Texture2D" path="res://resources/wall_cap_corner_left.tres" id="corner_left"]
+[ext_resource type="Texture2D" path="res://resources/wall_cap_corner_right.tres" id="corner_right"]
+[node name="InteriorRoomShell" type="Node2D"]
+z_index = 2
+texture_filter = 1
+script = ExtResource("1")
+front_cap = ExtResource("front")
+left_cap = ExtResource("left")
+right_cap = ExtResource("right")
+left_corner = ExtResource("corner_left")
+right_corner = ExtResource("corner_right")

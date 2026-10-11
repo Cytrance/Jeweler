@@ -109,7 +109,7 @@ func _run() -> void:
 	check(state.stock == 3 and orders.pending_quantity() == 0 and orders.notice.visible, "morning delivers pending orders and displays notification")
 	orders.check_deliveries()
 	check(state.stock == 3, "delivery applies once only")
-	check(travel.travel_to("apartment") and scene.get_node("Apartment/Walls").collision_layer == 1 and scene.get_node("Obstacle/Stall").collision_layer == 0, "return enables room collision and disables plaza")
+	check(travel.travel_to("apartment") and scene.get_node("Apartment/Walls/Left").collision_layer == 1 and scene.get_node("Apartment/Walls/Right").collision_layer == 1 and scene.get_node("Apartment/Walls/Top").collision_layer == 1 and scene.get_node("Apartment/Walls/Bottom").collision_layer == 1 and scene.get_node("Obstacle/Stall").collision_layer == 0, "return enables room collision and disables plaza")
 	clock.hour = 18.0
 	player.position = Vector2(255, 370)
 	await frames()

@@ -1,5 +1,44 @@
 # Modern market art guide
 
+## Textured cutaway indoor walls
+
+`assets/interiors/interior_walls.png` provides nine original modular pieces: cracked cream drywall, window wall, open doorway wall, a low front-wall section, left/right side-wall sections, two L-shaped corner pieces, and a square corner pillar. Their worn plaster and honey-brown caps/baseboards keep the apartment contemporary and modest. The project manager's indoor reference informed thick visible walls, ledges, and joins; its cathedral masonry and stained glass are not transplanted into this room.
+
+The unchanged source is **1254 × 1254 RGBA**, alpha 0–255, with four transparent corners. Useful bounds at alpha ≥16:
+
+| Piece | AtlasTexture region |
+|---|---|
+| Plain drywall | `Rect2(36, 81, 370, 366)` |
+| Window wall | `Rect2(447, 81, 362, 366)` |
+| Open doorway wall | `Rect2(851, 81, 366, 366)` |
+| Low front wall | `Rect2(36, 632, 493, 162)` |
+| Left side wall | `Rect2(601, 504, 93, 299)` |
+| Right side wall | `Rect2(995, 504, 93, 299)` |
+| Left L corner | `Rect2(110, 889, 292, 271)` |
+| Right L corner | `Rect2(504, 889, 291, 271)` |
+| Corner pillar | `Rect2(959, 837, 182, 340)` |
+
+Use explicitly measured regions rather than assuming an evenly spaced sprite grid. The three rear wall panels share a 366-source-pixel height; logical padding can align their differing widths before placing consistent room sections. Lower walls have intentionally different silhouettes and perspectives from full-height rear panels. Use nearest filtering and preserve appropriate cap/body proportions when defining reusable engine templates. Visual caps, blocking boundaries, and passable openings belong to the reusable room shell and should be reviewed together: a pictured doorway alone does not create an exit or remove collision.
+
+The source includes textured caps and corners, so visible room edges need not be represented by plain colour outlines alone. Fine alpha residue and small piece-width differences remain. Exact seamless joins and a common native low-resolution pixel grid are not guaranteed. Godot layout/cropping does not modify source pixels. Integrated wall joins, overlap order, door alignment, and rear-window readability require normal-size gameplay inspection.
+
+The sprite agent inspected an actual **960 × 540** integrated apartment render on 2026-10-11. Textured rear panels, blue window panes, side faces, low foreground wall, and L-shaped front joins visibly enclose the room. Repeated panel seams remain apparent as separate wood-framed modules; this kit is not advertised as seamless plaster. The new lamp, sink, dining table, and floor rug remain recognisable beside the 96-pixel founder and fit the existing worn furniture. This establishes current composition/readability evidence, not collision correctness or the project manager's Windows approval. A HUD/title overlap in that capture was corrected; the root agent inspected a fresh render with the apartment heading clear of the HUD.
+
+## Expanded reusable indoor furniture
+
+`assets/interiors/interior_details.png` adds four original, separate props matching the existing warm worn starter-apartment kit: a faded sage floor rug with peach border, a taller square dining table, a chipped cream sink cabinet, and a standing fabric-shade lamp. These are reusable object illustrations rather than a flattened room. The existing oval low table remains a second table design.
+
+The unchanged source is **1254 × 1254 RGBA**, alpha 0–255, with four fully transparent corners. Measured useful bounds at alpha ≥16 supply these engine regions:
+
+| Prop | AtlasTexture region | Uniform gameplay display size |
+|---|---|---|
+| Floor rug | `Rect2(32, 158, 707, 322)` | 140 × 63.76 |
+| Dining table | `Rect2(768, 108, 442, 371)` | 100 × 83.94 |
+| Sink cabinet | `Rect2(83, 623, 713, 532)` | 150 × 111.92 |
+| Standing lamp | `Rect2(884, 541, 280, 631)` | 55.47 × 125 |
+
+Preserve aspect ratios with nearest filtering. Furniture visuals use their lower edge as ground contact; collision should cover the grounded footprint rather than the entire tall drawing. The rug is flat floor decoration with no collision. The lamp's warm shade is painted illumination, not dynamic lighting. Sink, table, and lamp are decoration at this milestone, without invented interaction behavior. Fine alpha residue remains outside measured useful contours; these bounds reduce it without certifying clean native-pixel edges. Source metadata and alpha inspection were read-only, with no source pixel edits. Actual room composition, clear walking routes, and gameplay-size appearance must be checked after integration.
+
 ## Reusable starter-apartment art
 
 The apartment kit follows the approved warm, cute market direction while showing limited capital: a stained sage blanket, scuffed thrift furniture, an old television, a cheap computer, chipped cream door paint, and aged plaster. The room is assembled from separate tile materials and reusable furniture scenes; the artwork is not one flattened room image.

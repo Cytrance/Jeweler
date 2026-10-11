@@ -1,6 +1,6 @@
 # Save and continue
 
-This checkpoint is on **`feat/save-continue`**, based on the approved apartment checkpoint `9053091`. It is a review branch, not merged into `main`.
+The project manager tested and merged Save/Continue, the empty-stock opening guard, and plaza boundaries into **`main` at `df67f0a`**. This page records that completed milestone and its verification.
 
 ## How to play
 
@@ -32,7 +32,7 @@ The save format is intentionally explicit: adding a new gameplay state field lat
 
 ## Try it on Windows
 
-1. Fetch and check out `feat/save-continue`; import the project in Godot 4.7.2. Press F5. Choose New game, or Continue if you already have a saved run from this branch.
+1. Fetch and check out `main` (or the current review branch); import the project in Godot 4.7.2. Press F5. Choose New game, or Continue if you already have a saved run from this branch.
 2. Walk to the computer and order three rings. Save, close the game window, relaunch, and Continue. Expect cash 70, no available rings, and three paid pending rings. Your location should be restored; reopen the computer normally.
 3. Sleep. While the midnight report is open, use F6 or close the game window. Relaunch and Continue: the same report must reappear. Continue it and receive three rings at day 2, 08:00. Save and reopen again; stock must remain three.
 4. Before delivery, visit the plaza with zero available rings: Start day must be disabled even if orders are pending. S must leave the day unused, and Escape must let you walk to the exit and return home. After delivery, travel to the plaza, start a market, and sell a ring. Save & Quit during the minute. Continue: attendance, served count, and remaining countdown should resume. Finish the market, save during its report, and reload. Continue and make a round trip; today’s market must not restart.
@@ -53,7 +53,7 @@ Thirteen actual **960 × 540** Compatibility renders were inspected: New game, p
 
 Independent review identified input-order differences after replacing the game scene. Real F6 events reproduced four failures on the original checkpoint: closing notice and fade after both New game and prison restart. A separate real-mouse reproduction confirmed that both enabled-looking toolbar buttons were swallowed by closing's input guard. Replacement gameplay now retains the original sibling position, keeping the save controller first for F6 input. Mouse save controls are explicitly disabled during the transition and re-enabled by the market's changed signal. Regression coverage sends real F6 and mouse events after New game, Continue, and prison restart, inspects written files, rejects echoed saves, and verifies the enabled Save button writes the final report. No economy or market-timing behavior changed.
 
-The confirmation test sends real mouse events through the embedded dialog's window coordinates. Regression coverage includes canceling and confirming both title-screen replacement and prison restart. A separate boundary case verifies saving a report after the existing End day shortcut skips past a pending 08:00 delivery, then releasing those goods exactly once on Continue. Unchanged art and movement suites were not rerun. Windows review remains outstanding.
+The confirmation test sends real mouse events through the embedded dialog's window coordinates. Regression coverage includes canceling and confirming both title-screen replacement and prison restart. A separate boundary case verifies saving a report after the existing End day shortcut skips past a pending 08:00 delivery, then releasing those goods exactly once on Continue. Unchanged art and movement suites were not rerun. The project manager subsequently tested the checkpoint and stock/boundary correction, then approved and merged them at `df67f0a`.
 
 From the repository root, use the configured cloud executable and writable user directories:
 

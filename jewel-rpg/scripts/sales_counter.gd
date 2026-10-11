@@ -88,7 +88,7 @@ func _set_open(open: bool) -> void:
 		player.movement_locked = open
 	prompt.visible = player_nearby and not open
 	if open:
-		feedback.text = "Order stock at your apartment computer and collect morning delivery before starting a one-minute market day. Cheaper truthful offers earn more reputation."
+		feedback.text = "Cheaper truthful offers build reputation. Misleading claims risk refunds at midnight."
 		_refresh()
 
 func _serve() -> void:
@@ -101,7 +101,7 @@ func _serve() -> void:
 func _refresh() -> void:
 	if not configured:
 		return
-	details.text = "Actual materials: %s\nCash: %d | Stock: %d | Revenue: %d | Rep: %+d" % [state.economy.materials, state.cash, state.stock, state.revenue, state.reputation]
+	details.text = "Materials: %s\nCash: %d | Available: %d | Total sales: %d | Rep: %+d" % [state.economy.materials, state.cash, state.stock, state.revenue, state.reputation]
 	var rows = $UILayer/Panel/Margin/Rows
 	rows.get_node("Start").visible = not session.active and not session.closing and session.session_day != session.clock.day and session.clock.hour < 18.0
 	rows.get_node("Start").disabled = not session.can_start()
@@ -133,9 +133,9 @@ func _start_day() -> void:
 	if not panel.visible or not player_nearby:
 		return
 	if session.start_day():
-		feedback.text = "The queue is open! One minute to serve your visitors. The timer continues while menus are open."
+		feedback.text = "The queue is open! Serve your visitors in one minute.\nThe countdown continues while menus are open."
 	else:
-		feedback.text = session.start_block_reason()
+		feedback.text = ""
 	_refresh()
 
 func _end_day() -> void:

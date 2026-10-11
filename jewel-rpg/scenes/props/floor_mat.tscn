@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="Texture2D" path="res://assets/interiors/interior_details.png" id="1"]
+[sub_resource type="AtlasTexture" id="Art"]
+atlas = ExtResource("1")
+region = Rect2(32, 158, 707, 322)
+[node name="FloorMat" type="Node2D"]
+z_index = -5
+[node name="Visual" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("Art")
+position = Vector2(0, -31.88118811881188)
+scale = Vector2(0.19801980198019803, 0.19801980198019803)

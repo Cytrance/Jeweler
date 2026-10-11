@@ -7,9 +7,9 @@ script = ExtResource("1")
 [node name="Panel" type="PanelContainer" parent="."]
 theme = ExtResource("2")
 offset_left = 215.0
-offset_top = 125.0
+offset_top = 75.0
 offset_right = 745.0
-offset_bottom = 435.0
+offset_bottom = 465.0
 [node name="Margin" type="MarginContainer" parent="Panel"]
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_right = 20
@@ -23,6 +23,12 @@ text = "Travel"
 [node name="Feedback" type="Label" parent="Panel/Margin/Rows"]
 custom_minimum_size = Vector2(480, 125)
 autowrap_mode = 2
+[node name="OrderQuantity" type="SpinBox" parent="Panel/Margin/Rows"]
+min_value = 1.0
+max_value = 100.0
+value = 1.0
+prefix = "Quantity: "
+
 [node name="Action" type="Button" parent="Panel/Margin/Rows"]
 text = "Travel"
 [node name="Close" type="Button" parent="Panel/Margin/Rows"]

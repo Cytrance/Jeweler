@@ -12,4 +12,6 @@ func _ready() -> void:
 	_refresh()
 
 func _refresh() -> void:
-	summary.text = "Cash: %d credits\nRings in stock: %d\nRevenue: %d | Rep: %+d" % [state.cash, state.stock, state.revenue, state.reputation]
+	var orders = get_node_or_null("../DeliveryOrders")
+	var pending: int = orders.pending_quantity() if orders != null else 0
+	summary.text = "Cash  %d credits     Reputation  %+d\nAvailable rings  %d     On order  %d" % [state.cash, state.reputation, state.stock, pending]

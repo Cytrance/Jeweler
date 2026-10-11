@@ -8,10 +8,11 @@
 [ext_resource type="TileSet" path="res://resources/indoor_floor.tres" id="7_floor"]
 [ext_resource type="TileSet" path="res://resources/indoor_wall.tres" id="8_wall"]
 [ext_resource type="Script" path="res://scripts/apartment_tiles.gd" id="9_tiles"]
-[sub_resource type="RectangleShape2D" id="Horizontal"]
-size = Vector2(672, 24)
-[sub_resource type="RectangleShape2D" id="Vertical"]
-size = Vector2(24, 380)
+[ext_resource type="PackedScene" path="res://scenes/props/interior_room_shell.tscn" id="10_shell"]
+[ext_resource type="PackedScene" path="res://scenes/props/floor_mat.tscn" id="floor_mat"]
+[ext_resource type="PackedScene" path="res://scenes/props/dining_table.tscn" id="dining_table"]
+[ext_resource type="PackedScene" path="res://scenes/props/sink.tscn" id="sink"]
+[ext_resource type="PackedScene" path="res://scenes/props/floor_lamp.tscn" id="floor_lamp"]
 [node name="Apartment" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("9_tiles")
@@ -24,16 +25,16 @@ tile_set = ExtResource("7_floor")
 [node name="WallTiles" type="TileMapLayer" parent="."]
 z_index = -9
 position = Vector2(144, 56)
-scale = Vector2(0.051036683, 0.051036683)
+scale = Vector2(0.259459459, 0.262295082)
 texture_filter = 1
 tile_set = ExtResource("8_wall")
 [node name="RoomName" type="Label" parent="."]
 z_index = 3
-offset_left = 260.0
+offset_left = 432.0
 offset_top = 16.0
-offset_right = 690.0
+offset_right = 728.0
 offset_bottom = 48.0
-text = "HOME • THE STARTER APARTMENT"
+text = "STARTER APARTMENT"
 horizontal_alignment = 1
 [node name="Help" type="Label" parent="."]
 z_index = 3
@@ -43,19 +44,7 @@ offset_right = 795.0
 offset_bottom = 540.0
 text = "E: computer orders • bed sleeps • door travels (30 min)"
 horizontal_alignment = 1
-[node name="Walls" type="StaticBody2D" parent="."]
-[node name="Top" type="CollisionShape2D" parent="Walls"]
-position = Vector2(480, 153)
-shape = SubResource("Horizontal")
-[node name="Bottom" type="CollisionShape2D" parent="Walls"]
-position = Vector2(480, 504)
-shape = SubResource("Horizontal")
-[node name="Left" type="CollisionShape2D" parent="Walls"]
-position = Vector2(144, 320)
-shape = SubResource("Vertical")
-[node name="Right" type="CollisionShape2D" parent="Walls"]
-position = Vector2(816, 320)
-shape = SubResource("Vertical")
+[node name="Walls" parent="." instance=ExtResource("10_shell")]
 
 [node name="Bed" parent="." instance=ExtResource("2_bed")]
 position = Vector2(255, 330)
@@ -82,3 +71,12 @@ prompt_text = "E • Travel"
 position = Vector2(380, 245)
 [node name="Table" parent="." instance=ExtResource("6_table")]
 position = Vector2(460, 425)
+
+[node name="FloorMat" parent="." instance=ExtResource("floor_mat")]
+position = Vector2(610, 445)
+[node name="Sink" parent="." instance=ExtResource("sink")]
+position = Vector2(670, 240)
+[node name="FloorLamp" parent="." instance=ExtResource("floor_lamp")]
+position = Vector2(185, 300)
+[node name="DiningTable" parent="." instance=ExtResource("dining_table")]
+position = Vector2(335, 445)

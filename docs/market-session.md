@@ -40,7 +40,7 @@ Central economy settings in `resources/prototype_economy.tres` and `scripts/econ
 
 ## Try it on Windows
 
-1. Close Godot, fetch, select **`feat/save-continue`** for the current review (or merged `main` afterward), and pull. Open the project in Godot 4.7.2 and press F5.
+1. Close Godot, fetch, select **`main`**, or **`feat/business-ui-interiors`** for the current UI review, and pull. Open the project in Godot 4.7.2 and press F5.
 2. First test a new game: order rings, travel to the plaza before delivery, and open YOUR STALL. Start day must be disabled with a clear stock message; S must not summon customers or start the timer. Close with Escape and return home through the plaza exit. Then sleep, continue midnight’s report, and receive the morning delivery. Travel to the plaza, then open YOUR STALL with E. Before Start day, N must not sell anything.
 3. Start day with the button or S. Check the fixed quota, one-minute countdown, visible visitors, and named panel portrait. Holding S cannot restart or reroll today.
 4. Sell truthfully at 15: cash rises by 15, stock falls by one, and reputation rises by two. Try 20 for +1 reputation. Reject a truthful 30-credit offer: the visitor is served, but cash and stock stay unchanged.

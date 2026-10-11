@@ -1,5 +1,25 @@
 # Asset origins
 
+## Textured modular indoor walls
+
+- File: `jewel-rpg/assets/interiors/interior_walls.png`.
+- Created: 2026-10-11 using the OpenAI image-generation tool, with the project manager's supplied indoor reference guiding thick wall caps, visible wall faces, window sections, and corner construction.
+- Brief: original contemporary worn cream drywall with honey-brown wood trim; plain, window, and open-doorway rear sections; low front wall, left/right side walls, left/right L corners, and corner pillar. The reference's cathedral stonework and stained glass were translated into a modest modern apartment instead of copied.
+- Source output: `exec-b9b39024-0673-4ae5-8cdd-af11dab4f7b1.png`, **1254 × 1254 RGBA**, retained in the workspace generated-images directory and copied unchanged into the repository.
+- Metadata and alpha measurements were read-only. Explicit AtlasTexture regions, reusable template sizes, wall assembly, drawing order, and collision are Godot settings; no PNG pixels were edited.
+- Purpose: reusable textured indoor walls with visible cutaway borders and alternative wall faces. These are high-resolution pixel-style pieces, not a native grid or automatic seamless TileSet. Opening art does not implement travel by itself.
+- The tool returned no asset-specific license notice. Applicable service terms govern usage; generation does not establish exclusive ownership or clearance. Exact framing and remaining integration checks are in [the art guide](art-guide.md).
+
+## Expanded indoor furniture
+
+- File: `jewel-rpg/assets/interiors/interior_details.png`.
+- Created: 2026-10-11 using the OpenAI image-generation tool, referencing the visually inspected original starter-apartment furniture and approved modern-market concept for consistent warm, cute textured rendering.
+- Brief: four fully framed isolated contemporary thrift props on a transparent sheet: faded sage/peach floor rug, scuffed square dining table, chipped cream sink cabinet with faucet, and fabric-shade standing lamp. No baked room or floor, text, or exterior light halo.
+- Source output: `exec-6651127c-a1ff-48b1-a1db-6ba04d791506.png`, **1254 × 1254 RGBA**, retained in the workspace generated-images directory and copied unchanged into the repository.
+- Metadata and alpha measurements were read-only. Atlas cropping, uniform scaling, collision, and drawing order are Godot settings; no PNG pixels were edited.
+- Purpose: modular indoor variety reusable in later interiors. These are static high-resolution pixel-style illustrations, not a native pixel-grid guarantee, alternate orientations, or furniture interaction system.
+- The tool returned no asset-specific license notice. Applicable service terms govern usage; generation does not establish exclusive ownership or clearance. Exact framing and display guidance are in [the art guide](art-guide.md).
+
 ## Starter-apartment furniture and materials
 
 - Files: `jewel-rpg/assets/interiors/apartment_furniture.png` and `jewel-rpg/assets/interiors/apartment_surfaces.png`.
