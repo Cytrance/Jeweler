@@ -19,6 +19,12 @@ func frames(count: int) -> void:
 
 func _run() -> void:
 	var scene = load("res://scenes/main.tscn").instantiate()
+	# Keep the real player, planter, and board in a controlled fixture. Level
+	# decoration can be rearranged without changing these collision contracts.
+	for child in scene.get_children():
+		if child.name not in ["PlayerPlaceholder", "PlanterTopLeft", "Sign"]:
+			child.free()
+	scene.get_node("PlanterTopLeft").position = Vector2(150, 150)
 	root.add_child(scene)
 	await frames(3)
 	var player = scene.get_node("PlayerPlaceholder")
@@ -68,7 +74,7 @@ func _run() -> void:
 	second_board.position = board.position
 	scene.add_child(second_board)
 	scene.move_child(second_board, 0)
-	player.position = Vector2(400, 270)
+	player.position = board.position + Vector2(-60, 0)
 	await frames(3)
 	board._set_dialogue(true)
 	second_board._on_body_exited(player)

@@ -102,7 +102,9 @@ Acceptance checks:
 - Independent review inspects the actual scene and assets; focused checks cover changed scene dependencies rather than automatically repeating every historical suite.
 - Follow [the modern-market walkthrough](modern-market.md) and report the visual playtest before approving the merge.
 
-## Current milestone: reusable modular plaza kit
+## Completed milestone: reusable modular plaza kit
+
+The project manager confirmed collision, adding new prop instances, and the tilemap on Windows, then merged the kit into `main` at `1a9b871`. The merged level also includes the project manager's saved placement and paving edits.
 
 Replace the fixed plaza backdrop with repeatable ground and separately placed objects. Extract the existing stall and board into reusable scenes, and add a flower planter with its own solid footprint. This is a small asset workflow checkpoint before the business loop; it does not promise a complete town or convert every pictured object into a game asset.
 
@@ -117,12 +119,25 @@ Acceptance checks:
 - Relevant physics, interaction, and asset checks run; unchanged suites are reused when justified.
 - The project manager follows [the modular-plaza walkthrough](modular-plaza.md), judges appearance and collision fit on Windows, and approves the merge.
 
+## Current milestone: flowering trees and streetlamps
+
+Restore some of the approved cosy atmosphere with two tall reusable prop designs, each combining its artwork and a solid grounded base. This builds on the tested modular kit rather than returning to a flat background.
+
+Acceptance checks:
+
+- Two flowering-tree instances and two streetlamp instances share their respective source scenes and inherit collision.
+- Tree collision covers the trunk/base; its broader canopy does not become an invisible wall. Lamp collision covers its small base.
+- Ground-contact points, uniform display scales, and Y sorting allow the founder to walk behind tall artwork and appear in front when below it.
+- Tree, lamp, founder, stall, and planter scales and lighting fit the approved warm modern-market direction.
+- The initial player position and routes to the board and stall remain usable.
+- Focused checks cover new prop integration and physics. Existing checks that depend on level layout remain usable without automatically repeating every historical suite.
+- The project manager follows [the scenery walkthrough](plaza-scenery.md), checks visual quality and routes on Windows, and approves the merge.
+
 ## Next milestones, each reviewed separately
 
-1. Expand the modular scenery kit: agree on the next small set, such as a tree, lamp, or storefront doorway, with reusable collision and interaction where appropriate.
-2. Purchase loop: supplier, cash, stock, insufficient-funds feedback.
-3. Sales loop: prices, sales claims, customer acceptance/rejection, transaction feedback.
-4. Consequences: end-day complaints, reserved refunds, reputation feedback.
+1. Purchase loop: supplier, cash, stock, insufficient-funds feedback.
+2. Sales loop: prices, sales claims, customer acceptance/rejection, transaction feedback.
+3. Consequences: end-day complaints, reserved refunds, reputation feedback.
 
 The [design brief](game-design.md) defines acceptance checks across the first complete loop. Research, precious-material suppliers, staff, boutiques, supply chains, and luxury competition remain later goals. Save/load and a final balanced economy are not yet implemented.
 

@@ -35,13 +35,14 @@ func _run() -> void:
 	await frames(50)
 	Input.action_release("move_up")
 	check(absf(player.position.y - (stall.position.y + half_height)) < 0.2, "stall blocks approach from below")
-	# Walk past both ends: cosmetic scenery and widened stall must leave clear routes.
-	for side in [-1, 1]:
-		player.position = stall.position + Vector2(side * 140, 140)
+	# Walk the actual open lanes between the stall, board, and scenery.
+	# Left lane is west of the relocated board; right lane is west of the trees.
+	for horizontal_offset in [-210, 120]:
+		player.position = stall.position + Vector2(horizontal_offset, 140)
 		Input.action_press("move_up")
 		await frames(80)
 		Input.action_release("move_up")
-		check(player.position.y < stall.position.y - half_height, "route around stall end " + str(side))
+		check(player.position.y < stall.position.y - half_height, "route around stall at x offset " + str(horizontal_offset))
 	scene.queue_free()
 	await process_frame
 	print("Market checks: ", checks, "; failures: ", failures)

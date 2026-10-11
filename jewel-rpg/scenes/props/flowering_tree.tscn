@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/modular/flowering_tree.png" id="1_art"]
+
+[sub_resource type="RectangleShape2D" id="Rectangle_base"]
+size = Vector2(80, 40)
+
+[node name="FloweringTree" type="StaticBody2D"]
+
+[node name="Visual" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -100.0)
+scale = Vector2(0.22705771050141912, 0.22705771050141912)
+texture = ExtResource("1_art")
+region_enabled = true
+region_rect = Rect2(46, 117, 1124, 1057)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("Rectangle_base")

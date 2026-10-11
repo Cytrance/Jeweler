@@ -56,3 +56,14 @@ Known visual limitations and import guidance are recorded in [the art guide](art
 - Purpose: repeatable ground texture and a single reusable flower-planter design. The planter's collision is authored in its Godot scene; the paving's walkable configuration is authored in the TileSet.
 - Planter alpha ranges from 0 to 255, with transparent corners and faint exterior residue. The paving source is not guaranteed exactly seamless; repeated appearance requires review in the rendered game. These are pixel-style illustrations, not an established native low-resolution grid.
 - Source framing and final engine geometry are recorded in [the art guide](art-guide.md).
+
+
+## Flowering tree and streetlamp
+
+- Files: `jewel-rpg/assets/modular/flowering_tree.png` and `jewel-rpg/assets/modular/streetlamp.png`.
+- Created: 2026-10-11 using the OpenAI image-generation tool, referencing the approved modern-market concept; the tree also references the existing flower planter for consistency.
+- Brief: one fully framed pink-flowering tree and one warm contemporary market streetlamp, each on a transparent exterior, with separate artwork for reusable grounded prop scenes.
+- Source canvases: tree 1212 × 1298 RGBA; lamp 1024 × 1536 RGBA. Selected generated outputs are copied unchanged; source-image inspections are read-only. Godot regions and uniform scales do not edit source pixels.
+- Tree source output: `exec-1b5f1dd5-da76-4306-8c15-e55235f18668.png`; lamp source output: `exec-eb9dd24c-d053-46d7-914f-88bccff488f9.png`. Original outputs remain in the task workspace's generated-images directory.
+- Both have transparent corners and faint alpha residue beyond the useful silhouette. These are high-resolution pixel-style illustrations, not animation sheets or a shared native pixel grid.
+- Collision is authored in each Godot scene. The warm lamp illumination is part of the static drawing, not dynamic lighting. Final geometry and framing are recorded in [the art guide](art-guide.md) and [scenery walkthrough](plaza-scenery.md).
