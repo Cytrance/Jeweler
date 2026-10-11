@@ -133,9 +133,9 @@ Acceptance checks:
 - Focused checks cover new prop integration and physics. Existing checks that depend on level layout remain usable without automatically repeating every historical suite.
 - The project manager follows [the scenery walkthrough](plaza-scenery.md), checks visual quality and routes on Windows, and approves the merge.
 
-## Current milestone: directional founder walking animation
+## Reviewed checkpoint, merge pending: directional founder walking animation
 
-Replace the static founder with down, up, and side poses and a simple alternating-leg walk cycle. Mirror the side view for left movement. Keep the existing physical movement, map placements, collision, and board interaction.
+The project manager accepted the animation and authorized another checkpoint on the same `feat/player-animation` branch before merging. Replace the static founder with down, up, and side poses and a simple alternating-leg walk cycle. Mirror the side view for left movement. Keep the existing physical movement, map placements, collision, and board interaction.
 
 Acceptance checks:
 
@@ -148,11 +148,25 @@ Acceptance checks:
 - Relevant animation, movement, and interaction checks run; unchanged prop-art suites are not automatically repeated.
 - The project manager follows [the animation walkthrough](player-animation.md), judges the cycle at gameplay size, and approves the merge.
 
+## Current checkpoint: starter-stock purchases
+
+Add a reachable supplier counter, a cash/stock HUD, and one-ring purchases using the placeholder figures: 100 starting credits, zero rings, and 10 credits per ring. This is a second checkpoint on `feat/player-animation`, authorized by the project manager for a combined merge later.
+
+Acceptance checks:
+
+- The supplier displays the real plated-brass and simulated-stone composition and unit cost.
+- E opens/closes nearby; Escape closes; B or the Buy button purchases exactly one ring per deliberate action.
+- Each successful purchase subtracts 10 credits and adds one ring; insufficient funds leave both unchanged and produce feedback.
+- Purchasing while closed or away from the counter is prevented; held keys do not generate repeated purchases.
+- The HUD and open supplier panel agree with one shared business state.
+- Movement, walking animation, and bob stop immediately while the panel is open and resume after closing. Board and supplier interactions do not unlock or overlap one another.
+- Focused purchase checks and independent review cover the new rules and interaction dependencies; previous animation and prop-art evidence is reused where unchanged.
+- The project manager follows [the stock-purchases walkthrough](stock-purchases.md) before approving the combined pull request.
+
 ## Next milestones, each reviewed separately
 
-1. Purchase loop: supplier, cash, stock, insufficient-funds feedback.
-2. Sales loop: prices, sales claims, customer acceptance/rejection, transaction feedback.
-3. Consequences: end-day complaints, reserved refunds, reputation feedback.
+1. Sales loop: prices, sales claims, customer acceptance/rejection, transaction feedback.
+2. Consequences: end-day complaints, reserved refunds, reputation feedback.
 
 The [design brief](game-design.md) defines acceptance checks across the first complete loop. Research, precious-material suppliers, staff, boutiques, supply chains, and luxury competition remain later goals. Save/load and a final balanced economy are not yet implemented.
 

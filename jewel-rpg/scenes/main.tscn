@@ -10,6 +10,11 @@
 [ext_resource type="PackedScene" path="res://scenes/props/flowering_tree.tscn" id="7_tree"]
 [ext_resource type="PackedScene" path="res://scenes/props/streetlamp.tscn" id="8_lamp"]
 
+[ext_resource type="Script" path="res://scripts/business_state.gd" id="9_state"]
+[ext_resource type="Resource" path="res://resources/prototype_economy.tres" id="10_economy"]
+[ext_resource type="PackedScene" path="res://scenes/props/supplier_counter.tscn" id="11_supplier"]
+[ext_resource type="PackedScene" path="res://scenes/business_hud.tscn" id="12_hud"]
+
 [sub_resource type="RectangleShape2D" id="Rectangle_player"]
 size = Vector2(32, 48)
 
@@ -67,3 +72,15 @@ position = Vector2(260, 180)
 
 [node name="LampRight" parent="." instance=ExtResource("8_lamp")]
 position = Vector2(740, 155)
+
+[node name="BusinessState" type="Node" parent="."]
+script = ExtResource("9_state")
+economy = ExtResource("10_economy")
+
+[node name="SupplierCounter" parent="." instance=ExtResource("11_supplier")]
+position = Vector2(270, 440)
+player_path = NodePath("../PlayerPlaceholder")
+business_state_path = NodePath("../BusinessState")
+
+[node name="BusinessHUD" parent="." instance=ExtResource("12_hud")]
+business_state_path = NodePath("../BusinessState")

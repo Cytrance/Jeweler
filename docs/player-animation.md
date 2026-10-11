@@ -58,8 +58,12 @@ From the repository root, run the new behaviour check with the pinned cloud engi
 env XDG_DATA_HOME=/workspace/tools/data XDG_CONFIG_HOME=/workspace/tools/config XDG_CACHE_HOME=/workspace/tools/cache /workspace/tools/godot/bin/godot --headless --path jewel-rpg --script res://tests/verify_animation.gd
 ```
 
-Automated results establish behaviour and resource alignment. They do not establish smooth motion or final art quality. The project manager's Windows review of timing, feet, framing, and directional appearance remains pending before merge.
+Automated results establish behaviour and resource alignment. They do not establish smooth motion or final art quality. The project manager reported that the animation is fine and authorized continuing on the same branch before merging. Its detailed automated and rendered evidence remains reusable; stock purchasing is the next separate commit on this branch.
 
 The coordinating agent also rendered the actual game through Godot 4.7.2's Compatibility renderer on a virtual Xorg display with Mesa software graphics. A temporary preview driver exercised right, down, left, and up travel and pauses in the existing level. An eight-second, 240-frame capture and sampled sequential frames showed distinct front/back/profile views, visible neutral-to-stride leg changes, correct left mirroring, retained idle facing, and readable scale without obvious clipping or distracting fringe. The reviewer inspected gameplay-size down-walk, down-idle, and up-idle captures. Side-step leg identity remains subtle, so the Windows motion review is still needed. The preview driver and recording are task artifacts, not new game controls.
 
 No game-script errors were reported. The unsupported-VSync warning and dummy audio backend belong to the cloud display environment; this checkpoint adds no audio feature.
+
+## Continuing before merge
+
+The project manager chose to batch checkpoints on `feat/player-animation`. The branch now also contains [starter-stock purchases](stock-purchases.md). Fetching and pulling this branch supplies both changes. A combined pull request can be titled **Add directional walking and starter-stock purchases**; squash and merge records their combined final result on `main`.
