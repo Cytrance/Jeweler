@@ -59,6 +59,20 @@ buy_stock={
 ]
 }
 
+serve_customer={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":78)]
+}
+
+cycle_price={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":80)]
+}
+toggle_claim={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"physical_keycode":67)]
+}
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

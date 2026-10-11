@@ -82,7 +82,7 @@ Cash balance, sales revenue, and profit are different. Buying stock lowers cash 
 1. Review this brief and [the modern art guide](art-guide.md).
 2. Replace fantasy-styled founder and workshop direction with one modern market-stall scene; preserve useful movement and interaction code.
 3. Implement purchases and visible cash/stock only.
-4. Implement prices, claims, and one explicit customer sale/rejection.
-5. Implement day-end complaints, reserved refunds, and reputation feedback.
+4. Implement prices, claims, one explicit customer sale/rejection, truthful-sale reputation, and immediate refund reservations so purchasing cannot spend protected cash.
+5. Implement day-end complaint resolution, refund/item return, revenue reversal, and reputation penalties.
 
 Each step normally has its own branch, focused checks, independent review, and project-manager approval. The project manager may authorize several separately committed checkpoints on one branch for a combined pull request; this does not skip focused review or final merge approval. The entire business loop is the destination across several milestones, not the next single coding assignment.

@@ -133,9 +133,9 @@ Acceptance checks:
 - Focused checks cover new prop integration and physics. Existing checks that depend on level layout remain usable without automatically repeating every historical suite.
 - The project manager follows [the scenery walkthrough](plaza-scenery.md), checks visual quality and routes on Windows, and approves the merge.
 
-## Reviewed checkpoint, merge pending: directional founder walking animation
+## Completed milestone: directional founder walking animation
 
-The project manager accepted the animation and authorized another checkpoint on the same `feat/player-animation` branch before merging. Replace the static founder with down, up, and side poses and a simple alternating-leg walk cycle. Mirror the side view for left movement. Keep the existing physical movement, map placements, collision, and board interaction.
+The project manager accepted the animation, authorized purchases as another commit on the same branch, then tested and squash-merged the combined result into `main` at `37f1681`. Replace the static founder with down, up, and side poses and a simple alternating-leg walk cycle. Mirror the side view for left movement. Keep the existing physical movement, map placements, collision, and board interaction.
 
 Acceptance checks:
 
@@ -148,9 +148,9 @@ Acceptance checks:
 - Relevant animation, movement, and interaction checks run; unchanged prop-art suites are not automatically repeated.
 - The project manager follows [the animation walkthrough](player-animation.md), judges the cycle at gameplay size, and approves the merge.
 
-## Current checkpoint: starter-stock purchases
+## Completed milestone: starter-stock purchases
 
-Add a reachable supplier counter, a cash/stock HUD, and one-ring purchases using the placeholder figures: 100 starting credits, zero rings, and 10 credits per ring. This is a second checkpoint on `feat/player-animation`, authorized by the project manager for a combined merge later.
+The project manager tested the purchases and merged the combined animation/purchase branch into `main` at `37f1681`. Add a reachable supplier counter, a cash/stock HUD, and one-ring purchases using the placeholder figures: 100 starting credits, zero rings, and 10 credits per ring. The two separate feature commits demonstrated batching several checkpoints into one pull request and one squash merge.
 
 Acceptance checks:
 
@@ -163,10 +163,24 @@ Acceptance checks:
 - Focused purchase checks and independent review cover the new rules and interaction dependencies; previous animation and prop-art evidence is reused where unchanged.
 - The project manager follows [the stock-purchases walkthrough](stock-purchases.md) before approving the combined pull request.
 
+## Current checkpoint: prices, claims, and customer sales
+
+At the founder's stall, set a price of 15, 20, or 30 credits, choose a truthful or misleading description, and explicitly serve the next customer. Keep the product's actual composition visible independently of the chosen claim. This checkpoint uses predictable prototype thresholds, rather than autonomous crowds or a balanced customer simulation.
+
+Acceptance checks:
+
+- E opens the sales panel nearby; E or Escape closes it. Price and claim controls work with keyboard and mouse.
+- Serving is one deliberate action per customer; keyboard echoes and closed-panel input do not create transactions.
+- A sale requires stock. Truthful claims sell at prices up to 20; misleading claims sell at prices up to 30. Rejection leaves business values unchanged and explains why.
+- Successful sales consume one ring, add the price to cash and sales revenue, and give clear customer feedback. Truthful sales add one reputation point.
+- Each misleading sale records a pending refund and reserves its full price immediately. Supplier purchases use available cash, so reserved funds cannot be spent.
+- HUD and panels agree with the central business state. Movement and animation stop while interacting, without overlapping the supplier or board's lock.
+- Relevant sales and purchase checks run because business state is shared; unchanged animation and prop-art evidence is reused.
+- The project manager follows [the customer-sales walkthrough](customer-sales.md), checks panel readability and feedback on Windows, and approves the branch.
+
 ## Next milestones, each reviewed separately
 
-1. Sales loop: prices, sales claims, customer acceptance/rejection, transaction feedback.
-2. Consequences: end-day complaints, reserved refunds, reputation feedback.
+1. Consequences: explicitly end the day, resolve each scheduled refund once, return its ring, reverse its revenue, and apply the reputation penalty. Refund reservations already protect cash in the sales checkpoint; resolution is still deferred.
 
 The [design brief](game-design.md) defines acceptance checks across the first complete loop. Research, precious-material suppliers, staff, boutiques, supply chains, and luxury competition remain later goals. Save/load and a final balanced economy are not yet implemented.
 
