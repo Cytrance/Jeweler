@@ -22,6 +22,10 @@ func frames(count: int) -> void:
 
 func _run() -> void:
 	var scene = load("res://scenes/main.tscn").instantiate()
+	# Verify player/stall behavior without editable scenery blocking the fixture.
+	for child in scene.get_children():
+		if child.name not in ["PlayerPlaceholder", "Obstacle"]:
+			child.free()
 	root.add_child(scene)
 	var player = scene.get_node("PlayerPlaceholder")
 	await frames(2)

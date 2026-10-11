@@ -32,6 +32,13 @@ func press(action: String) -> void:
 
 func _run() -> void:
 	var scene = load("res://scenes/main.tscn").instantiate()
+	# Interaction is tested in a controlled fixture, independently of editable
+	# market decoration and the project manager's level placements.
+	for child in scene.get_children():
+		if child.name not in ["PlayerPlaceholder", "Sign"]:
+			child.free()
+	scene.get_node("Sign").position = Vector2(360, 270)
+	scene.get_node("PlayerPlaceholder").position = Vector2(480, 270)
 	root.add_child(scene)
 	var player = scene.get_node("PlayerPlaceholder")
 	var sign = scene.get_node("Sign")

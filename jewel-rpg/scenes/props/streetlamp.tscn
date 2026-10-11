@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/modular/streetlamp.png" id="1_art"]
+
+[sub_resource type="RectangleShape2D" id="Rectangle_base"]
+size = Vector2(24, 24)
+
+[node name="Streetlamp" type="StaticBody2D"]
+
+[node name="Visual" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -63.0)
+scale = Vector2(0.11503067484662577, 0.11503067484662577)
+texture = ExtResource("1_art")
+region_enabled = true
+region_rect = Rect2(381, 114, 262, 1304)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("Rectangle_base")
