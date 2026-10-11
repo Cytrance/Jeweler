@@ -1,33 +1,33 @@
-[gd_resource type="TileSet" load_steps=8 format=3]
+[gd_resource type="TileSet" load_steps=9 format=3]
 [ext_resource type="Texture2D" path="res://assets/interiors/interior_walls.png" id="1"]
+[ext_resource type="Texture2D" path="res://assets/interiors/interior_wall_materials.png" id="2"]
 [sub_resource type="AtlasTexture" id="Drywall"]
-atlas = ExtResource("1")
-region = Rect2(36, 81, 370, 366)
+atlas = ExtResource("2")
+region = Rect2(0, 0, 320, 240)
 [sub_resource type="TileSetAtlasSource" id="SourceDrywall"]
 texture = SubResource("Drywall")
-texture_region_size = Vector2i(370, 366)
+texture_region_size = Vector2i(320, 240)
 0:0/0 = 0
 0:0/0/custom_data_0 = "drywall"
 [sub_resource type="AtlasTexture" id="Window"]
 atlas = ExtResource("1")
-region = Rect2(447, 81, 362, 366)
-margin = Rect2(4.0, 0, 8, 0)
+region = Rect2(520, 170, 222, 217)
+margin = Rect2(49, 11, 98, 23)
 [sub_resource type="TileSetAtlasSource" id="SourceWindow"]
 texture = SubResource("Window")
-texture_region_size = Vector2i(370, 366)
+texture_region_size = Vector2i(320, 240)
 0:0/0 = 0
 0:0/0/custom_data_0 = "window"
 [sub_resource type="AtlasTexture" id="Doorway"]
 atlas = ExtResource("1")
-region = Rect2(851, 81, 366, 366)
-margin = Rect2(2.0, 0, 4, 0)
+region = Rect2(872, 155, 320, 240)
 [sub_resource type="TileSetAtlasSource" id="SourceDoorway"]
 texture = SubResource("Doorway")
-texture_region_size = Vector2i(370, 366)
+texture_region_size = Vector2i(320, 240)
 0:0/0 = 0
 0:0/0/custom_data_0 = "doorway"
 [resource]
-tile_size = Vector2i(370, 366)
+tile_size = Vector2i(320, 240)
 custom_data_layer_0/name = "material"
 custom_data_layer_0/type = 4
 sources/0 = SubResource("SourceDrywall")

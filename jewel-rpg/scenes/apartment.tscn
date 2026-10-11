@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" path="res://scenes/props/dining_table.tscn" id="dining_table"]
 [ext_resource type="PackedScene" path="res://scenes/props/sink.tscn" id="sink"]
 [ext_resource type="PackedScene" path="res://scenes/props/floor_lamp.tscn" id="floor_lamp"]
+[ext_resource type="Texture2D" path="res://resources/wall_material_plaster.tres" id="wall_plaster"]
+[ext_resource type="Script" path="res://scripts/interior_wall_profile.gd" id="wall_profile"]
 [node name="Apartment" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("9_tiles")
@@ -22,10 +24,18 @@ position = Vector2(144, 152)
 scale = Vector2(0.051036683, 0.051036683)
 texture_filter = 1
 tile_set = ExtResource("7_floor")
+[node name="BackWallUnderlay" type="Node2D" parent="."]
+z_index = -10
+position = Vector2(480, 144)
+texture_filter = 1
+script = ExtResource("wall_profile")
+profile_size = Vector2(672, 72)
+kind = 5
+plaster = ExtResource("wall_plaster")
 [node name="WallTiles" type="TileMapLayer" parent="."]
 z_index = -9
-position = Vector2(144, 56)
-scale = Vector2(0.259459459, 0.262295082)
+position = Vector2(144, 72)
+scale = Vector2(0.3, 0.3)
 texture_filter = 1
 tile_set = ExtResource("8_wall")
 [node name="RoomName" type="Label" parent="."]

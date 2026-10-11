@@ -1,6 +1,14 @@
 # Modern market art guide
 
-## Textured cutaway indoor walls
+## Continuous indoor wall materials
+
+`assets/interiors/interior_wall_materials.png` is an unchanged **1774 × 887 RGB** atlas with two fully opaque flat materials: worn warm cream plaster at `Rect2(0, 0, 887, 887)` and honey-brown wood at `Rect2(887, 0, 887, 887)`. Neither region contains a silhouette, transparent gap, bevel-ended cap, or wall border. Geometry defines uninterrupted straight rear/side/front wall profiles and flush corner joins; these textures provide surface detail inside those profiles. This separates material reuse from room boundary construction.
+
+Generation requested seamless material repetition, but exact edge matching is not certified. Inspect repeated texture seams independently from geometry: opaque material regions prevent transparent gaps, while code must still enforce straight outlines and shared corner edges. Use nearest filtering and sensible texture scale rather than stretching a small source crop across an entire wall. The existing window frame can remain an insert over a continuous plaster face; complete isolated window-wall pictures should not introduce extra posts between every room section. No source pixels were edited.
+
+The sprite agent inspected the final **960 × 540** apartment render on 2026-10-11. Left, right, and front profiles have continuous straight outer edges, with flush corners and no transparent/background gaps or repeated bevels. Rear trim draws behind furniture: the computer monitor, sink faucet, bed posts, and apartment door are fully visible. Window-frame inserts sit over continuous plaster without adding unwanted posts between sections. Material stains repeat visibly, a remaining texture limitation rather than a boundary gap. This verifies the pictured composition and drawing order; independent collision checks and the project manager's Windows playtest remain separate evidence.
+
+## Indoor wall source and rejected segmented assembly
 
 `assets/interiors/interior_walls.png` provides nine original modular pieces: cracked cream drywall, window wall, open doorway wall, a low front-wall section, left/right side-wall sections, two L-shaped corner pieces, and a square corner pillar. Their worn plaster and honey-brown caps/baseboards keep the apartment contemporary and modest. The project manager's indoor reference informed thick visible walls, ledges, and joins; its cathedral masonry and stained glass are not transplanted into this room.
 
@@ -22,7 +30,9 @@ Use explicitly measured regions rather than assuming an evenly spaced sprite gri
 
 The source includes textured caps and corners, so visible room edges need not be represented by plain colour outlines alone. Fine alpha residue and small piece-width differences remain. Exact seamless joins and a common native low-resolution pixel grid are not guaranteed. Godot layout/cropping does not modify source pixels. Integrated wall joins, overlap order, door alignment, and rear-window readability require normal-size gameplay inspection.
 
-The sprite agent inspected an actual **960 × 540** integrated apartment render on 2026-10-11. Textured rear panels, blue window panes, side faces, low foreground wall, and L-shaped front joins visibly enclose the room. Repeated panel seams remain apparent as separate wood-framed modules; this kit is not advertised as seamless plaster. The new lamp, sink, dining table, and floor rug remain recognisable beside the 96-pixel founder and fit the existing worn furniture. This establishes current composition/readability evidence, not collision correctness or the project manager's Windows approval. A HUD/title overlap in that capture was corrected; the root agent inspected a fresh render with the apartment heading clear of the HUD.
+The project manager rejected the first integrated wall assembly: repeating isolated bevel-ended cap sprites produced a zigzag outer profile and visible gaps, especially on the sides. Source framing and readable material detail were insufficient acceptance checks. Use **continuous straight wall geometry** with opaque material crops; reserve a separately framed window for an insert. Do not repeat complete isolated side-cap or L-corner pictures along a straight wall. Those source pieces remain recorded for provenance, not as approved straight-wall construction. Final visual review must explicitly inspect uninterrupted outer contours, flush corners, and absence of background gaps at normal gameplay size.
+
+Furniture readability in the first 960 × 540 render was acceptable: lamp, sink, dining table, and rug match the 96-pixel founder. This does not override the wall rejection. The HUD/title overlap from that render was corrected separately.
 
 ## Expanded reusable indoor furniture
 

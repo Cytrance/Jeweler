@@ -1,5 +1,15 @@
 # Asset origins
 
+## Continuous indoor wall materials
+
+- File: `jewel-rpg/assets/interiors/interior_wall_materials.png`.
+- Created: 2026-10-11 with the OpenAI image-generation tool, referencing the original worn cream/wood wall atlas only for palette and material appearance.
+- Brief: two equal opaque flat material regions, warm cream worn drywall and honey-brown horizontal wood grain; no isolated wall shapes, caps, border silhouettes, transparent exterior, windows, labels, or perspective lighting. These support continuous geometry after the project manager rejected repeated angled wall segments.
+- Source output: `exec-77f8afb1-702e-45af-a4b6-9fca6034a5f5.png`, **1774 × 887 RGB**, retained in generated-images and copied unchanged to the repository.
+- Read-only metadata/source inspection confirmed opaque edge-to-edge materials. Left/right regions are exactly 887 × 887. Material tiling, profiles, corners, and collision are engine settings; no source pixels were edited.
+- Seamless repetition was requested but is not guaranteed. Straight wall contours and gap-free corners must be enforced by geometry and checked in the rendered room.
+- The tool returned no asset-specific license notice. Applicable service terms govern usage; generation does not establish exclusive ownership or clearance.
+
 ## Textured modular indoor walls
 
 - File: `jewel-rpg/assets/interiors/interior_walls.png`.

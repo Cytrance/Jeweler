@@ -7,15 +7,28 @@ extends Node2D
 	set(value):
 		floor_bounds = value
 		queue_redraw()
-@export var thickness := 24.0
-@export var front_cap: Texture2D
-@export var left_cap: Texture2D
-@export var right_cap: Texture2D
-@export var left_corner: Texture2D
-@export var right_corner: Texture2D
-@export var plaster := Color("b9a995")
-@export var shadow := Color("655951")
-@export var trim := Color("e4d1b5")
+		var trim_node := get_node_or_null("RearTrim")
+		if trim_node:
+			trim_node.floor_bounds = value
+@export var thickness := 24.0:
+	set(value):
+		thickness = value
+		queue_redraw()
+		var trim_node := get_node_or_null("RearTrim")
+		if trim_node:
+			trim_node.thickness = value
+const WallProfile = preload("res://scripts/interior_wall_profile.gd")
+@export var wood: Texture2D:
+	set(value):
+		wood = value
+		queue_redraw()
+		var trim_node := get_node_or_null("RearTrim")
+		if trim_node:
+			trim_node.wood = value
+@export var plaster: Texture2D:
+	set(value):
+		plaster = value
+		queue_redraw()
 
 func rectangles() -> Array[Rect2]:
 	var r := floor_bounds
@@ -27,6 +40,9 @@ func rectangles() -> Array[Rect2]:
 	]
 
 func _ready() -> void:
+	$RearTrim.floor_bounds = floor_bounds
+	$RearTrim.thickness = thickness
+	$RearTrim.wood = wood
 	if Engine.is_editor_hint():
 		return
 	for index in rectangles().size():
@@ -43,22 +59,8 @@ func _ready() -> void:
 		add_child(body)
 
 func _draw() -> void:
-	if not front_cap or not left_cap or not right_cap:
-		for rect in rectangles():
-			draw_rect(rect, shadow)
-			draw_rect(rect.grow(-3), plaster)
-		return
 	var r := floor_bounds
-	# Repeat individual atlas pieces, rather than stretching one room backdrop.
-	for x in range(int(ceil(r.size.x / 96.0))):
-		var width := minf(96, r.end.x - (r.position.x + x * 96))
-		draw_texture_rect(front_cap, Rect2(r.position.x + x * 96, r.end.y - 20, width, 32), false)
-		draw_texture_rect(front_cap, Rect2(r.position.x + x * 96, r.position.y - 8, width, 16), false)
-	for y in range(int(ceil(r.size.y / 96.0))):
-		var height := minf(96, r.end.y - (r.position.y + y * 96))
-		draw_texture_rect(left_cap, Rect2(r.position.x - 15, r.position.y + y * 96, 30, height), false)
-		draw_texture_rect(right_cap, Rect2(r.end.x - 15, r.position.y + y * 96, 30, height), false)
-	if left_corner:
-		draw_texture_rect(left_corner, Rect2(r.position.x - 16, r.end.y - 44, 60, 56), false)
-	if right_corner:
-		draw_texture_rect(right_corner, Rect2(r.end.x - 44, r.end.y - 44, 60, 56), false)
+	# Continuous rectangular profiles share endpoints; corners contain no end caps.
+	WallProfile.side(self, Rect2(r.position.x - thickness / 2, r.position.y, thickness, r.size.y), wood, plaster)
+	WallProfile.side(self, Rect2(r.end.x - thickness / 2, r.position.y, thickness, r.size.y), wood, plaster)
+	WallProfile.front(self, Rect2(r.position.x - thickness / 2, r.end.y - thickness + 4, r.size.x + thickness, thickness + 8), wood, plaster)

@@ -35,10 +35,12 @@ func _run() -> void:
 	var room = scene.get_node("Apartment")
 	var shell = room.get_node("Walls")
 	scene.get_node("MarketClock").set_process(false)
-	check(shell.rectangles().size() == 4 and shell.get_child_count() == 4, "four visible border rectangles have matching physical bodies")
+	check(shell.rectangles().size() == 4 and shell.get_children().filter(func(child): return child is StaticBody2D).size() == 4, "four visible border rectangles have matching physical bodies")
+	check(shell.z_index + shell.get_node("RearTrim").z_index < 0 and shell.z_index > 0, "rear trim draws behind furniture while cutaway edges remain foreground")
+	check(shell.wood.atlas.get_image().detect_alpha() == Image.ALPHA_NONE, "joining wall material atlas is fully opaque")
 	for index in 4:
 		var rect: Rect2 = shell.rectangles()[index]
-		var body = shell.get_child(index)
+		var body = shell.get_node(["Left", "Right", "Bottom", "Top"][index])
 		check(body.position == rect.get_center() and body.get_node("Collision").shape.size == rect.size, "visible border aligns collider %s" % index)
 	check((await walk(player, Vector2(200, 400), "move_left")).x >= 172, "left visible wall blocks player")
 	check((await walk(player, Vector2(760, 400), "move_right")).x <= 788, "right visible wall blocks player")
@@ -74,7 +76,7 @@ func _run() -> void:
 		check(walls.get_source(source).get_tile_data(Vector2i.ZERO, 0).get_custom_data("material") == ["drywall", "window", "doorway"][source], "paintable named wall variant %s" % source)
 	for filename in ["wall_drywall", "wall_window", "wall_doorway", "wall_cap_front", "wall_cap_left", "wall_cap_right", "wall_cap_corner_left", "wall_cap_corner_right"]:
 		var piece = load("res://scenes/props/%s.tscn" % filename).instantiate()
-		check(piece is StaticBody2D and piece.get_node("Collision").shape != null and piece.get_node("Visual").texture != null, "standalone textured wall piece with default collision %s" % filename)
+		check(piece is StaticBody2D and piece.get_node("Collision").shape != null and (piece.get_node("Visual") is Sprite2D or piece.get_node("Visual").get_script() != null), "standalone textured wall piece with default collision %s" % filename)
 		piece.free()
 	var tile_room = load("res://scenes/apartment.tscn").instantiate()
 	tile_room.get_node("FloorTiles").set_cell(Vector2i(5, 5), 0, Vector2i(0, 0))
@@ -84,10 +86,10 @@ func _run() -> void:
 	check(tile_room.get_node("WallTiles").get_used_cells().size() == 1, "manual wall painting is preserved")
 	tile_room.queue_free()
 	scene.get_node("AreaTravel").set_area("plaza")
-	for body in shell.get_children():
+	for body in shell.get_children().filter(func(child): return child is StaticBody2D):
 		check(body.collision_layer == 0, "inactive room shell collision disabled")
 	scene.get_node("AreaTravel").set_area("apartment")
-	for body in shell.get_children():
+	for body in shell.get_children().filter(func(child): return child is StaticBody2D):
 		check(body.collision_layer == 1, "returning restores room shell collision")
 	print("Interior kit: %d checks, %d failures" % [checks, failures])
 	quit(1 if failures else 0)

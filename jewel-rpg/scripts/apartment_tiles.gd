@@ -11,6 +11,8 @@ func _ready() -> void:
 			for y in range(floor_height_tiles):
 				$FloorTiles.set_cell(Vector2i(x, y), 0, Vector2i(0, (x + y) % 2))
 	if $WallTiles.get_used_cells().is_empty():
-		for x in range(wall_sections):
-			# Real paintable source variants: 0 plaster, 1 window, 2 doorway.
-			$WallTiles.set_cell(Vector2i(x, 0), 1 if x in [1, 5] else 0, Vector2i.ZERO)
+		# The continuous underlay supplies plaster; only window inserts are painted.
+		# Source 0 drywall and source 2 doorway remain available for manual layouts.
+		for x in [1, 5]:
+			if x < wall_sections:
+				$WallTiles.set_cell(Vector2i(x, 0), 1, Vector2i.ZERO)
