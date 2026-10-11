@@ -12,4 +12,4 @@ func _ready() -> void:
 	_refresh()
 
 func _refresh() -> void:
-	summary.text = "Cash: %d credits\nRings in stock: %d" % [state.cash, state.stock]
+	summary.text = "Cash: %d credits\nRings in stock: %d\nRevenue: %d | Rep: %+d" % [state.cash, state.stock, state.revenue, state.reputation]

@@ -20,7 +20,7 @@ Opening the board dialogue immediately stops the stride and resets the visual bo
 
 ## Try it on Windows
 
-1. Preserve local edits and close Godot. Fetch in GitHub Desktop, select `feat/player-animation`, and pull if offered.
+1. Preserve local edits and close Godot. Fetch in GitHub Desktop, select `main` for the accepted animation or the current feature branch for review, and pull if offered.
 2. Open `jewel-rpg/project.godot` with Godot 4.7.2 and press F5. Click the game view for keyboard focus.
 3. Walk down, up, right, and left using WASD, then arrows. Check the front, back, and side poses at normal gameplay size.
 4. Watch several steps. The legs should alternate, the figure should bob gently, and its head and clothes should retain a consistent size.
@@ -58,7 +58,7 @@ From the repository root, run the new behaviour check with the pinned cloud engi
 env XDG_DATA_HOME=/workspace/tools/data XDG_CONFIG_HOME=/workspace/tools/config XDG_CACHE_HOME=/workspace/tools/cache /workspace/tools/godot/bin/godot --headless --path jewel-rpg --script res://tests/verify_animation.gd
 ```
 
-Automated results establish behaviour and resource alignment. They do not establish smooth motion or final art quality. The project manager reported that the animation is fine and authorized continuing on the same branch before merging. Its detailed automated and rendered evidence remains reusable; stock purchasing is the next separate commit on this branch.
+Automated results establish behaviour and resource alignment. They do not establish smooth motion or final art quality. The project manager accepted the animation and purchases, then squash-merged their combined branch into `main` at `37f1681`. Their detailed automated and rendered evidence remains reusable when the player script and artwork are unchanged.
 
 The coordinating agent also rendered the actual game through Godot 4.7.2's Compatibility renderer on a virtual Xorg display with Mesa software graphics. A temporary preview driver exercised right, down, left, and up travel and pauses in the existing level. An eight-second, 240-frame capture and sampled sequential frames showed distinct front/back/profile views, visible neutral-to-stride leg changes, correct left mirroring, retained idle facing, and readable scale without obvious clipping or distracting fringe. The reviewer inspected gameplay-size down-walk, down-idle, and up-idle captures. Side-step leg identity remains subtle, so the Windows motion review is still needed. The preview driver and recording are task artifacts, not new game controls.
 
@@ -66,4 +66,4 @@ No game-script errors were reported. The unsupported-VSync warning and dummy aud
 
 ## Continuing before merge
 
-The project manager chose to batch checkpoints on `feat/player-animation`. The branch now also contains [starter-stock purchases](stock-purchases.md). Fetching and pulling this branch supplies both changes. A combined pull request can be titled **Add directional walking and starter-stock purchases**; squash and merge records their combined final result on `main`.
+The project manager chose to batch checkpoints on `feat/player-animation`. It also contained [starter-stock purchases](stock-purchases.md), saved as a separate commit. The project manager tested both and squash-merged their combined final result into `main` at `37f1681`. This exercise demonstrated that one pull request can include several commits without skipping review.

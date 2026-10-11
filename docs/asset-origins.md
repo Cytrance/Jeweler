@@ -1,5 +1,16 @@
 # Asset origins
 
+## Modern market customers
+
+- File: `jewel-rpg/assets/customers/customer_sheet.png`.
+- Created: 2026-10-11 using the OpenAI image-generation tool, referencing the approved modern-market concept and existing chibi founder for rendering and proportions.
+- Brief: four original, fully framed contemporary customers on a transparent 2 × 2 sheet: Mina, a commuter in sage with a tote; Jo, an office worker in a navy blazer and glasses; Noor, a fashion student in a purple hoodie; and Bea, a silver-haired neighbour in a pink cardigan. One static front-facing pose each; no logos, text, scenery, or ground shadows.
+- Source output: `exec-6d4b281a-245a-4aa0-b213-02dda244d319.png`, preserved in the workspace generated-images directory and copied unchanged into the repository.
+- Source canvas: 1199 × 1312 RGBA. Framing and alpha measurements were read-only. Atlas regions, logical padding, uniform scale, and portrait crops are engine settings; no image pixels were edited.
+- Purpose: reusable customer actors and matching service-menu portraits. This is high-resolution pixel-style artwork, not a native pixel-grid guarantee or animation sheet.
+- The tool returned no asset-specific license notice. Applicable service terms govern usage; generation does not establish exclusive ownership or clearance.
+- Fine alpha residue and small figure-size differences remain. Precise handoff geometry and gameplay-size review requirements are recorded in [the art guide](art-guide.md).
+
 ## Modern market style concept v1
 
 - File: `docs/concepts/modern-market-style-v1.png`.

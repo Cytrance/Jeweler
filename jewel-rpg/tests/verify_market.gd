@@ -22,7 +22,7 @@ func _run() -> void:
 	root.add_child(scene)
 	var player = scene.get_node("PlayerPlaceholder")
 	var stall = scene.get_node("Obstacle")
-	var half_height: float = stall.get_node("CollisionShape2D").shape.size.y / 2.0 + player.get_node("CollisionShape2D").shape.size.y / 2.0
+	var half_height: float = stall.get_node("Stall/CollisionShape2D").shape.size.y / 2.0 + player.get_node("CollisionShape2D").shape.size.y / 2.0
 	await frames(3)
 	# The horizontal tabletop must block above and below, not just its short sides.
 	player.position = stall.position + Vector2(0, -140)

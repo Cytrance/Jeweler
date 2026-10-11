@@ -70,7 +70,7 @@ func _buy() -> void:
 	if state.purchase_one():
 		feedback.text = "Bought one imitation ring. Your empire now fits in a pocket."
 	else:
-		feedback.text = "Not enough cash: you need %d credits for one ring." % state.economy.unit_cost
+		feedback.text = "Not enough cash: need %d credits. Cash: %d." % [state.economy.unit_cost, state.cash]
 
 func _refresh() -> void:
 	details.text = "%s\n%s\nCost: %d credits each\nCash: %d credits   |   Stock: %d rings" % [state.economy.product_name, state.economy.materials, state.economy.unit_cost, state.cash, state.stock]

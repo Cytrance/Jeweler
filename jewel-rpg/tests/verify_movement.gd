@@ -68,7 +68,7 @@ func _run() -> void:
 
 	# Infer contact from actual scene geometry, so a resized stall is checked correctly.
 	var obstacle = scene.get_node("Obstacle")
-	var obstacle_collider = obstacle.get_node("CollisionShape2D")
+	var obstacle_collider = obstacle.get_node("Stall/CollisionShape2D")
 	var player_collider = player.get_node("CollisionShape2D")
 	var half_width: float = obstacle_collider.shape.size.x / 2.0 + player_collider.shape.size.x / 2.0
 	var left_contact: float = obstacle.position.x + obstacle_collider.position.x - half_width

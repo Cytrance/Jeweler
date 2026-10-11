@@ -45,7 +45,7 @@ func _run() -> void:
 	var scene := packed.instantiate()
 	root.add_child(scene)
 	var ground := scene.get_node("Market/Ground") as TileMapLayer
-	var stall := scene.get_node("Obstacle/Visual") as Sprite2D
+	var stall := scene.get_node("Obstacle/Stall/Visual") as Sprite2D
 	var board := scene.get_node("Sign/Visual") as Sprite2D
 	check(ground.tile_set != null and ground.get_used_cells().size() == 15, "ground has 5 by 3 persisted editable cells")
 	var cell_size: Vector2 = Vector2(ground.tile_set.tile_size) * ground.scale
